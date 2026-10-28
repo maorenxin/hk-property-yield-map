@@ -445,7 +445,8 @@ def full_corpus_validation() -> list[dict]:
     checks = []
     base = ROOT / "data/raw/centaline/transaction_search/2026-10-16"
     plan = json.loads((base / "plan.json").read_text()) if (base / "plan.json").exists() else []
-    pages = list((base / "pages").rglob("*.json.gz")) if (base / "pages").exists() else []
+    pages = [p for p in (base / "pages").rglob("*.json.gz")
+             if not p.name.startswith("._")] if (base / "pages").exists() else []
     manifest_path = base / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
     mfiles = {x["path"]: x for x in manifest.get("files", [])}

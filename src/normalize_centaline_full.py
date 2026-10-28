@@ -20,11 +20,13 @@ OUT = ROOT / "data/normalized/centaline/transactions_full_2026-10-18.parquet"
 SUMMARY = ROOT / "data/normalized/centaline/transactions_full_2026-10-18.summary.json"
 
 
+def _pages(root: Path) -> list[Path]:
+    return [p for p in sorted(root.rglob("*.json.gz")) if not p.name.startswith("._")]
+
+
 def main() -> int:
-    pages = (sorted(CURRENT.rglob("*.json.gz"))
-             + sorted(FULL.rglob("*.json.gz"))
-             + sorted(RENT_FULL.rglob("*.json.gz")) if RENT_FULL.exists()
-             else sorted(CURRENT.rglob("*.json.gz")) + sorted(FULL.rglob("*.json.gz")))
+    pages = (_pages(CURRENT) + _pages(FULL) + _pages(RENT_FULL)
+             if RENT_FULL.exists() else _pages(CURRENT) + _pages(FULL))
     print(f"page files: {len(pages):,}")
     rows = []
     seen = set()

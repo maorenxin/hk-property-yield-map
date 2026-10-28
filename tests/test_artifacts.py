@@ -87,7 +87,7 @@ def test_full_corpus_transactions_normalized():
 def test_crawl_plan_and_page_integrity():
     base = ROOT / "data/raw/centaline/transaction_search/2026-10-16"
     plan = json.loads((base / "plan.json").read_text())
-    pages = list((base / "pages").rglob("*.json.gz"))
+    pages = [p for p in (base / "pages").rglob("*.json.gz") if not p.name.startswith("._")]
     planned = 0
     for leaf in plan:
         if leaf["count"] <= 10000:
