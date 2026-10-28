@@ -1,8 +1,8 @@
 name: Deploy static map to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  # Daily refresh owns the live Pages deployment. Keep this workflow manual so
+  # a source-only commit cannot overwrite the latest generated data snapshot.
   workflow_dispatch:
 
 permissions:
