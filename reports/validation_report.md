@@ -1,6 +1,6 @@
 # 香港住宅租售比验证报告
 
-- 生成时间：2026-10-28T18:08:31+08:00
+- 生成时间：2026-10-28T20:01:22+08:00
 - 数据截止：2026-08
 - 计算层级：区域 + RVD 类别 + 月度；地图层级：香港/九龙/新界三大区
 
@@ -30,8 +30,8 @@
 - PASS centaline_detail_formula_and_coverage : {"check": "centaline_detail_formula_and_coverage", "sale_rows": 904, "rent_rows": 990, "matched_cells": 68, "districts": 18, "formula_exact": true, "published_unit_price_mismatches_over_0_51_hkd": 0, "building_points": 40, "coordinates_in_hong_kong_bounds": true, "pass": true, "note": "Current snapshot sample; same district + saleable-area band + month pairing. Building points use Centaline building-group grid coordinates converted from HK 1980 Grid to WGS84; 0.51 tolerance covers published integer rounding."}
 - PASS news_vs_our_public_index : {"check": "news_vs_our_public_index", "source_name": "RTHK", "headline": "HK home prices ease slightly in July", "period": "2026-07", "reported_value": 321.5, "our_value": 320.3, "absolute_difference": -1.1999999999999886, "pass": true, "exact_match": false, "note": "RTHK reports the RVD all-size price index for July 2026. The reported figure differs from the current RVD snapshot; keep this as a visible revision/definition gap.", "source_url": "https://gbcode.rthk.hk/TuniS/news.rthk.hk/rthk/en/component/k2/1867761-20260827.htm"}
 - PASS crawl_manifest_integrity : {"check": "crawl_manifest_integrity", "leaves": 205, "page_files": 3366, "pages_match": true, "hash_sample_checked": 40, "hash_sample_ok": 40, "pass": true, "note": "抽样核对了 40 个原始分页的 SHA-256 与字节数；全量哈希清单见 manifest.json"}
-- PASS full_transaction_corpus_coverage : {"check": "full_transaction_corpus_coverage", "records": 1806389, "scope": "full_history", "api_total": 2595027, "coverage_pct": 69.61, "duplicates_dropped": 50, "date_min": "1990-01-12", "date_max": "2026-10-28", "pass": true, "note": "中原接口 day='' 全历史；当前快照覆盖地图明细组，非全港全量"}
-- PASS building_level_map_points : {"check": "building_level_map_points", "building_points": 1973, "building_with_yield": 1328, "grid_coord_points": 996, "estate_fallback_points": 332, "estate_points": 421, "coordinates_in_hong_kong_bounds": true, "pass": true, "note": "楼宇组级点位（CentaMap 坐标）+ 屋苑中心近似坐标（明确标注 geo=estate）"}
+- PASS full_transaction_corpus_coverage : {"check": "full_transaction_corpus_coverage", "records": 1808838, "scope": "full_history", "api_total": 2595027, "coverage_pct": 69.7, "duplicates_dropped": 4153, "date_min": "1990-01-12", "date_max": "2026-10-28", "pass": true, "note": "中原接口 day='' 全历史；当前快照覆盖地图明细组，非全港全量"}
+- PASS building_level_map_points : {"check": "building_level_map_points", "building_points": 1971, "building_with_yield": 1330, "grid_coord_points": 999, "estate_fallback_points": 331, "estate_points": 420, "coordinates_in_hong_kong_bounds": true, "pass": true, "note": "楼宇组级点位（CentaMap 坐标）+ 屋苑中心近似坐标（明确标注 geo=estate）"}
 - PASS external_chart_corroboration : {"check": "external_chart_corroboration", "etnet_vs_lr_exact_months": "67/67", "price_etnet_vs_ours_corr": 0.9227, "price_etnet_vs_ours_3m_direction": 87.88, "volume_ours_vs_lr_corr": 0.9343, "pass": true, "note": "ET Net 成交宗数逐月复现官方 LR；ET Net 均价 vs 我们的等权屋苑中位呎价强相关；我们的成交量 vs LR 相关 0.9+"}
 
 ## 限制

@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-10-28T18:08:27+08:00",
+  "generated_at": "2026-10-28T19:53:44+08:00",
   "snapshot": "2026-10-28",
-  "window_days": 1,
+  "window_days": 30,
   "source_unique_records": {
-    "Sale": 27,
-    "Rent": 23
+    "Sale": 4540,
+    "Rent": 2062
   },
   "base_records": 1806389,
-  "fresh_records": 50,
-  "new_source_record_ids": 0,
-  "records": 1806389,
-  "duplicates_dropped": 50,
+  "fresh_records": 6602,
+  "new_source_record_ids": 2449,
+  "records": 1808838,
+  "duplicates_dropped": 4153,
   "by_listing_type": {
-    "sale": 1650444,
-    "rent": 155945
+    "sale": 1652398,
+    "rent": 156440
   },
   "by_data_source": {
-    "Land": 1649677,
-    "AC": 156712
+    "Land": 1651396,
+    "AC": 157442
   },
   "date_min": "1990-01-12",
   "date_max": "2026-10-28",
   "registration_date_min": "1995-07-01",
   "registration_date_max": "2026-10-28",
-  "distinct_estates": 2092,
-  "distinct_bldg_grp": 2286,
+  "distinct_estates": 2096,
+  "distinct_bldg_grp": 2289,
   "output": "data/normalized/centaline/transactions_full_latest.parquet"
 }

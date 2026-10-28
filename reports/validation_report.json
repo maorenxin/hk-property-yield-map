@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-28T18:08:31+08:00",
+  "generated_at": "2026-10-28T20:01:22+08:00",
   "latest_period": "2026-08",
   "latest_overall": {
     "rent": 457.0,
@@ -222,11 +222,11 @@
     },
     {
       "check": "full_transaction_corpus_coverage",
-      "records": 1806389,
+      "records": 1808838,
       "scope": "full_history",
       "api_total": 2595027,
-      "coverage_pct": 69.61,
-      "duplicates_dropped": 50,
+      "coverage_pct": 69.7,
+      "duplicates_dropped": 4153,
       "date_min": "1990-01-12",
       "date_max": "2026-10-28",
       "pass": true,
@@ -234,11 +234,11 @@
     },
     {
       "check": "building_level_map_points",
-      "building_points": 1973,
-      "building_with_yield": 1328,
-      "grid_coord_points": 996,
-      "estate_fallback_points": 332,
-      "estate_points": 421,
+      "building_points": 1971,
+      "building_with_yield": 1330,
+      "grid_coord_points": 999,
+      "estate_fallback_points": 331,
+      "estate_points": 420,
       "coordinates_in_hong_kong_bounds": true,
       "pass": true,
       "note": "楼宇组级点位（CentaMap 坐标）+ 屋苑中心近似坐标（明确标注 geo=estate）"
