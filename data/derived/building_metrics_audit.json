@@ -1,0 +1,16 @@
+{
+ "generated_at": "2026-10-28T10:07:44.279245+00:00",
+ "history_months": 442,
+ "history_start": "1990-01",
+ "history_end": "2026-10",
+ "buildings_with_yield_history_ge3": 1788,
+ "window_start": "2025-10-28",
+ "snapshot": "2026-10-28",
+ "records_full": 1837488,
+ "records_12m": 120063,
+ "sale_cross_source_dropped": 63,
+ "building_points": 1973,
+ "building_with_yield": 1574,
+ "estate_points": 421,
+ "estate_with_yield": 1025
+}

@@ -1,0 +1,66 @@
+# Secrets and local-only files
+.env
+.env.*
+!.env.example
+.DS_Store
+*.pem
+*.key
+
+# Local runtime / caches
+.pytest_cache/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+logs/
+apks/
+work/
+dist/
+*.log
+*.tmp
+*.partial
+
+# Large raw data and full normalized Parquet are published as GitHub Release assets.
+data/raw/
+data/normalized/centaline/*.parquet
+data/normalized/centaline/*.parquet.tmp
+data/normalized/centaline/*.parquet.*.part
+
+# Optional local development artifacts
+data/**/__pycache__/
+
+reports/img/
+
+# Keep the public repository focused on Hong Kong. The local Hangzhou experiment
+# and its anti-automation screenshots are intentionally not published.
+site/hangzhou/
+src/hangzhou/
+data/raw/hangzhou/
+data/normalized/hangzhou/
+data/derived/hangzhou/
+reports/hangzhou*
+reports/beike*
+reports/ziroom*
+skills/
+scripts/beike_*.py
+scripts/link_beike_skill.sh
+config/beike_yuhang_collection.json
+tests/test_beike_*.py
+tests/test_prepare_beike_full_queue.py
+tests/test_yuhang_pipeline.py
+tests/test_ziroom_yuhang.py
+reports/yuhang*
+reports/2026-10-20_*beike*
+reports/2026-10-20_emulator*
+reports/2026-10-20_apk-beike*
+scripts/captcha_gate_server.py
+
+tests/fixtures/hangzhou/
+data/derived/beike/
+data/raw/beike/
+data/geo/beijing_districts.geojson
+reports/2026-10-20_beijing*
+
+# Local agent instructions and private workspace notes
+AGENTS.md

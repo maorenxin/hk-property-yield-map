@@ -1,0 +1,21 @@
+{
+ "generated_at": "2026-10-19T05:26:51.942557+00:00",
+ "pages": 22211,
+ "records": 1806339,
+ "duplicates_dropped": 329995,
+ "by_listing_type": {
+  "sale": 1650417,
+  "rent": 155922
+ },
+ "by_data_source": {
+  "Land": 1649677,
+  "AC": 156662
+ },
+ "date_min": "1990-01-12",
+ "date_max": "2026-10-19",
+ "registration_date_min": "1995-07-01",
+ "registration_date_max": "2026-10-19",
+ "distinct_estates": 2092,
+ "distinct_bldg_grp": 2286,
+ "output": "data/normalized/centaline/transactions_full_2026-10-18.parquet"
+}

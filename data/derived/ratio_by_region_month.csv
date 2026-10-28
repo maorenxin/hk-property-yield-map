@@ -1,0 +1,997 @@
+period,region,rent_monthly_hkd_m2,sale_price_hkd_m2,gross_yield_pct,price_to_rent_years,classes,metric_definition
+1999-01-01,Hong Kong,249.0,60466.0,4.949436816574858,20.204318936877076,5,median across RVD class A-E regional average rent/sale pairs
+1999-01-01,Kowloon,185.0,45796.0,4.899991265612718,20.40819964349376,5,median across RVD class A-E regional average rent/sale pairs
+1999-01-01,New Territories,150.0,43298.0,4.351263665857847,22.98182957393484,5,median across RVD class A-E regional average rent/sale pairs
+1999-02-01,Hong Kong,239.0,60486.0,5.105318039624609,19.587418300653596,5,median across RVD class A-E regional average rent/sale pairs
+1999-02-01,Kowloon,177.0,47357.0,4.485081402960492,22.29613935969868,5,median across RVD class A-E regional average rent/sale pairs
+1999-02-01,New Territories,144.0,41314.0,4.182601539429733,23.908564814814813,5,median across RVD class A-E regional average rent/sale pairs
+1999-03-01,Hong Kong,247.0,62962.0,4.841303881621275,20.655592469545958,5,median across RVD class A-E regional average rent/sale pairs
+1999-03-01,Kowloon,174.0,45549.0,4.663110057300929,21.444915254237287,5,median across RVD class A-E regional average rent/sale pairs
+1999-03-01,New Territories,142.0,41377.0,4.314446366782007,23.17794486215539,5,median across RVD class A-E regional average rent/sale pairs
+1999-04-01,Hong Kong,256.0,61196.0,5.01993594352572,19.920572916666668,5,median across RVD class A-E regional average rent/sale pairs
+1999-04-01,Kowloon,172.0,45198.0,4.745848650019014,21.07104700854701,5,median across RVD class A-E regional average rent/sale pairs
+1999-04-01,New Territories,135.0,40029.0,4.395885246949076,22.748546511627907,5,median across RVD class A-E regional average rent/sale pairs
+1999-05-01,Hong Kong,233.0,65221.0,4.454096742349457,22.451241134751772,5,median across RVD class A-E regional average rent/sale pairs
+1999-05-01,Kowloon,175.0,45858.0,4.579353656940992,21.837142857142858,5,median across RVD class A-E regional average rent/sale pairs
+1999-05-01,New Territories,133.0,42599.0,3.8530146271851584,25.953703703703702,5,median across RVD class A-E regional average rent/sale pairs
+1999-06-01,Hong Kong,253.0,62609.0,4.849143094443291,20.622200263504613,5,median across RVD class A-E regional average rent/sale pairs
+1999-06-01,Kowloon,186.0,44597.0,4.864478181384627,20.55718954248366,5,median across RVD class A-E regional average rent/sale pairs
+1999-06-01,New Territories,146.0,42890.0,4.1878577660502625,23.878556910569106,5,median across RVD class A-E regional average rent/sale pairs
+1999-07-01,Hong Kong,255.0,61009.0,4.8833506053635976,20.47774327122153,5,median across RVD class A-E regional average rent/sale pairs
+1999-07-01,Kowloon,167.0,44754.0,4.8531974795549,20.604972375690608,5,median across RVD class A-E regional average rent/sale pairs
+1999-07-01,New Territories,133.0,39707.0,4.019442415694965,24.879072681704262,5,median across RVD class A-E regional average rent/sale pairs
+1999-08-01,Hong Kong,251.0,58748.0,5.075907895344009,19.70090909090909,5,median across RVD class A-E regional average rent/sale pairs
+1999-08-01,Kowloon,172.0,40275.0,5.118467761908693,19.537096774193547,5,median across RVD class A-E regional average rent/sale pairs
+1999-08-01,New Territories,139.0,41525.0,4.299534217126478,23.258333333333333,5,median across RVD class A-E regional average rent/sale pairs
+1999-09-01,Hong Kong,253.0,58385.0,5.156319454734034,19.39367816091954,5,median across RVD class A-E regional average rent/sale pairs
+1999-09-01,Kowloon,176.0,39502.0,5.3769429395979955,18.597928436911488,5,median across RVD class A-E regional average rent/sale pairs
+1999-09-01,New Territories,136.0,38729.0,4.53081621321488,22.07107843137255,5,median across RVD class A-E regional average rent/sale pairs
+1999-10-01,Hong Kong,257.0,57482.0,5.105114430332577,19.588199513381994,5,median across RVD class A-E regional average rent/sale pairs
+1999-10-01,Kowloon,188.0,42809.0,5.494171786306618,18.20110544217687,5,median across RVD class A-E regional average rent/sale pairs
+1999-10-01,New Territories,145.0,42504.0,4.753660612107162,21.03641975308642,5,median across RVD class A-E regional average rent/sale pairs
+1999-11-01,Hong Kong,236.0,57161.0,4.969411764705883,20.123106060606062,5,median across RVD class A-E regional average rent/sale pairs
+1999-11-01,Kowloon,195.0,41374.0,5.266932499497978,18.986383442265794,5,median across RVD class A-E regional average rent/sale pairs
+1999-11-01,New Territories,141.0,39227.0,4.160399724679429,24.036151960784313,5,median across RVD class A-E regional average rent/sale pairs
+1999-12-01,Hong Kong,251.0,58886.0,5.09074201699977,19.64350180505415,5,median across RVD class A-E regional average rent/sale pairs
+1999-12-01,Kowloon,168.0,42386.0,5.011088566979663,19.955743879472692,5,median across RVD class A-E regional average rent/sale pairs
+1999-12-01,New Territories,146.0,40687.0,4.4645327921778435,22.39876033057851,5,median across RVD class A-E regional average rent/sale pairs
+2000-01-01,Hong Kong,244.0,59387.0,4.65546885332628,21.480113636363637,5,median across RVD class A-E regional average rent/sale pairs
+2000-01-01,Kowloon,166.0,43041.0,4.635943338470307,21.57058287795993,5,median across RVD class A-E regional average rent/sale pairs
+2000-01-01,New Territories,140.0,39812.0,4.382240771389508,22.81937602627258,5,median across RVD class A-E regional average rent/sale pairs
+2000-02-01,Hong Kong,242.0,61421.0,4.791029561671763,20.872340425531913,5,median across RVD class A-E regional average rent/sale pairs
+2000-02-01,Kowloon,169.0,40086.0,5.157297576070139,19.39,5,median across RVD class A-E regional average rent/sale pairs
+2000-02-01,New Territories,137.0,34038.0,4.778319267799834,20.927860696517413,5,median across RVD class A-E regional average rent/sale pairs
+2000-03-01,Hong Kong,249.0,57034.0,5.15404772610981,19.40222623345367,5,median across RVD class A-E regional average rent/sale pairs
+2000-03-01,Kowloon,180.0,41580.0,5.194805194805195,19.25,5,median across RVD class A-E regional average rent/sale pairs
+2000-03-01,New Territories,137.0,38792.0,4.74972760223255,21.053838951310862,5,median across RVD class A-E regional average rent/sale pairs
+2000-04-01,Hong Kong,258.0,57195.0,5.19134775374376,19.262820512820515,5,median across RVD class A-E regional average rent/sale pairs
+2000-04-01,Kowloon,167.0,41421.0,4.606359093213587,21.709119496855347,5,median across RVD class A-E regional average rent/sale pairs
+2000-04-01,New Territories,147.0,40951.0,4.387296669248644,22.793079096045197,5,median across RVD class A-E regional average rent/sale pairs
+2000-05-01,Hong Kong,244.0,51767.0,5.462490895848507,18.30666666666667,5,median across RVD class A-E regional average rent/sale pairs
+2000-05-01,Kowloon,177.0,36972.0,5.416602256917606,18.46175799086758,5,median across RVD class A-E regional average rent/sale pairs
+2000-05-01,New Territories,139.0,39316.0,4.323037403671449,23.131884057971014,5,median across RVD class A-E regional average rent/sale pairs
+2000-06-01,Hong Kong,248.0,51542.0,5.773931939001202,17.319220430107528,5,median across RVD class A-E regional average rent/sale pairs
+2000-06-01,Kowloon,168.0,36325.0,5.549896765313146,18.018353174603174,5,median across RVD class A-E regional average rent/sale pairs
+2000-06-01,New Territories,143.0,38080.0,4.506302521008403,22.19114219114219,5,median across RVD class A-E regional average rent/sale pairs
+2000-07-01,Hong Kong,253.0,49087.0,5.57878189906017,17.92505995203837,5,median across RVD class A-E regional average rent/sale pairs
+2000-07-01,Kowloon,169.0,33000.0,5.91966792847501,16.894213432499434,4,median across RVD class A-E regional average rent/sale pairs
+2000-07-01,New Territories,140.0,36119.0,4.876003740849431,20.508597883597883,5,median across RVD class A-E regional average rent/sale pairs
+2000-08-01,Hong Kong,248.0,53516.0,5.560953733462889,17.982526881720432,5,median across RVD class A-E regional average rent/sale pairs
+2000-08-01,Kowloon,164.0,39383.0,5.312145289443814,18.824786324786324,5,median across RVD class A-E regional average rent/sale pairs
+2000-08-01,New Territories,142.0,34710.0,4.856883823338945,20.589333333333332,5,median across RVD class A-E regional average rent/sale pairs
+2000-09-01,Hong Kong,264.0,59390.0,5.550273162398672,18.017131242740998,5,median across RVD class A-E regional average rent/sale pairs
+2000-09-01,Kowloon,181.0,36607.0,5.511544033784409,18.14373601789709,5,median across RVD class A-E regional average rent/sale pairs
+2000-09-01,New Territories,150.0,35313.0,5.066044072024818,19.73926767676768,5,median across RVD class A-E regional average rent/sale pairs
+2000-10-01,Hong Kong,250.0,54598.0,5.4947067658155975,18.199333333333332,5,median across RVD class A-E regional average rent/sale pairs
+2000-10-01,Kowloon,175.0,37717.0,5.822308242967362,17.175318761384336,5,median across RVD class A-E regional average rent/sale pairs
+2000-10-01,New Territories,150.0,35474.0,5.09441333506967,19.629345603271982,5,median across RVD class A-E regional average rent/sale pairs
+2000-11-01,Hong Kong,262.0,50733.0,5.708751720271166,17.516964285714284,5,median across RVD class A-E regional average rent/sale pairs
+2000-11-01,Kowloon,168.0,38391.0,5.032429475658358,19.87111801242236,5,median across RVD class A-E regional average rent/sale pairs
+2000-11-01,New Territories,150.0,35867.0,5.369910987888516,18.622282608695652,5,median across RVD class A-E regional average rent/sale pairs
+2000-12-01,Hong Kong,266.0,50030.0,6.380171896861883,15.673558897243108,5,median across RVD class A-E regional average rent/sale pairs
+2000-12-01,Kowloon,205.0,34873.0,6.704062245544195,14.916329284750338,5,median across RVD class A-E regional average rent/sale pairs
+2000-12-01,New Territories,145.0,33290.0,5.226794833283268,19.132183908045977,5,median across RVD class A-E regional average rent/sale pairs
+2001-01-01,Hong Kong,268.0,51283.0,5.868995633187772,17.038690476190474,5,median across RVD class A-E regional average rent/sale pairs
+2001-01-01,Kowloon,224.0,33593.0,6.871776631691268,14.552277432712215,5,median across RVD class A-E regional average rent/sale pairs
+2001-01-01,New Territories,147.0,30807.0,5.458680818802123,18.319444444444443,5,median across RVD class A-E regional average rent/sale pairs
+2001-02-01,Hong Kong,259.0,49963.0,6.052464833354454,16.52219430485762,5,median across RVD class A-E regional average rent/sale pairs
+2001-02-01,Kowloon,209.0,35052.0,7.014467338886453,14.25625,5,median across RVD class A-E regional average rent/sale pairs
+2001-02-01,New Territories,162.0,32820.0,5.742135578201152,17.415123456790123,5,median across RVD class A-E regional average rent/sale pairs
+2001-03-01,Hong Kong,256.0,50282.0,5.816029794398244,17.193859649122807,5,median across RVD class A-E regional average rent/sale pairs
+2001-03-01,Kowloon,190.0,33665.0,6.365561352572638,15.709533607681756,5,median across RVD class A-E regional average rent/sale pairs
+2001-03-01,New Territories,141.0,34353.0,5.160932297447281,19.376344086021504,5,median across RVD class A-E regional average rent/sale pairs
+2001-04-01,Hong Kong,253.0,54391.0,5.581805813461786,17.915349143610012,5,median across RVD class A-E regional average rent/sale pairs
+2001-04-01,Kowloon,172.0,34132.0,6.281091837176104,15.920798898071626,5,median across RVD class A-E regional average rent/sale pairs
+2001-04-01,New Territories,136.0,33407.0,5.141782205810632,19.44850948509485,5,median across RVD class A-E regional average rent/sale pairs
+2001-05-01,Hong Kong,258.0,54581.0,5.788325849903784,17.276152482269502,5,median across RVD class A-E regional average rent/sale pairs
+2001-05-01,Kowloon,190.0,32610.0,6.534074626010203,15.304385964912282,5,median across RVD class A-E regional average rent/sale pairs
+2001-05-01,New Territories,140.0,34375.0,5.049556598852374,19.803719008264462,5,median across RVD class A-E regional average rent/sale pairs
+2001-06-01,Hong Kong,254.0,51818.0,5.882125902196148,17.000656167979002,5,median across RVD class A-E regional average rent/sale pairs
+2001-06-01,Kowloon,176.0,38272.0,5.518394648829431,18.12121212121212,5,median across RVD class A-E regional average rent/sale pairs
+2001-06-01,New Territories,140.0,33944.0,5.038281057051123,19.848039215686274,5,median across RVD class A-E regional average rent/sale pairs
+2001-07-01,Hong Kong,253.0,48544.0,6.124511521358308,16.32783278327833,5,median across RVD class A-E regional average rent/sale pairs
+2001-07-01,Kowloon,177.0,32089.0,6.619090654118234,15.107815442561206,5,median across RVD class A-E regional average rent/sale pairs
+2001-07-01,New Territories,137.0,31488.0,4.9828751553359805,20.06873479318735,5,median across RVD class A-E regional average rent/sale pairs
+2001-08-01,Hong Kong,256.0,46882.0,6.552621475193038,15.261067708333334,5,median across RVD class A-E regional average rent/sale pairs
+2001-08-01,Kowloon,151.0,34087.0,6.0139761417378415,16.627934272300468,5,median across RVD class A-E regional average rent/sale pairs
+2001-08-01,New Territories,140.0,31049.0,5.410802280266675,18.481547619047618,5,median across RVD class A-E regional average rent/sale pairs
+2001-09-01,Hong Kong,254.0,44469.0,5.855130784708249,17.079037800687285,5,median across RVD class A-E regional average rent/sale pairs
+2001-09-01,Kowloon,185.0,31979.0,6.371835903404131,15.69406392694064,5,median across RVD class A-E regional average rent/sale pairs
+2001-09-01,New Territories,138.0,27650.0,5.240340495553938,19.082729468599034,5,median across RVD class A-E regional average rent/sale pairs
+2001-10-01,Hong Kong,249.0,44183.0,6.687898089171974,14.952380952380953,5,median across RVD class A-E regional average rent/sale pairs
+2001-10-01,Kowloon,176.0,33462.0,6.31163708086785,15.84375,5,median across RVD class A-E regional average rent/sale pairs
+2001-10-01,New Territories,147.0,29803.0,5.825242718446602,17.166666666666668,5,median across RVD class A-E regional average rent/sale pairs
+2001-11-01,Hong Kong,249.0,46276.0,6.15022685262981,16.259562841530055,5,median across RVD class A-E regional average rent/sale pairs
+2001-11-01,Kowloon,152.0,32168.0,6.695200244573525,14.93607305936073,5,median across RVD class A-E regional average rent/sale pairs
+2001-11-01,New Territories,142.0,29501.0,5.172413793103448,19.333333333333332,5,median across RVD class A-E regional average rent/sale pairs
+2001-12-01,Hong Kong,238.0,44732.0,5.8731924360400445,17.026515151515152,5,median across RVD class A-E regional average rent/sale pairs
+2001-12-01,Kowloon,171.0,31196.0,6.126586080036039,16.32230392156863,5,median across RVD class A-E regional average rent/sale pairs
+2001-12-01,New Territories,135.0,30965.0,5.231713224608429,19.114197530864196,5,median across RVD class A-E regional average rent/sale pairs
+2002-01-01,Hong Kong,244.0,41930.0,6.797235023041474,14.711864406779661,5,median across RVD class A-E regional average rent/sale pairs
+2002-01-01,Kowloon,157.0,31094.0,6.047386235426852,16.536069651741293,5,median across RVD class A-E regional average rent/sale pairs
+2002-01-01,New Territories,136.0,30097.0,5.400062428467381,18.51830443159923,5,median across RVD class A-E regional average rent/sale pairs
+2002-02-01,Hong Kong,236.0,45290.0,6.1540244538448166,16.249529190207156,5,median across RVD class A-E regional average rent/sale pairs
+2002-02-01,Kowloon,190.0,33524.0,6.353937872607468,15.738271604938271,5,median across RVD class A-E regional average rent/sale pairs
+2002-02-01,New Territories,139.0,30889.0,5.39998057560944,18.518585131894483,5,median across RVD class A-E regional average rent/sale pairs
+2002-03-01,Hong Kong,251.0,41590.0,6.316045184015547,15.832692307692307,5,median across RVD class A-E regional average rent/sale pairs
+2002-03-01,Kowloon,172.0,31090.0,6.638790607912512,15.062984496124031,5,median across RVD class A-E regional average rent/sale pairs
+2002-03-01,New Territories,123.0,28614.0,5.1583141119731595,19.38617886178862,5,median across RVD class A-E regional average rent/sale pairs
+2002-04-01,Hong Kong,242.0,44198.0,6.106966746744216,16.374741200828158,5,median across RVD class A-E regional average rent/sale pairs
+2002-04-01,Kowloon,135.0,29650.0,6.556492411467116,15.252057613168724,5,median across RVD class A-E regional average rent/sale pairs
+2002-04-01,New Territories,119.0,29022.0,5.091258405379443,19.641509433962263,5,median across RVD class A-E regional average rent/sale pairs
+2002-05-01,Hong Kong,228.0,44152.0,5.809057317177967,17.214497041420117,5,median across RVD class A-E regional average rent/sale pairs
+2002-05-01,Kowloon,154.0,32565.0,6.458923512747876,15.482456140350877,5,median across RVD class A-E regional average rent/sale pairs
+2002-05-01,New Territories,124.0,30964.0,4.805580674331482,20.809139784946236,5,median across RVD class A-E regional average rent/sale pairs
+2002-06-01,Hong Kong,230.0,45505.0,5.8729836958095625,17.027120315581854,5,median across RVD class A-E regional average rent/sale pairs
+2002-06-01,Kowloon,159.0,32402.0,6.406453909123265,15.60925925925926,5,median across RVD class A-E regional average rent/sale pairs
+2002-06-01,New Territories,116.0,31484.0,4.680839207600791,21.363690476190477,5,median across RVD class A-E regional average rent/sale pairs
+2002-07-01,Hong Kong,209.0,41528.0,5.906772624836911,16.929718875502008,5,median across RVD class A-E regional average rent/sale pairs
+2002-07-01,Kowloon,172.0,32072.0,6.3385354141656665,15.776515151515152,5,median across RVD class A-E regional average rent/sale pairs
+2002-07-01,New Territories,122.0,29105.0,5.046910384988677,19.814102564102566,5,median across RVD class A-E regional average rent/sale pairs
+2002-08-01,Hong Kong,220.0,40592.0,6.295784942743442,15.883642930856553,5,median across RVD class A-E regional average rent/sale pairs
+2002-08-01,Kowloon,162.0,29072.0,6.6868464501926255,14.954732510288066,5,median across RVD class A-E regional average rent/sale pairs
+2002-08-01,New Territories,123.0,27211.0,5.4242769468229755,18.435636856368564,5,median across RVD class A-E regional average rent/sale pairs
+2002-09-01,Hong Kong,212.0,38916.0,6.375634517766497,15.684713375796179,5,median across RVD class A-E regional average rent/sale pairs
+2002-09-01,Kowloon,153.0,30375.0,6.5266446797431,15.321808510638299,5,median across RVD class A-E regional average rent/sale pairs
+2002-09-01,New Territories,119.0,28789.0,5.310418904403867,18.830906148867314,5,median across RVD class A-E regional average rent/sale pairs
+2002-10-01,Hong Kong,213.0,41412.0,6.0677944940383295,16.48045267489712,5,median across RVD class A-E regional average rent/sale pairs
+2002-10-01,Kowloon,139.0,28999.0,6.93866713868484,14.411989795918368,5,median across RVD class A-E regional average rent/sale pairs
+2002-10-01,New Territories,119.0,27461.0,5.476326297775243,18.260416666666668,5,median across RVD class A-E regional average rent/sale pairs
+2002-11-01,Hong Kong,218.0,38403.0,6.135949634080086,16.297395833333333,5,median across RVD class A-E regional average rent/sale pairs
+2002-11-01,Kowloon,151.0,30104.0,6.0191336699441935,16.613686534216335,5,median across RVD class A-E regional average rent/sale pairs
+2002-11-01,New Territories,127.0,28742.0,5.375494071146245,18.602941176470587,5,median across RVD class A-E regional average rent/sale pairs
+2002-12-01,Hong Kong,194.0,40112.0,5.803749501396091,17.230240549828178,5,median across RVD class A-E regional average rent/sale pairs
+2002-12-01,Kowloon,147.0,26914.0,6.554209704986253,15.257369614512472,5,median across RVD class A-E regional average rent/sale pairs
+2002-12-01,New Territories,110.0,28914.0,5.398729710656316,18.522875816993466,5,median across RVD class A-E regional average rent/sale pairs
+2003-01-01,Hong Kong,197.0,41088.0,5.813735886719481,17.200643776824034,5,median across RVD class A-E regional average rent/sale pairs
+2003-01-01,Kowloon,159.0,28985.0,6.444106327754408,15.518055555555556,5,median across RVD class A-E regional average rent/sale pairs
+2003-01-01,New Territories,111.0,27808.0,5.403327659107133,18.507113821138212,5,median across RVD class A-E regional average rent/sale pairs
+2003-02-01,Hong Kong,194.0,39575.0,5.8825015792798485,16.999570446735394,5,median across RVD class A-E regional average rent/sale pairs
+2003-02-01,Kowloon,134.5,25137.5,6.427363395375351,15.560293462523667,4,median across RVD class A-E regional average rent/sale pairs
+2003-02-01,New Territories,115.0,24894.0,5.54350445890576,18.03913043478261,5,median across RVD class A-E regional average rent/sale pairs
+2003-03-01,Hong Kong,199.0,38949.0,6.268677789020402,15.952327327327327,5,median across RVD class A-E regional average rent/sale pairs
+2003-03-01,Kowloon,170.0,25752.0,7.179896290386917,13.927777777777777,5,median across RVD class A-E regional average rent/sale pairs
+2003-03-01,New Territories,108.0,25562.0,5.3872690326544115,18.562280701754386,5,median across RVD class A-E regional average rent/sale pairs
+2003-04-01,Hong Kong,185.0,36005.0,6.214039125431531,16.09259259259259,5,median across RVD class A-E regional average rent/sale pairs
+2003-04-01,Kowloon,157.0,27300.0,6.9010989010989015,14.490445859872612,5,median across RVD class A-E regional average rent/sale pairs
+2003-04-01,New Territories,110.0,26024.0,5.229534987371862,19.12215909090909,5,median across RVD class A-E regional average rent/sale pairs
+2003-05-01,Hong Kong,181.0,36030.0,6.028309741881765,16.58839779005525,5,median across RVD class A-E regional average rent/sale pairs
+2003-05-01,Kowloon,167.0,20503.0,7.362324531265338,13.582666666666666,5,median across RVD class A-E regional average rent/sale pairs
+2003-05-01,New Territories,98.0,24619.0,5.402160864345738,18.511111111111113,5,median across RVD class A-E regional average rent/sale pairs
+2003-06-01,Hong Kong,189.0,38444.0,6.0067354938442,16.64797794117647,5,median across RVD class A-E regional average rent/sale pairs
+2003-06-01,Kowloon,159.0,23706.0,6.459530317398338,15.481001727115716,5,median across RVD class A-E regional average rent/sale pairs
+2003-06-01,New Territories,97.0,24439.0,4.931425459226618,20.278112449799195,5,median across RVD class A-E regional average rent/sale pairs
+2003-07-01,Hong Kong,186.0,36796.0,5.988148456180476,16.69965277777778,5,median across RVD class A-E regional average rent/sale pairs
+2003-07-01,Kowloon,159.0,25737.0,6.844325153374233,14.61064425770308,5,median across RVD class A-E regional average rent/sale pairs
+2003-07-01,New Territories,91.0,25747.0,4.915134370579914,20.345323741007196,5,median across RVD class A-E regional average rent/sale pairs
+2003-08-01,Hong Kong,199.0,38646.0,6.1791647259742275,16.183417085427134,5,median across RVD class A-E regional average rent/sale pairs
+2003-08-01,Kowloon,154.0,25659.0,6.998813760379596,14.288135593220339,5,median across RVD class A-E regional average rent/sale pairs
+2003-08-01,New Territories,103.0,24445.0,5.083493423969262,19.671511627906977,5,median across RVD class A-E regional average rent/sale pairs
+2003-09-01,Hong Kong,189.0,39358.0,5.409665521263516,18.485431235431236,5,median across RVD class A-E regional average rent/sale pairs
+2003-09-01,Kowloon,146.0,29663.0,6.027711290159457,16.590044742729308,5,median across RVD class A-E regional average rent/sale pairs
+2003-09-01,New Territories,104.0,26817.0,5.167780610487149,19.350666666666665,5,median across RVD class A-E regional average rent/sale pairs
+2003-10-01,Hong Kong,192.0,42453.0,5.273909006499536,18.961267605633804,5,median across RVD class A-E regional average rent/sale pairs
+2003-10-01,Kowloon,152.0,29882.0,6.104009102469714,16.38267543859649,5,median across RVD class A-E regional average rent/sale pairs
+2003-10-01,New Territories,95.0,27775.0,4.933864541832669,20.268087855297157,5,median across RVD class A-E regional average rent/sale pairs
+2003-11-01,Hong Kong,185.0,43756.0,5.0848974963444835,19.666079812206572,5,median across RVD class A-E regional average rent/sale pairs
+2003-11-01,Kowloon,133.0,30277.0,6.064008983717013,16.49074074074074,5,median across RVD class A-E regional average rent/sale pairs
+2003-11-01,New Territories,102.0,30250.0,4.24540512555009,23.554878048780488,5,median across RVD class A-E regional average rent/sale pairs
+2003-12-01,Hong Kong,197.0,45749.0,5.167326061771842,19.352368866328256,5,median across RVD class A-E regional average rent/sale pairs
+2003-12-01,Kowloon,147.0,31338.0,5.916515426497278,16.901840490797547,5,median across RVD class A-E regional average rent/sale pairs
+2003-12-01,New Territories,107.0,28593.0,5.140456380261966,19.453525641025642,5,median across RVD class A-E regional average rent/sale pairs
+2004-01-01,Hong Kong,203.0,51315.0,4.766569886535687,20.97944693572496,5,median across RVD class A-E regional average rent/sale pairs
+2004-01-01,Kowloon,150.0,35310.0,5.203851669739808,19.216535433070867,5,median across RVD class A-E regional average rent/sale pairs
+2004-01-01,New Territories,114.0,30813.0,4.558945743796746,21.934895833333332,5,median across RVD class A-E regional average rent/sale pairs
+2004-02-01,Hong Kong,200.0,53243.0,4.507634806453431,22.184583333333332,5,median across RVD class A-E regional average rent/sale pairs
+2004-02-01,Kowloon,151.0,41640.0,4.46685878962536,22.387096774193548,5,median across RVD class A-E regional average rent/sale pairs
+2004-02-01,New Territories,117.0,32986.0,4.446698131606662,22.48859649122807,5,median across RVD class A-E regional average rent/sale pairs
+2004-03-01,Hong Kong,211.0,56746.0,4.461988510203362,22.411532385466035,5,median across RVD class A-E regional average rent/sale pairs
+2004-03-01,Kowloon,133.0,49703.0,3.5957182565497665,27.810855263157894,5,median across RVD class A-E regional average rent/sale pairs
+2004-03-01,New Territories,114.0,35492.0,4.1188584877905265,24.27857142857143,5,median across RVD class A-E regional average rent/sale pairs
+2004-04-01,Hong Kong,220.0,54394.0,4.7123845538506295,21.22067901234568,5,median across RVD class A-E regional average rent/sale pairs
+2004-04-01,Kowloon,136.0,46031.0,4.5100041276531035,22.172928709055878,5,median across RVD class A-E regional average rent/sale pairs
+2004-04-01,New Territories,113.0,35027.0,4.392992131599591,22.763528138528137,5,median across RVD class A-E regional average rent/sale pairs
+2004-05-01,Hong Kong,204.0,53082.0,4.611732790776534,21.683823529411764,5,median across RVD class A-E regional average rent/sale pairs
+2004-05-01,Kowloon,145.0,42681.0,4.357911014268645,22.946774193548386,5,median across RVD class A-E regional average rent/sale pairs
+2004-05-01,New Territories,124.0,35255.0,4.240623243113003,23.581439393939394,5,median across RVD class A-E regional average rent/sale pairs
+2004-06-01,Hong Kong,207.0,51537.0,4.850558518667606,20.616182572614107,5,median across RVD class A-E regional average rent/sale pairs
+2004-06-01,Kowloon,162.0,42520.0,4.825964252116651,20.721247563352826,5,median across RVD class A-E regional average rent/sale pairs
+2004-06-01,New Territories,107.0,33190.0,4.349176762969866,22.992857142857144,5,median across RVD class A-E regional average rent/sale pairs
+2004-07-01,Hong Kong,215.0,52385.0,4.925073971556744,20.30426356589147,5,median across RVD class A-E regional average rent/sale pairs
+2004-07-01,Kowloon,165.0,40974.0,4.832332698784595,20.693939393939395,5,median across RVD class A-E regional average rent/sale pairs
+2004-07-01,New Territories,114.0,30742.0,4.2491023895010525,23.534382284382286,5,median across RVD class A-E regional average rent/sale pairs
+2004-08-01,Hong Kong,216.0,55824.0,4.643164230438521,21.537037037037038,5,median across RVD class A-E regional average rent/sale pairs
+2004-08-01,Kowloon,171.0,46790.0,4.642017525112204,21.542357274401475,5,median across RVD class A-E regional average rent/sale pairs
+2004-08-01,New Territories,113.0,35094.0,4.093480517829523,24.429089026915115,5,median across RVD class A-E regional average rent/sale pairs
+2004-09-01,Hong Kong,209.0,60879.0,4.507959365755161,22.182986111111113,5,median across RVD class A-E regional average rent/sale pairs
+2004-09-01,Kowloon,142.0,48437.0,4.657596465511902,21.470301418439718,5,median across RVD class A-E regional average rent/sale pairs
+2004-09-01,New Territories,115.0,37652.0,3.969174111709746,25.194158075601376,5,median across RVD class A-E regional average rent/sale pairs
+2004-10-01,Hong Kong,218.0,61993.0,4.219831271272563,23.69762996941896,5,median across RVD class A-E regional average rent/sale pairs
+2004-10-01,Kowloon,146.0,55707.0,3.985136517852335,25.093243243243244,5,median across RVD class A-E regional average rent/sale pairs
+2004-10-01,New Territories,118.0,39228.0,3.8827607942010713,25.75487012987013,5,median across RVD class A-E regional average rent/sale pairs
+2004-11-01,Hong Kong,228.0,63185.0,4.33014164754293,23.093932748538013,5,median across RVD class A-E regional average rent/sale pairs
+2004-11-01,Kowloon,180.0,50437.0,4.282570335269742,23.35046296296296,5,median across RVD class A-E regional average rent/sale pairs
+2004-11-01,New Territories,114.0,37540.0,3.9495114006514656,25.31958762886598,5,median across RVD class A-E regional average rent/sale pairs
+2004-12-01,Hong Kong,226.0,61242.0,4.227678079929539,23.653645833333332,5,median across RVD class A-E regional average rent/sale pairs
+2004-12-01,Kowloon,140.0,48400.0,4.537190082644628,22.040072859744992,5,median across RVD class A-E regional average rent/sale pairs
+2004-12-01,New Territories,105.0,38754.0,3.9221026828271826,25.49652777777778,5,median across RVD class A-E regional average rent/sale pairs
+2005-01-01,Hong Kong,231.0,64117.0,4.228829475194665,23.647205588822356,5,median across RVD class A-E regional average rent/sale pairs
+2005-01-01,Kowloon,181.0,52845.0,4.223673005960829,23.676075268817204,5,median across RVD class A-E regional average rent/sale pairs
+2005-01-01,New Territories,124.0,38433.0,4.057814190755913,24.643809523809523,5,median across RVD class A-E regional average rent/sale pairs
+2005-02-01,Hong Kong,230.0,62202.0,4.374844643301019,22.857954545454547,5,median across RVD class A-E regional average rent/sale pairs
+2005-02-01,Kowloon,189.0,55889.0,4.058043622179677,24.64241622574956,5,median across RVD class A-E regional average rent/sale pairs
+2005-02-01,New Territories,136.0,39691.0,3.9401304848407315,25.37987012987013,5,median across RVD class A-E regional average rent/sale pairs
+2005-03-01,Hong Kong,246.0,67734.0,4.07950396940372,24.51278409090909,5,median across RVD class A-E regional average rent/sale pairs
+2005-03-01,Kowloon,183.0,65045.0,3.3761242216926743,29.61976320582878,5,median across RVD class A-E regional average rent/sale pairs
+2005-03-01,New Territories,109.0,41446.0,3.6848986044814693,27.137788778877887,5,median across RVD class A-E regional average rent/sale pairs
+2005-04-01,Hong Kong,233.0,68398.0,4.081551466931875,24.500487329434698,5,median across RVD class A-E regional average rent/sale pairs
+2005-04-01,Kowloon,140.0,60970.0,4.0347711989503035,24.784552845528456,5,median across RVD class A-E regional average rent/sale pairs
+2005-04-01,New Territories,121.0,42155.0,3.729095006523544,26.81615776081425,5,median across RVD class A-E regional average rent/sale pairs
+2005-05-01,Hong Kong,240.0,68972.0,3.954957429277671,25.28472222222222,5,median across RVD class A-E regional average rent/sale pairs
+2005-05-01,Kowloon,177.0,55030.0,3.859712883881519,25.908662900188325,5,median across RVD class A-E regional average rent/sale pairs
+2005-05-01,New Territories,110.0,43575.0,3.2963179427235536,30.336879432624112,5,median across RVD class A-E regional average rent/sale pairs
+2005-06-01,Hong Kong,239.0,66566.0,4.308505843824174,23.209902370990235,5,median across RVD class A-E regional average rent/sale pairs
+2005-06-01,Kowloon,179.0,53217.0,4.0814025593325445,24.501381215469614,5,median across RVD class A-E regional average rent/sale pairs
+2005-06-01,New Territories,117.0,41745.0,3.677676995944649,27.19107744107744,5,median across RVD class A-E regional average rent/sale pairs
+2005-07-01,Hong Kong,244.0,67953.0,4.308860535958678,23.207991803278688,5,median across RVD class A-E regional average rent/sale pairs
+2005-07-01,Kowloon,185.0,56884.0,3.9026791364882922,25.623423423423425,5,median across RVD class A-E regional average rent/sale pairs
+2005-07-01,New Territories,120.0,42199.0,3.50909869805733,28.497346072186836,5,median across RVD class A-E regional average rent/sale pairs
+2005-08-01,Hong Kong,242.0,66456.0,4.369808595160707,22.884297520661157,5,median across RVD class A-E regional average rent/sale pairs
+2005-08-01,Kowloon,177.0,52959.0,4.264239697310564,23.45083932853717,5,median across RVD class A-E regional average rent/sale pairs
+2005-08-01,New Territories,116.0,43031.0,4.018475750577368,24.885057471264368,5,median across RVD class A-E regional average rent/sale pairs
+2005-09-01,Hong Kong,250.0,69136.0,4.339273316361953,23.045333333333332,5,median across RVD class A-E regional average rent/sale pairs
+2005-09-01,Kowloon,177.0,56430.0,4.146730462519936,24.115384615384617,5,median across RVD class A-E regional average rent/sale pairs
+2005-09-01,New Territories,127.0,43391.0,3.9040408647268086,25.614485981308412,5,median across RVD class A-E regional average rent/sale pairs
+2005-10-01,Hong Kong,260.0,68951.0,4.646778146799901,21.52028714107366,5,median across RVD class A-E regional average rent/sale pairs
+2005-10-01,Kowloon,188.0,53211.0,4.23972486891808,23.586436170212767,5,median across RVD class A-E regional average rent/sale pairs
+2005-10-01,New Territories,120.0,41841.0,4.02786573780874,24.82704402515723,5,median across RVD class A-E regional average rent/sale pairs
+2005-11-01,Hong Kong,245.0,61691.0,4.765687053216839,20.983333333333334,5,median across RVD class A-E regional average rent/sale pairs
+2005-11-01,Kowloon,192.0,46952.0,5.648321690236838,17.704374057315235,5,median across RVD class A-E regional average rent/sale pairs
+2005-11-01,New Territories,126.0,40122.0,4.1122715404699735,24.317460317460316,5,median across RVD class A-E regional average rent/sale pairs
+2005-12-01,Hong Kong,236.0,65761.0,4.306503854868387,23.22069209039548,5,median across RVD class A-E regional average rent/sale pairs
+2005-12-01,Kowloon,199.0,55737.0,4.284407126325421,23.34045226130653,5,median across RVD class A-E regional average rent/sale pairs
+2005-12-01,New Territories,130.0,40083.0,3.89192425716638,25.69423076923077,5,median across RVD class A-E regional average rent/sale pairs
+2006-01-01,Hong Kong,259.0,65560.0,4.567331896812131,21.894620811287478,5,median across RVD class A-E regional average rent/sale pairs
+2006-01-01,Kowloon,171.0,54375.0,4.060689655172413,24.626358695652176,5,median across RVD class A-E regional average rent/sale pairs
+2006-01-01,New Territories,125.0,41256.0,4.420812761109001,22.620274914089347,5,median across RVD class A-E regional average rent/sale pairs
+2006-02-01,Hong Kong,245.0,66543.0,4.580060178921222,21.833774250440918,5,median across RVD class A-E regional average rent/sale pairs
+2006-02-01,Kowloon,168.0,56540.0,3.6505129112133003,27.393410852713178,5,median across RVD class A-E regional average rent/sale pairs
+2006-02-01,New Territories,112.0,40083.0,4.046643554995272,24.71183800623053,5,median across RVD class A-E regional average rent/sale pairs
+2006-03-01,Hong Kong,237.0,69824.0,4.073098075160404,24.551336146272856,5,median across RVD class A-E regional average rent/sale pairs
+2006-03-01,Kowloon,177.0,58194.0,4.206619239096814,23.772058823529413,5,median across RVD class A-E regional average rent/sale pairs
+2006-03-01,New Territories,137.0,41975.0,4.495584693604496,22.24404761904762,5,median across RVD class A-E regional average rent/sale pairs
+2006-04-01,Hong Kong,248.0,69582.0,4.252899704343871,23.513368983957218,5,median across RVD class A-E regional average rent/sale pairs
+2006-04-01,Kowloon,183.0,59558.0,3.7476073743241884,26.683691756272403,5,median across RVD class A-E regional average rent/sale pairs
+2006-04-01,New Territories,131.0,42651.0,4.186463767152873,23.886507936507936,5,median across RVD class A-E regional average rent/sale pairs
+2006-05-01,Hong Kong,255.0,71037.0,4.169577943536965,23.983242753623188,5,median across RVD class A-E regional average rent/sale pairs
+2006-05-01,Kowloon,194.0,59756.0,3.8958430952540333,25.668384879725085,5,median across RVD class A-E regional average rent/sale pairs
+2006-05-01,New Territories,113.0,41799.0,3.914066175317547,25.548878205128204,5,median across RVD class A-E regional average rent/sale pairs
+2006-06-01,Hong Kong,243.0,73963.0,4.186030340607508,23.888981173864895,5,median across RVD class A-E regional average rent/sale pairs
+2006-06-01,Kowloon,185.0,55686.0,4.202133390798405,23.797435897435896,5,median across RVD class A-E regional average rent/sale pairs
+2006-06-01,New Territories,111.0,42906.0,4.087193460490464,24.466666666666665,5,median across RVD class A-E regional average rent/sale pairs
+2006-07-01,Hong Kong,263.0,66739.0,4.728869176943016,21.146704689480355,5,median across RVD class A-E regional average rent/sale pairs
+2006-07-01,Kowloon,155.0,56835.0,4.286091316970177,23.33128078817734,5,median across RVD class A-E regional average rent/sale pairs
+2006-07-01,New Territories,130.0,39257.0,4.169508037018996,23.983644859813083,5,median across RVD class A-E regional average rent/sale pairs
+2006-08-01,Hong Kong,274.0,67419.0,4.876963467271837,20.50456204379562,5,median across RVD class A-E regional average rent/sale pairs
+2006-08-01,Kowloon,177.0,60936.0,4.115793619535251,24.29665071770335,5,median across RVD class A-E regional average rent/sale pairs
+2006-08-01,New Territories,132.0,41871.0,3.931720734568401,25.43415637860082,5,median across RVD class A-E regional average rent/sale pairs
+2006-09-01,Hong Kong,280.0,69813.0,4.812857204245628,20.77767857142857,5,median across RVD class A-E regional average rent/sale pairs
+2006-09-01,Kowloon,202.0,56434.0,4.295282985434313,23.28135313531353,5,median across RVD class A-E regional average rent/sale pairs
+2006-09-01,New Territories,124.0,41984.0,3.936703975299112,25.401960784313726,5,median across RVD class A-E regional average rent/sale pairs
+2006-10-01,Hong Kong,243.0,70843.0,4.116144149739565,24.29458161865569,5,median across RVD class A-E regional average rent/sale pairs
+2006-10-01,Kowloon,197.0,51539.0,4.586817749665302,21.80160744500846,5,median across RVD class A-E regional average rent/sale pairs
+2006-10-01,New Territories,126.0,41190.0,3.9144318923187855,25.546491228070174,5,median across RVD class A-E regional average rent/sale pairs
+2006-11-01,Hong Kong,261.0,70124.0,4.4663738520335405,22.389527458492974,5,median across RVD class A-E regional average rent/sale pairs
+2006-11-01,Kowloon,193.0,55213.0,4.216398311991741,23.71692439862543,5,median across RVD class A-E regional average rent/sale pairs
+2006-11-01,New Territories,117.0,41860.0,4.133510649894264,24.192510548523206,5,median across RVD class A-E regional average rent/sale pairs
+2006-12-01,Hong Kong,260.0,69144.0,4.474507672993686,22.348827470686768,5,median across RVD class A-E regional average rent/sale pairs
+2006-12-01,Kowloon,188.0,57425.0,4.513713539399217,22.154706790123456,5,median across RVD class A-E regional average rent/sale pairs
+2006-12-01,New Territories,120.0,40836.0,3.9324594534547876,25.429378531073446,5,median across RVD class A-E regional average rent/sale pairs
+2007-01-01,Hong Kong,257.0,73518.0,4.42452090104225,22.60131712259372,5,median across RVD class A-E regional average rent/sale pairs
+2007-01-01,Kowloon,185.0,61864.0,4.034656666235613,24.78525641025641,5,median across RVD class A-E regional average rent/sale pairs
+2007-01-01,New Territories,133.0,39076.0,4.108129057261893,24.34198113207547,5,median across RVD class A-E regional average rent/sale pairs
+2007-02-01,Hong Kong,282.0,76990.0,4.395376022860112,22.751182033096928,5,median across RVD class A-E regional average rent/sale pairs
+2007-02-01,Kowloon,205.0,64523.0,4.203152364273205,23.791666666666668,5,median across RVD class A-E regional average rent/sale pairs
+2007-02-01,New Territories,130.0,40631.0,4.119593034142688,24.274242424242424,5,median across RVD class A-E regional average rent/sale pairs
+2007-03-01,Hong Kong,269.0,75657.0,4.266624370514295,23.437732342007436,5,median across RVD class A-E regional average rent/sale pairs
+2007-03-01,Kowloon,163.0,58256.0,4.346333424883274,23.007898894154817,5,median across RVD class A-E regional average rent/sale pairs
+2007-03-01,New Territories,137.0,41912.0,4.2414870451604765,23.576636904761905,5,median across RVD class A-E regional average rent/sale pairs
+2007-04-01,Hong Kong,270.0,77098.0,4.202443643155465,23.79567901234568,5,median across RVD class A-E regional average rent/sale pairs
+2007-04-01,Kowloon,210.0,60684.0,4.1526596796519675,24.080952380952382,5,median across RVD class A-E regional average rent/sale pairs
+2007-04-01,New Territories,132.0,42808.0,4.142216085605799,24.141666666666666,5,median across RVD class A-E regional average rent/sale pairs
+2007-05-01,Hong Kong,302.0,78897.0,4.406744595013965,22.6924882629108,5,median across RVD class A-E regional average rent/sale pairs
+2007-05-01,Kowloon,192.0,62055.0,3.7128353879622913,26.93359375,5,median across RVD class A-E regional average rent/sale pairs
+2007-05-01,New Territories,144.0,43594.0,4.034795483990376,24.78440366972477,5,median across RVD class A-E regional average rent/sale pairs
+2007-06-01,Hong Kong,277.0,80239.0,4.142623911065691,24.139290012033694,5,median across RVD class A-E regional average rent/sale pairs
+2007-06-01,Kowloon,189.0,67900.0,3.693667157584683,27.073365231259967,5,median across RVD class A-E regional average rent/sale pairs
+2007-06-01,New Territories,141.0,40683.0,4.346210995542347,23.00854700854701,5,median across RVD class A-E regional average rent/sale pairs
+2007-07-01,Hong Kong,290.0,77469.0,4.492119428416528,22.261206896551723,5,median across RVD class A-E regional average rent/sale pairs
+2007-07-01,Kowloon,199.0,65829.0,3.809871029485485,26.247607655502392,5,median across RVD class A-E regional average rent/sale pairs
+2007-07-01,New Territories,146.0,43130.0,4.482472383628121,22.30911680911681,5,median across RVD class A-E regional average rent/sale pairs
+2007-08-01,Hong Kong,299.0,84518.0,4.245249532643934,23.555741360089186,5,median across RVD class A-E regional average rent/sale pairs
+2007-08-01,Kowloon,219.0,73175.0,3.5913905022207038,27.844368340943685,5,median across RVD class A-E regional average rent/sale pairs
+2007-08-01,New Territories,152.0,43919.0,4.162730553017515,24.022693452380953,5,median across RVD class A-E regional average rent/sale pairs
+2007-09-01,Hong Kong,295.0,83601.0,4.234399110058492,23.616101694915255,5,median across RVD class A-E regional average rent/sale pairs
+2007-09-01,Kowloon,220.0,73301.0,3.601587972878951,27.765530303030303,5,median across RVD class A-E regional average rent/sale pairs
+2007-09-01,New Territories,146.0,44401.0,3.9458570752910966,25.343036529680365,5,median across RVD class A-E regional average rent/sale pairs
+2007-10-01,Hong Kong,300.0,87454.0,4.116449790747136,24.29277777777778,5,median across RVD class A-E regional average rent/sale pairs
+2007-10-01,Kowloon,217.0,86771.0,3.5403533438591235,28.245768229166668,5,median across RVD class A-E regional average rent/sale pairs
+2007-10-01,New Territories,158.0,46252.0,4.11623626526856,24.294037940379404,5,median across RVD class A-E regional average rent/sale pairs
+2007-11-01,Hong Kong,316.0,89869.0,4.219475013630952,23.699630801687764,5,median across RVD class A-E regional average rent/sale pairs
+2007-11-01,Kowloon,246.0,93994.0,3.1406259974040895,31.84078590785908,5,median across RVD class A-E regional average rent/sale pairs
+2007-11-01,New Territories,144.0,48866.0,3.682774746687451,27.15343915343915,5,median across RVD class A-E regional average rent/sale pairs
+2007-12-01,Hong Kong,304.0,99455.0,3.6679905484892665,27.262883771929825,5,median across RVD class A-E regional average rent/sale pairs
+2007-12-01,Kowloon,200.0,95831.0,2.8425039914015295,35.1802496328928,5,median across RVD class A-E regional average rent/sale pairs
+2007-12-01,New Territories,151.0,48677.0,4.194480946123521,23.840852130325814,5,median across RVD class A-E regional average rent/sale pairs
+2008-01-01,Hong Kong,326.0,99481.0,3.9324092037675533,25.42970347648262,5,median across RVD class A-E regional average rent/sale pairs
+2008-01-01,Kowloon,225.0,95147.0,3.0647314155990206,32.62928669410151,5,median across RVD class A-E regional average rent/sale pairs
+2008-01-01,New Territories,155.0,50514.0,4.056733262162574,24.650375939849624,5,median across RVD class A-E regional average rent/sale pairs
+2008-02-01,Hong Kong,332.0,109533.0,3.654108920554363,27.36645299145299,5,median across RVD class A-E regional average rent/sale pairs
+2008-02-01,Kowloon,241.0,95727.0,3.2512344285307604,30.757548309178745,5,median across RVD class A-E regional average rent/sale pairs
+2008-02-01,New Territories,177.0,47535.0,4.422452450904593,22.611888111888113,5,median across RVD class A-E regional average rent/sale pairs
+2008-03-01,Hong Kong,350.0,98445.0,4.266341612067652,23.439285714285713,5,median across RVD class A-E regional average rent/sale pairs
+2008-03-01,Kowloon,255.0,90484.0,3.692162510198665,27.08439829605964,5,median across RVD class A-E regional average rent/sale pairs
+2008-03-01,New Territories,167.0,48614.0,4.47712469103176,22.335763888888888,5,median across RVD class A-E regional average rent/sale pairs
+2008-04-01,Hong Kong,341.0,98552.0,4.152122737235165,24.084066471163247,5,median across RVD class A-E regional average rent/sale pairs
+2008-04-01,Kowloon,247.0,75349.0,4.236287143824072,23.605576441102755,5,median across RVD class A-E regional average rent/sale pairs
+2008-04-01,New Territories,182.0,47148.0,4.63222193942479,21.587912087912088,5,median across RVD class A-E regional average rent/sale pairs
+2008-05-01,Hong Kong,345.0,104296.0,3.9694715041804094,25.192270531400965,5,median across RVD class A-E regional average rent/sale pairs
+2008-05-01,Kowloon,204.0,85383.0,4.103861424405326,24.367294520547944,5,median across RVD class A-E regional average rent/sale pairs
+2008-05-01,New Territories,176.0,50097.0,4.588475090458057,21.793732782369148,5,median across RVD class A-E regional average rent/sale pairs
+2008-06-01,Hong Kong,353.0,98765.0,4.288968764238343,23.315627950897074,5,median across RVD class A-E regional average rent/sale pairs
+2008-06-01,Kowloon,238.0,81110.0,3.6891679748822606,27.106382978723403,5,median across RVD class A-E regional average rent/sale pairs
+2008-06-01,New Territories,176.0,49708.0,4.3201329271669895,23.147435897435898,5,median across RVD class A-E regional average rent/sale pairs
+2008-07-01,Hong Kong,346.0,101133.0,4.105484856575005,24.357658959537574,5,median across RVD class A-E regional average rent/sale pairs
+2008-07-01,Kowloon,282.0,82631.0,4.226016870181893,23.66294387170676,5,median across RVD class A-E regional average rent/sale pairs
+2008-07-01,New Territories,181.0,49316.0,4.8200412240367845,20.74671052631579,5,median across RVD class A-E regional average rent/sale pairs
+2008-08-01,Hong Kong,361.0,87902.0,4.928215512730086,20.291320406278857,5,median across RVD class A-E regional average rent/sale pairs
+2008-08-01,Kowloon,304.0,74252.0,4.912998976458546,20.354166666666668,5,median across RVD class A-E regional average rent/sale pairs
+2008-08-01,New Territories,193.0,49578.0,4.671426842551131,21.406735751295336,5,median across RVD class A-E regional average rent/sale pairs
+2008-09-01,Hong Kong,358.0,93276.0,4.605686350186543,21.712290502793294,5,median across RVD class A-E regional average rent/sale pairs
+2008-09-01,Kowloon,244.0,74262.0,4.7669063585683125,20.977966101694914,5,median across RVD class A-E regional average rent/sale pairs
+2008-09-01,New Territories,163.0,47325.0,4.79590749227326,20.851111111111113,5,median across RVD class A-E regional average rent/sale pairs
+2008-10-01,Hong Kong,324.0,79791.0,4.872730007143663,20.522376543209877,5,median across RVD class A-E regional average rent/sale pairs
+2008-10-01,Kowloon,235.0,68863.0,4.5830126483017,21.819708491761723,5,median across RVD class A-E regional average rent/sale pairs
+2008-10-01,New Territories,175.0,42687.0,4.984778217202037,20.06107305936073,5,median across RVD class A-E regional average rent/sale pairs
+2008-11-01,Hong Kong,300.0,71386.0,4.720904149771375,21.182383040935672,5,median across RVD class A-E regional average rent/sale pairs
+2008-11-01,Kowloon,217.0,73688.0,3.896968635009637,25.660971223021583,5,median across RVD class A-E regional average rent/sale pairs
+2008-11-01,New Territories,153.0,46956.0,4.648390941597139,21.512820512820515,5,median across RVD class A-E regional average rent/sale pairs
+2008-12-01,Hong Kong,266.0,83329.0,3.954563710698949,25.287239583333335,5,median across RVD class A-E regional average rent/sale pairs
+2008-12-01,Kowloon,188.0,68713.0,3.89445956369246,25.677503736920777,5,median across RVD class A-E regional average rent/sale pairs
+2008-12-01,New Territories,137.0,43907.0,4.125937713116618,24.236914600550964,5,median across RVD class A-E regional average rent/sale pairs
+2009-01-01,Hong Kong,256.0,78132.0,3.9318077100291817,25.43359375,5,median across RVD class A-E regional average rent/sale pairs
+2009-01-01,Kowloon,217.0,75384.0,3.454313912766635,28.94930875576037,5,median across RVD class A-E regional average rent/sale pairs
+2009-01-01,New Territories,141.0,44531.0,3.998112002665408,25.011805555555554,5,median across RVD class A-E regional average rent/sale pairs
+2009-02-01,Hong Kong,261.0,82107.0,3.81453469253535,26.21551724137931,5,median across RVD class A-E regional average rent/sale pairs
+2009-02-01,Kowloon,222.0,69153.0,3.9023742761858937,25.625425170068027,5,median across RVD class A-E regional average rent/sale pairs
+2009-02-01,New Territories,136.0,45405.0,4.176248735166958,23.944933920704845,5,median across RVD class A-E regional average rent/sale pairs
+2009-03-01,Hong Kong,246.0,81119.0,3.639098115114831,27.479336043360433,5,median across RVD class A-E regional average rent/sale pairs
+2009-03-01,Kowloon,200.0,74127.0,3.512890040066373,28.466589861751153,5,median across RVD class A-E regional average rent/sale pairs
+2009-03-01,New Territories,131.0,44910.0,3.8883349950149553,25.71794871794872,5,median across RVD class A-E regional average rent/sale pairs
+2009-04-01,Hong Kong,243.0,85829.0,3.3974530753008887,29.4338134430727,5,median across RVD class A-E regional average rent/sale pairs
+2009-04-01,Kowloon,214.0,81015.0,3.1697833734493615,31.547897196261683,5,median across RVD class A-E regional average rent/sale pairs
+2009-04-01,New Territories,129.0,46799.0,3.644292166329232,27.44017094017094,5,median across RVD class A-E regional average rent/sale pairs
+2009-05-01,Hong Kong,258.0,93817.0,3.3000415702910986,30.302648578811368,5,median across RVD class A-E regional average rent/sale pairs
+2009-05-01,Kowloon,192.0,66712.5,3.4581381812270204,29.06719649768715,4,median across RVD class A-E regional average rent/sale pairs
+2009-05-01,New Territories,133.0,48234.0,3.530591775325978,28.323863636363637,5,median across RVD class A-E regional average rent/sale pairs
+2009-06-01,Hong Kong,257.0,94654.0,3.2581824328607354,30.69195849546044,5,median across RVD class A-E regional average rent/sale pairs
+2009-06-01,Kowloon,189.0,90489.0,3.089878327752545,32.3637339055794,5,median across RVD class A-E regional average rent/sale pairs
+2009-06-01,New Territories,133.0,49033.0,3.6752929275899855,27.208715596330276,5,median across RVD class A-E regional average rent/sale pairs
+2009-07-01,Hong Kong,269.0,95671.0,3.374063195743747,29.637856257744733,5,median across RVD class A-E regional average rent/sale pairs
+2009-07-01,Kowloon,190.0,79531.0,3.228929599778703,30.970015576323988,5,median across RVD class A-E regional average rent/sale pairs
+2009-07-01,New Territories,137.0,48441.0,3.646641723985818,27.42249103942652,5,median across RVD class A-E regional average rent/sale pairs
+2009-08-01,Hong Kong,291.0,102585.0,3.4040064336891356,29.377147766323024,5,median across RVD class A-E regional average rent/sale pairs
+2009-08-01,Kowloon,239.0,99006.0,3.043110735418428,32.861111111111114,5,median across RVD class A-E regional average rent/sale pairs
+2009-08-01,New Territories,148.0,49990.0,4.019068573524019,24.881386861313867,5,median across RVD class A-E regional average rent/sale pairs
+2009-09-01,Hong Kong,300.0,104660.0,3.4397095356392127,29.072222222222223,5,median across RVD class A-E regional average rent/sale pairs
+2009-09-01,Kowloon,204.0,90432.0,3.4235668789808917,29.209302325581394,5,median across RVD class A-E regional average rent/sale pairs
+2009-09-01,New Territories,146.0,50152.0,3.7120083798425503,26.939594356261022,5,median across RVD class A-E regional average rent/sale pairs
+2009-10-01,Hong Kong,292.0,103617.0,3.3816844726251483,29.571061643835616,5,median across RVD class A-E regional average rent/sale pairs
+2009-10-01,Kowloon,237.0,89809.0,3.2068055540090636,31.183680555555554,5,median across RVD class A-E regional average rent/sale pairs
+2009-10-01,New Territories,162.0,52500.0,4.101061882094471,24.383928571428573,5,median across RVD class A-E regional average rent/sale pairs
+2009-11-01,Hong Kong,296.0,105437.0,3.3688363667403283,29.68384009009009,5,median across RVD class A-E regional average rent/sale pairs
+2009-11-01,Kowloon,229.0,85511.0,3.6065535428190527,27.727302204928662,5,median across RVD class A-E regional average rent/sale pairs
+2009-11-01,New Territories,161.0,54337.0,4.255727020032589,23.49774774774775,5,median across RVD class A-E regional average rent/sale pairs
+2009-12-01,Hong Kong,299.0,103256.0,3.4748586038583715,28.77814938684504,5,median across RVD class A-E regional average rent/sale pairs
+2009-12-01,Kowloon,232.0,99193.0,3.000211708487494,33.330981182795696,5,median across RVD class A-E regional average rent/sale pairs
+2009-12-01,New Territories,153.0,53097.0,3.8058493681439947,26.275343642611684,5,median across RVD class A-E regional average rent/sale pairs
+2010-01-01,Hong Kong,309.0,105598.0,3.5114301407223625,28.478425026968715,5,median across RVD class A-E regional average rent/sale pairs
+2010-01-01,Kowloon,221.0,96843.0,2.7384529599454788,36.51696832579186,5,median across RVD class A-E regional average rent/sale pairs
+2010-01-01,New Territories,151.0,55093.0,3.681150130488531,27.165422885572138,5,median across RVD class A-E regional average rent/sale pairs
+2010-02-01,Hong Kong,310.0,109116.0,3.40921588034752,29.33225806451613,5,median across RVD class A-E regional average rent/sale pairs
+2010-02-01,Kowloon,249.0,100676.0,3.629190177107962,27.554356514788168,5,median across RVD class A-E regional average rent/sale pairs
+2010-02-01,New Territories,169.0,54136.0,4.063053568625692,24.612030905077262,5,median across RVD class A-E regional average rent/sale pairs
+2010-03-01,Hong Kong,296.0,118839.0,2.988917779516825,33.45692567567568,5,median across RVD class A-E regional average rent/sale pairs
+2010-03-01,Kowloon,261.0,109062.0,2.882763932442097,34.68893129770992,5,median across RVD class A-E regional average rent/sale pairs
+2010-03-01,New Territories,163.0,55059.0,3.8716615880982257,25.828703703703702,5,median across RVD class A-E regional average rent/sale pairs
+2010-04-01,Hong Kong,322.0,111255.0,3.4731023324794394,28.792701863354036,5,median across RVD class A-E regional average rent/sale pairs
+2010-04-01,Kowloon,262.0,102549.0,3.3856732141780097,29.536223277909738,5,median across RVD class A-E regional average rent/sale pairs
+2010-04-01,New Territories,169.0,56409.0,4.024335954889449,24.84882005899705,5,median across RVD class A-E regional average rent/sale pairs
+2010-05-01,Hong Kong,312.0,106500.0,3.5154929577464786,28.44551282051282,5,median across RVD class A-E regional average rent/sale pairs
+2010-05-01,Kowloon,234.0,98291.0,3.638176435278917,27.486297539149888,5,median across RVD class A-E regional average rent/sale pairs
+2010-05-01,New Territories,171.0,55957.0,4.259514888582134,23.47685185185185,5,median across RVD class A-E regional average rent/sale pairs
+2010-06-01,Hong Kong,317.0,112683.0,3.375841963738985,29.62223974763407,5,median across RVD class A-E regional average rent/sale pairs
+2010-06-01,Kowloon,280.0,95477.0,3.5191721566450553,28.41577380952381,5,median across RVD class A-E regional average rent/sale pairs
+2010-06-01,New Territories,178.0,58694.0,3.7217772339910935,26.86888379204893,5,median across RVD class A-E regional average rent/sale pairs
+2010-07-01,Hong Kong,332.0,111011.0,3.5888335390186556,27.864206827309236,5,median across RVD class A-E regional average rent/sale pairs
+2010-07-01,Kowloon,214.0,104119.0,3.3769052718524,29.612912400455063,5,median across RVD class A-E regional average rent/sale pairs
+2010-07-01,New Territories,174.0,61634.0,3.7758830694275276,26.483870967741936,5,median across RVD class A-E regional average rent/sale pairs
+2010-08-01,Hong Kong,341.0,115850.0,3.5321536469572723,28.311339198435974,5,median across RVD class A-E regional average rent/sale pairs
+2010-08-01,Kowloon,252.0,105614.0,3.2609313159240254,30.66608594657375,5,median across RVD class A-E regional average rent/sale pairs
+2010-08-01,New Territories,187.0,60567.0,3.9945139722269847,25.034334763948497,5,median across RVD class A-E regional average rent/sale pairs
+2010-09-01,Hong Kong,329.0,112005.0,3.5248426409535285,28.370060790273556,5,median across RVD class A-E regional average rent/sale pairs
+2010-09-01,Kowloon,251.0,116809.0,2.989495672422502,33.450458190148915,5,median across RVD class A-E regional average rent/sale pairs
+2010-09-01,New Territories,179.0,61495.0,4.060741931390381,24.626041666666666,5,median across RVD class A-E regional average rent/sale pairs
+2010-10-01,Hong Kong,341.0,112177.0,3.6478065913689974,27.41373411534702,5,median across RVD class A-E regional average rent/sale pairs
+2010-10-01,Kowloon,248.0,121130.0,2.6153719144720546,38.2354797979798,5,median across RVD class A-E regional average rent/sale pairs
+2010-10-01,New Territories,181.0,63056.0,3.8408116432151704,26.03616352201258,5,median across RVD class A-E regional average rent/sale pairs
+2010-11-01,Hong Kong,350.0,121249.0,3.4639460944007787,28.868809523809524,5,median across RVD class A-E regional average rent/sale pairs
+2010-11-01,Kowloon,292.0,125738.0,2.7867470454437004,35.884132420091326,5,median across RVD class A-E regional average rent/sale pairs
+2010-11-01,New Territories,184.0,63230.0,3.4920132848331487,28.63677536231884,5,median across RVD class A-E regional average rent/sale pairs
+2010-12-01,Hong Kong,347.0,121481.0,3.4276965122117864,29.174111431316042,5,median across RVD class A-E regional average rent/sale pairs
+2010-12-01,Kowloon,276.0,113496.0,3.6159864664834,27.65497076023392,5,median across RVD class A-E regional average rent/sale pairs
+2010-12-01,New Territories,178.0,62586.0,3.9667569334204873,25.209510357815443,5,median across RVD class A-E regional average rent/sale pairs
+2011-01-01,Hong Kong,334.0,130410.0,3.0733839429491603,32.537425149700596,5,median across RVD class A-E regional average rent/sale pairs
+2011-01-01,Kowloon,277.0,118561.0,2.8339841937905383,35.28601190476191,5,median across RVD class A-E regional average rent/sale pairs
+2011-01-01,New Territories,177.0,65839.0,3.758591065292096,26.605714285714285,5,median across RVD class A-E regional average rent/sale pairs
+2011-02-01,Hong Kong,345.0,133380.0,3.1039136302294197,32.21739130434783,5,median across RVD class A-E regional average rent/sale pairs
+2011-02-01,Kowloon,242.0,131526.0,2.709730395511154,36.9040404040404,5,median across RVD class A-E regional average rent/sale pairs
+2011-02-01,New Territories,176.0,65710.0,3.691658609475257,27.08809523809524,5,median across RVD class A-E regional average rent/sale pairs
+2011-03-01,Hong Kong,347.0,137085.0,3.0375314585840902,32.921469740634,5,median across RVD class A-E regional average rent/sale pairs
+2011-03-01,Kowloon,286.0,124898.0,2.747842239267242,36.392191142191145,5,median across RVD class A-E regional average rent/sale pairs
+2011-03-01,New Territories,183.0,65728.0,3.6149825783972127,27.662650602409638,5,median across RVD class A-E regional average rent/sale pairs
+2011-04-01,Hong Kong,348.0,139142.0,3.0012505210504377,33.31944444444444,5,median across RVD class A-E regional average rent/sale pairs
+2011-04-01,Kowloon,267.0,112319.0,3.23720830847853,30.89081408140814,5,median across RVD class A-E regional average rent/sale pairs
+2011-04-01,New Territories,177.0,67110.0,3.404732041743281,29.370886981402002,5,median across RVD class A-E regional average rent/sale pairs
+2011-05-01,Hong Kong,353.0,144823.0,2.924949766266408,34.18862134088763,5,median across RVD class A-E regional average rent/sale pairs
+2011-05-01,Kowloon,272.0,134173.0,2.5668353543559435,38.95847851335656,5,median across RVD class A-E regional average rent/sale pairs
+2011-05-01,New Territories,191.0,70613.0,3.3305176782912995,30.02536231884058,5,median across RVD class A-E regional average rent/sale pairs
+2011-06-01,Hong Kong,353.0,145168.0,2.9179984569602113,34.27006610009443,5,median across RVD class A-E regional average rent/sale pairs
+2011-06-01,Kowloon,239.0,133438.0,2.654485436627242,37.672084623323016,5,median across RVD class A-E regional average rent/sale pairs
+2011-06-01,New Territories,201.0,71792.0,3.4557682359027417,28.937125748502993,5,median across RVD class A-E regional average rent/sale pairs
+2011-07-01,Hong Kong,391.0,134378.0,3.4202027117534115,29.23803307223673,5,median across RVD class A-E regional average rent/sale pairs
+2011-07-01,Kowloon,308.0,128527.0,2.875660367082403,34.77462121212121,5,median across RVD class A-E regional average rent/sale pairs
+2011-07-01,New Territories,198.0,66047.0,3.7639239755175393,26.56801801801802,5,median across RVD class A-E regional average rent/sale pairs
+2011-08-01,Hong Kong,384.0,136641.0,3.372340659099392,29.652994791666668,5,median across RVD class A-E regional average rent/sale pairs
+2011-08-01,Kowloon,264.5,94196.5,3.4291850095289504,29.379751461988306,4,median across RVD class A-E regional average rent/sale pairs
+2011-08-01,New Territories,198.0,67890.0,3.795966785290629,26.34375,5,median across RVD class A-E regional average rent/sale pairs
+2011-09-01,Hong Kong,358.0,132001.0,3.2545207990848555,30.72648975791434,5,median across RVD class A-E regional average rent/sale pairs
+2011-09-01,Kowloon,285.0,118561.0,2.884591054393941,34.666959064327486,5,median across RVD class A-E regional average rent/sale pairs
+2011-09-01,New Territories,192.0,66970.0,3.7394331178518145,26.742021276595743,5,median across RVD class A-E regional average rent/sale pairs
+2011-10-01,Hong Kong,356.0,130082.0,3.2840823480573795,30.449906367041198,5,median across RVD class A-E regional average rent/sale pairs
+2011-10-01,Kowloon,278.0,126239.0,2.6045833696401273,38.39385644768856,5,median across RVD class A-E regional average rent/sale pairs
+2011-10-01,New Territories,193.0,63328.0,3.933529659234329,25.422459893048128,5,median across RVD class A-E regional average rent/sale pairs
+2011-11-01,Hong Kong,363.0,124811.0,3.4900769964185847,28.652662993572086,5,median across RVD class A-E regional average rent/sale pairs
+2011-11-01,Kowloon,273.0,91343.0,3.690718778873293,27.094993141289436,5,median across RVD class A-E regional average rent/sale pairs
+2011-11-01,New Territories,196.0,61234.0,3.7753691714555906,26.48747591522158,5,median across RVD class A-E regional average rent/sale pairs
+2011-12-01,Hong Kong,349.0,125885.0,3.3268459308098666,30.05850047755492,5,median across RVD class A-E regional average rent/sale pairs
+2011-12-01,Kowloon,262.0,108406.0,2.900208475545634,34.48027989821883,5,median across RVD class A-E regional average rent/sale pairs
+2011-12-01,New Territories,195.0,56499.0,3.992991026389848,25.043882978723403,5,median across RVD class A-E regional average rent/sale pairs
+2012-01-01,Hong Kong,338.0,128038.0,3.1678095565379025,31.567554240631164,5,median across RVD class A-E regional average rent/sale pairs
+2012-01-01,Kowloon,257.0,127677.0,2.415470288305646,41.39980544747082,5,median across RVD class A-E regional average rent/sale pairs
+2012-01-01,New Territories,187.0,57524.0,3.8801196022529725,25.772401433691755,5,median across RVD class A-E regional average rent/sale pairs
+2012-02-01,Hong Kong,346.0,133179.0,3.11760863199153,32.07586705202312,5,median across RVD class A-E regional average rent/sale pairs
+2012-02-01,Kowloon,261.0,117862.0,2.9933311839269656,33.407596371882086,5,median across RVD class A-E regional average rent/sale pairs
+2012-02-01,New Territories,193.0,69854.0,3.53021933121956,28.326851851851853,5,median across RVD class A-E regional average rent/sale pairs
+2012-03-01,Hong Kong,327.0,138376.0,2.8357518644851707,35.26401630988787,5,median across RVD class A-E regional average rent/sale pairs
+2012-03-01,Kowloon,275.0,117611.0,2.805859996088801,35.63969696969697,5,median across RVD class A-E regional average rent/sale pairs
+2012-03-01,New Territories,189.0,70739.0,3.595434369055168,27.81305114638448,5,median across RVD class A-E regional average rent/sale pairs
+2012-04-01,Hong Kong,350.0,135609.0,3.0971395703824967,32.28785714285714,5,median across RVD class A-E regional average rent/sale pairs
+2012-04-01,Kowloon,291.0,130967.0,2.66632052349065,37.50486827033219,5,median across RVD class A-E regional average rent/sale pairs
+2012-04-01,New Territories,192.0,69933.0,3.585489970276537,27.89019097222222,5,median across RVD class A-E regional average rent/sale pairs
+2012-05-01,Hong Kong,354.0,139791.0,3.0388222417752213,32.907485875706215,5,median across RVD class A-E regional average rent/sale pairs
+2012-05-01,Kowloon,267.0,124308.0,2.7705376966888693,36.09407665505226,5,median across RVD class A-E regional average rent/sale pairs
+2012-05-01,New Territories,193.0,72279.0,3.2702900504603063,30.578327444051826,5,median across RVD class A-E regional average rent/sale pairs
+2012-06-01,Hong Kong,367.0,144354.0,3.050833367970406,32.77792915531335,5,median across RVD class A-E regional average rent/sale pairs
+2012-06-01,Kowloon,261.0,116708.0,2.930390375981081,34.12514619883041,5,median across RVD class A-E regional average rent/sale pairs
+2012-06-01,New Territories,188.0,73187.0,3.4981082925013958,28.586879432624112,5,median across RVD class A-E regional average rent/sale pairs
+2012-07-01,Hong Kong,350.0,148644.0,2.825542907887301,35.39142857142857,5,median across RVD class A-E regional average rent/sale pairs
+2012-07-01,Kowloon,236.0,132535.0,2.2182819632549893,45.07993197278912,5,median across RVD class A-E regional average rent/sale pairs
+2012-07-01,New Territories,193.0,74050.0,3.3813674390083657,29.57383419689119,5,median across RVD class A-E regional average rent/sale pairs
+2012-08-01,Hong Kong,372.0,141634.0,3.151785588206222,31.72804659498208,5,median across RVD class A-E regional average rent/sale pairs
+2012-08-01,Kowloon,275.0,130654.0,2.525755047683194,39.592121212121214,5,median across RVD class A-E regional average rent/sale pairs
+2012-08-01,New Territories,202.0,78072.0,3.2585305871503225,30.68867924528302,5,median across RVD class A-E regional average rent/sale pairs
+2012-09-01,Hong Kong,353.0,146293.0,2.8955589125932204,34.535646836638335,5,median across RVD class A-E regional average rent/sale pairs
+2012-09-01,Kowloon,242.0,133996.0,2.5075375384339833,39.87976190476191,5,median across RVD class A-E regional average rent/sale pairs
+2012-09-01,New Territories,191.0,79064.0,3.0846668371398196,32.418411867364746,5,median across RVD class A-E regional average rent/sale pairs
+2012-10-01,Hong Kong,343.0,154398.0,2.6580655189834066,37.62134502923977,5,median across RVD class A-E regional average rent/sale pairs
+2012-10-01,Kowloon,263.0,141311.0,2.3182908619994196,43.135225885225886,5,median across RVD class A-E regional average rent/sale pairs
+2012-10-01,New Territories,217.0,78085.0,3.1919536169240046,31.328776041666668,5,median across RVD class A-E regional average rent/sale pairs
+2012-11-01,Hong Kong,325.0,156101.0,2.461157562341981,40.631287297527706,5,median across RVD class A-E regional average rent/sale pairs
+2012-11-01,Kowloon,293.0,144279.0,2.5863568708561266,38.6644245142003,5,median across RVD class A-E regional average rent/sale pairs
+2012-11-01,New Territories,205.0,76292.0,3.3142564277782527,30.172680412371133,5,median across RVD class A-E regional average rent/sale pairs
+2012-12-01,Hong Kong,363.0,149490.0,2.9962064605127026,33.37553713934929,5,median across RVD class A-E regional average rent/sale pairs
+2012-12-01,Kowloon,249.0,133071.0,2.8318653975275483,35.31241283124128,5,median across RVD class A-E regional average rent/sale pairs
+2012-12-01,New Territories,223.0,78522.0,3.4446360991684473,29.03064275037369,5,median across RVD class A-E regional average rent/sale pairs
+2013-01-01,Hong Kong,367.0,153218.0,2.953350486631614,33.859848484848484,5,median across RVD class A-E regional average rent/sale pairs
+2013-01-01,Kowloon,255.0,149171.0,2.197299153124285,45.510416666666664,5,median across RVD class A-E regional average rent/sale pairs
+2013-01-01,New Territories,209.0,82847.0,3.0272671309763783,33.03309409888357,5,median across RVD class A-E regional average rent/sale pairs
+2013-02-01,Hong Kong,345.0,162933.0,2.4599068328699527,40.65194610778443,5,median across RVD class A-E regional average rent/sale pairs
+2013-02-01,Kowloon,263.0,147958.0,2.5838180115558327,38.70241617357002,5,median across RVD class A-E regional average rent/sale pairs
+2013-02-01,New Territories,218.5,79476.5,3.142351349713151,31.898035358635585,4,median across RVD class A-E regional average rent/sale pairs
+2013-03-01,Hong Kong,348.0,145436.5,2.843830891212741,35.320728876508824,4,median across RVD class A-E regional average rent/sale pairs
+2013-03-01,Kowloon,258.0,119575.5,2.7999813352075895,35.76325031928481,4,median across RVD class A-E regional average rent/sale pairs
+2013-03-01,New Territories,226.0,84035.0,3.007680905538337,33.24820788530466,5,median across RVD class A-E regional average rent/sale pairs
+2013-04-01,Hong Kong,358.0,152579.0,2.9847869816070633,33.50322841000807,5,median across RVD class A-E regional average rent/sale pairs
+2013-04-01,Kowloon,257.0,116245.0,2.794041241875709,35.796147226674606,4,median across RVD class A-E regional average rent/sale pairs
+2013-04-01,New Territories,232.0,80478.0,3.230972773483741,30.950431034482758,5,median across RVD class A-E regional average rent/sale pairs
+2013-05-01,Hong Kong,361.0,164125.0,2.790710325537538,35.833170890188434,5,median across RVD class A-E regional average rent/sale pairs
+2013-05-01,Kowloon,237.0,128721.0,2.125527303237234,47.04714912280702,5,median across RVD class A-E regional average rent/sale pairs
+2013-05-01,New Territories,209.0,83010.0,3.016684256086137,33.14897798742138,5,median across RVD class A-E regional average rent/sale pairs
+2013-06-01,Hong Kong,352.0,159279.0,2.651950351270412,37.70809659090909,5,median across RVD class A-E regional average rent/sale pairs
+2013-06-01,Kowloon,255.0,135479.0,2.267510093815278,44.101236979166664,5,median across RVD class A-E regional average rent/sale pairs
+2013-06-01,New Territories,227.0,77651.0,3.086021139924549,32.40418502202643,5,median across RVD class A-E regional average rent/sale pairs
+2013-07-01,Hong Kong,384.0,155242.0,2.9682688963038353,33.689670138888886,5,median across RVD class A-E regional average rent/sale pairs
+2013-07-01,Kowloon,329.0,135567.0,2.91221314921773,34.338145896656535,5,median across RVD class A-E regional average rent/sale pairs
+2013-07-01,New Territories,228.0,84355.0,3.2164785105961573,31.089901477832512,5,median across RVD class A-E regional average rent/sale pairs
+2013-08-01,Hong Kong,397.0,154769.0,3.0781358023893675,32.487195633921075,5,median across RVD class A-E regional average rent/sale pairs
+2013-08-01,Kowloon,311.0,156498.0,2.4307019898017868,41.140378548895896,5,median across RVD class A-E regional average rent/sale pairs
+2013-08-01,New Territories,250.0,80780.0,3.5942124688985064,27.82250656167979,5,median across RVD class A-E regional average rent/sale pairs
+2013-09-01,Hong Kong,379.0,160475.0,2.834086306278236,35.28474054529463,5,median across RVD class A-E regional average rent/sale pairs
+2013-09-01,Kowloon,296.0,142700.0,2.514365802382621,39.77146042363434,5,median across RVD class A-E regional average rent/sale pairs
+2013-09-01,New Territories,239.0,81823.0,3.4596256877207314,28.90486111111111,5,median across RVD class A-E regional average rent/sale pairs
+2013-10-01,Hong Kong,391.0,168505.0,2.7844871072075015,35.91325660699062,5,median across RVD class A-E regional average rent/sale pairs
+2013-10-01,Kowloon,295.0,112237.0,3.1494663490809245,32.0275783225152,4,median across RVD class A-E regional average rent/sale pairs
+2013-10-01,New Territories,231.0,83396.0,3.2943193079251145,30.35528455284553,5,median across RVD class A-E regional average rent/sale pairs
+2013-11-01,Hong Kong,381.0,161798.0,2.8555811060428997,35.01914191419142,5,median across RVD class A-E regional average rent/sale pairs
+2013-11-01,Kowloon,301.5,111744.0,3.2189633753568128,31.362924271993265,4,median across RVD class A-E regional average rent/sale pairs
+2013-11-01,New Territories,236.0,75447.0,3.5635512291294433,28.061894882434302,5,median across RVD class A-E regional average rent/sale pairs
+2013-12-01,Hong Kong,386.0,163547.0,2.832213369856983,35.30807426597582,5,median across RVD class A-E regional average rent/sale pairs
+2013-12-01,Kowloon,293.0,131783.0,2.7681870954523724,36.12472587719298,5,median across RVD class A-E regional average rent/sale pairs
+2013-12-01,New Territories,237.0,83257.0,3.3966972083227134,29.440363349131122,5,median across RVD class A-E regional average rent/sale pairs
+2014-01-01,Hong Kong,378.0,155848.0,2.910528206970895,34.358024691358025,5,median across RVD class A-E regional average rent/sale pairs
+2014-01-01,Kowloon,288.0,130555.0,2.8493738271226685,35.09543010752688,5,median across RVD class A-E regional average rent/sale pairs
+2014-01-01,New Territories,228.0,77247.0,3.477642748759449,28.75511006289308,5,median across RVD class A-E regional average rent/sale pairs
+2014-02-01,Hong Kong,384.0,153642.0,2.999179911742883,33.342447916666664,5,median across RVD class A-E regional average rent/sale pairs
+2014-02-01,Kowloon,301.0,123956.5,3.0536187801683345,33.217483826582765,4,median across RVD class A-E regional average rent/sale pairs
+2014-02-01,New Territories,217.0,77574.0,3.368623676612127,29.685714285714287,5,median across RVD class A-E regional average rent/sale pairs
+2014-03-01,Hong Kong,369.0,139930.0,3.023002126774601,33.07969885773624,5,median across RVD class A-E regional average rent/sale pairs
+2014-03-01,Kowloon,284.0,119849.0,2.8435781691962387,35.16696009389671,5,median across RVD class A-E regional average rent/sale pairs
+2014-03-01,New Territories,236.0,83048.0,3.338559656713075,29.95303672316384,5,median across RVD class A-E regional average rent/sale pairs
+2014-04-01,Hong Kong,402.0,150941.0,3.19595073571793,31.28959369817579,5,median across RVD class A-E regional average rent/sale pairs
+2014-04-01,Kowloon,295.0,141165.0,2.7372223993199447,36.5333850931677,5,median across RVD class A-E regional average rent/sale pairs
+2014-04-01,New Territories,213.0,86617.0,3.212410875186085,31.129268292682926,5,median across RVD class A-E regional average rent/sale pairs
+2014-05-01,Hong Kong,377.0,146313.0,3.0920013942711857,32.34151193633952,5,median across RVD class A-E regional average rent/sale pairs
+2014-05-01,Kowloon,321.0,127602.0,3.0187614614191003,33.126168224299064,5,median across RVD class A-E regional average rent/sale pairs
+2014-05-01,New Territories,221.0,86261.0,3.215781651128226,31.096638655462186,5,median across RVD class A-E regional average rent/sale pairs
+2014-06-01,Hong Kong,384.0,152815.0,2.8897686745411115,34.60484601449275,5,median across RVD class A-E regional average rent/sale pairs
+2014-06-01,Kowloon,308.0,144548.0,2.556936104269862,39.10930735930736,5,median across RVD class A-E regional average rent/sale pairs
+2014-06-01,New Territories,241.0,88731.0,3.249966564129999,30.76954732510288,5,median across RVD class A-E regional average rent/sale pairs
+2014-07-01,Hong Kong,422.0,140621.0,3.3024939376053366,30.280146425495264,5,median across RVD class A-E regional average rent/sale pairs
+2014-07-01,Kowloon,327.0,130799.0,3.000022935955168,33.33307849133537,5,median across RVD class A-E regional average rent/sale pairs
+2014-07-01,New Territories,239.0,85523.0,3.3009687625716246,30.29413702239789,5,median across RVD class A-E regional average rent/sale pairs
+2014-08-01,Hong Kong,431.0,159152.0,3.1064642605810797,32.19093851132686,5,median across RVD class A-E regional average rent/sale pairs
+2014-08-01,Kowloon,327.0,133557.0,2.938071385251241,34.03593272171254,5,median across RVD class A-E regional average rent/sale pairs
+2014-08-01,New Territories,230.0,83810.0,3.2931631070278007,30.365942028985508,5,median across RVD class A-E regional average rent/sale pairs
+2014-09-01,Hong Kong,398.0,155153.0,3.078251790168414,32.485971524288104,5,median across RVD class A-E regional average rent/sale pairs
+2014-09-01,Kowloon,321.0,149010.0,2.649486611636803,37.743161094224924,5,median across RVD class A-E regional average rent/sale pairs
+2014-09-01,New Territories,238.0,91694.0,3.2600427427826277,30.674444444444443,5,median across RVD class A-E regional average rent/sale pairs
+2014-10-01,Hong Kong,400.0,158242.0,2.9954120903426396,33.38438818565401,5,median across RVD class A-E regional average rent/sale pairs
+2014-10-01,Kowloon,318.0,147216.0,2.649168568633844,37.747692307692304,5,median across RVD class A-E regional average rent/sale pairs
+2014-10-01,New Territories,236.0,87626.0,3.273322422258593,30.55,5,median across RVD class A-E regional average rent/sale pairs
+2014-11-01,Hong Kong,402.0,167636.0,2.877663509031473,34.750414593698174,5,median across RVD class A-E regional average rent/sale pairs
+2014-11-01,Kowloon,326.0,141968.0,3.0852022991096586,32.41278538812785,5,median across RVD class A-E regional average rent/sale pairs
+2014-11-01,New Territories,246.0,85454.0,3.248484349428221,30.78358681875792,5,median across RVD class A-E regional average rent/sale pairs
+2014-12-01,Hong Kong,402.0,159238.0,3.0294276491792163,33.009535655058045,5,median across RVD class A-E regional average rent/sale pairs
+2014-12-01,Kowloon,322.0,145756.0,2.7415681001125165,36.47547547547548,5,median across RVD class A-E regional average rent/sale pairs
+2014-12-01,New Territories,259.0,88881.0,3.2187184512144427,31.068265682656826,5,median across RVD class A-E regional average rent/sale pairs
+2015-01-01,Hong Kong,407.0,172497.0,2.834927846926695,35.27426636568849,5,median across RVD class A-E regional average rent/sale pairs
+2015-01-01,Kowloon,328.5,130988.0,3.061244926462331,32.689921939293455,4,median across RVD class A-E regional average rent/sale pairs
+2015-01-01,New Territories,266.0,94158.0,3.1054536426054486,32.20141451414514,5,median across RVD class A-E regional average rent/sale pairs
+2015-02-01,Hong Kong,407.0,169071.0,2.8887272211082915,34.61732186732187,5,median across RVD class A-E regional average rent/sale pairs
+2015-02-01,Kowloon,330.0,151768.0,2.7673817932634024,36.135238095238094,5,median across RVD class A-E regional average rent/sale pairs
+2015-02-01,New Territories,256.0,94277.0,3.105741591268284,32.19842896174863,5,median across RVD class A-E regional average rent/sale pairs
+2015-03-01,Hong Kong,411.0,166777.0,2.957242305593697,33.81528791565288,5,median across RVD class A-E regional average rent/sale pairs
+2015-03-01,Kowloon,326.0,138633.0,3.0382376490446,32.91381766381766,5,median across RVD class A-E regional average rent/sale pairs
+2015-03-01,New Territories,245.0,95913.0,3.090141326368718,32.3609794628752,5,median across RVD class A-E regional average rent/sale pairs
+2015-04-01,Hong Kong,415.0,170560.0,2.9197936210131332,34.24899598393574,5,median across RVD class A-E regional average rent/sale pairs
+2015-04-01,Kowloon,317.0,151631.0,2.746140301125759,36.41474543707973,5,median across RVD class A-E regional average rent/sale pairs
+2015-04-01,New Territories,242.0,100716.0,3.008163177854434,33.24287749287749,5,median across RVD class A-E regional average rent/sale pairs
+2015-05-01,Hong Kong,424.0,176366.0,2.864497692298969,34.91013460015835,5,median across RVD class A-E regional average rent/sale pairs
+2015-05-01,Kowloon,346.0,124110.0,3.1907179115300943,31.34090909090909,5,median across RVD class A-E regional average rent/sale pairs
+2015-05-01,New Territories,253.0,103147.0,2.9433720806228005,33.97463768115942,5,median across RVD class A-E regional average rent/sale pairs
+2015-06-01,Hong Kong,446.0,179459.0,2.8017541611175814,35.69192521877486,5,median across RVD class A-E regional average rent/sale pairs
+2015-06-01,Kowloon,367.0,158861.0,3.0766535818649428,32.50284679089027,5,median across RVD class A-E regional average rent/sale pairs
+2015-06-01,New Territories,242.0,105736.0,2.825906030112734,35.38688085676038,5,median across RVD class A-E regional average rent/sale pairs
+2015-07-01,Hong Kong,433.0,170908.0,3.040232171694713,32.89222478829869,5,median across RVD class A-E regional average rent/sale pairs
+2015-07-01,Kowloon,361.0,154191.0,2.902893164970718,34.44839142091153,5,median across RVD class A-E regional average rent/sale pairs
+2015-07-01,New Territories,253.0,99534.0,3.0024846344971885,33.305749128919864,5,median across RVD class A-E regional average rent/sale pairs
+2015-08-01,Hong Kong,447.0,181770.0,2.884964515596633,34.662471395881006,5,median across RVD class A-E regional average rent/sale pairs
+2015-08-01,Kowloon,363.0,134602.5,3.113599317819503,32.14605946509185,4,median across RVD class A-E regional average rent/sale pairs
+2015-08-01,New Territories,261.0,105710.0,2.997411873282106,33.362115127175365,5,median across RVD class A-E regional average rent/sale pairs
+2015-09-01,Hong Kong,428.0,174574.0,2.942018857332707,33.99026479750779,5,median across RVD class A-E regional average rent/sale pairs
+2015-09-01,Kowloon,342.0,166294.0,2.596227465720053,38.51742627345845,5,median across RVD class A-E regional average rent/sale pairs
+2015-09-01,New Territories,263.0,100499.0,3.0740985846337767,32.52986111111111,5,median across RVD class A-E regional average rent/sale pairs
+2015-10-01,Hong Kong,436.0,160319.0,3.2036127969860093,31.214758566978194,5,median across RVD class A-E regional average rent/sale pairs
+2015-10-01,Kowloon,336.0,157851.0,2.5543075431894637,39.14955357142857,5,median across RVD class A-E regional average rent/sale pairs
+2015-10-01,New Territories,246.0,95326.0,3.133398885611275,31.914225941422593,5,median across RVD class A-E regional average rent/sale pairs
+2015-11-01,Hong Kong,430.0,167668.0,2.9916263091347184,33.42663476874003,5,median across RVD class A-E regional average rent/sale pairs
+2015-11-01,Kowloon,327.0,140658.0,2.806808002388773,35.62765957446808,5,median across RVD class A-E regional average rent/sale pairs
+2015-11-01,New Territories,246.0,96376.0,3.15448025473916,31.700943396226414,5,median across RVD class A-E regional average rent/sale pairs
+2015-12-01,Hong Kong,433.0,153661.0,3.217472227826189,31.08029935275081,5,median across RVD class A-E regional average rent/sale pairs
+2015-12-01,Kowloon,316.0,127824.0,3.0135185880585804,33.18380062305296,5,median across RVD class A-E regional average rent/sale pairs
+2015-12-01,New Territories,248.0,93642.0,3.1420049634571163,31.826811594202898,5,median across RVD class A-E regional average rent/sale pairs
+2016-01-01,Hong Kong,422.0,143632.0,3.04945973042219,32.79269406392694,5,median across RVD class A-E regional average rent/sale pairs
+2016-01-01,Kowloon,339.0,153555.0,2.664843215785875,37.52565982404692,5,median across RVD class A-E regional average rent/sale pairs
+2016-01-01,New Territories,247.0,83353.0,3.270368081913673,30.577597840755736,5,median across RVD class A-E regional average rent/sale pairs
+2016-02-01,Hong Kong,412.0,173390.0,2.8513755118518946,35.0707928802589,5,median across RVD class A-E regional average rent/sale pairs
+2016-02-01,Kowloon,313.0,125920.0,2.995837273555268,33.45455716287504,4,median across RVD class A-E regional average rent/sale pairs
+2016-02-01,New Territories,246.0,92857.0,3.1899225270317197,31.348723723723722,5,median across RVD class A-E regional average rent/sale pairs
+2016-03-01,Hong Kong,396.0,162224.0,2.8903832523726383,34.59748803827751,5,median across RVD class A-E regional average rent/sale pairs
+2016-03-01,Kowloon,305.0,144512.0,2.715345438441098,36.827726809378184,5,median across RVD class A-E regional average rent/sale pairs
+2016-03-01,New Territories,230.0,93043.0,3.049661925856843,32.79051987767584,5,median across RVD class A-E regional average rent/sale pairs
+2016-04-01,Hong Kong,390.0,153594.0,3.0469940232040313,32.81923076923077,5,median across RVD class A-E regional average rent/sale pairs
+2016-04-01,Kowloon,300.0,142289.0,2.513194976421227,39.789988814317674,5,median across RVD class A-E regional average rent/sale pairs
+2016-04-01,New Territories,231.0,88521.0,2.9581138444228507,33.805325034578146,5,median across RVD class A-E regional average rent/sale pairs
+2016-05-01,Hong Kong,408.0,153059.0,3.1987664887396363,31.26205065359477,5,median across RVD class A-E regional average rent/sale pairs
+2016-05-01,Kowloon,310.0,149022.0,2.520433224624552,39.67571884984026,5,median across RVD class A-E regional average rent/sale pairs
+2016-05-01,New Territories,227.0,91296.0,3.0905620882841838,32.35657370517928,5,median across RVD class A-E regional average rent/sale pairs
+2016-06-01,Hong Kong,410.0,156139.0,2.95890200398363,33.79632034632035,5,median across RVD class A-E regional average rent/sale pairs
+2016-06-01,Kowloon,332.0,150673.0,2.6441366402739708,37.8195281124498,5,median across RVD class A-E regional average rent/sale pairs
+2016-06-01,New Territories,223.0,94347.0,2.906223598986201,34.40891472868217,5,median across RVD class A-E regional average rent/sale pairs
+2016-07-01,Hong Kong,417.0,163322.0,2.8434626076095078,35.16838931955211,5,median across RVD class A-E regional average rent/sale pairs
+2016-07-01,Kowloon,336.0,153184.0,2.632128681846668,37.992063492063494,5,median across RVD class A-E regional average rent/sale pairs
+2016-07-01,New Territories,227.0,94996.0,2.994821728948844,33.390969162995596,5,median across RVD class A-E regional average rent/sale pairs
+2016-08-01,Hong Kong,429.0,164639.0,2.9300469512084013,34.12914593698176,5,median across RVD class A-E regional average rent/sale pairs
+2016-08-01,Kowloon,333.0,135220.0,2.955184144357344,33.83883883883884,5,median across RVD class A-E regional average rent/sale pairs
+2016-08-01,New Territories,250.0,96948.0,3.0944423814828568,32.316,5,median across RVD class A-E regional average rent/sale pairs
+2016-09-01,Hong Kong,422.0,171045.0,2.785231956502675,35.9036523929471,5,median across RVD class A-E regional average rent/sale pairs
+2016-09-01,Kowloon,334.0,149165.0,2.678912613548755,37.32857857857858,5,median across RVD class A-E regional average rent/sale pairs
+2016-09-01,New Territories,239.0,96947.0,3.038618424537797,32.909693165969315,5,median across RVD class A-E regional average rent/sale pairs
+2016-10-01,Hong Kong,422.0,170455.0,2.7878325657798246,35.87015993265993,5,median across RVD class A-E regional average rent/sale pairs
+2016-10-01,Kowloon,321.0,156642.0,2.482092925269085,40.28858024691358,5,median across RVD class A-E regional average rent/sale pairs
+2016-10-01,New Territories,244.0,100111.0,2.900780134051203,34.47348484848485,5,median across RVD class A-E regional average rent/sale pairs
+2016-11-01,Hong Kong,410.0,171687.0,2.78879589019553,35.8577694235589,5,median across RVD class A-E regional average rent/sale pairs
+2016-11-01,Kowloon,317.0,160648.0,2.569593147751606,38.916666666666664,5,median across RVD class A-E regional average rent/sale pairs
+2016-11-01,New Territories,246.0,99208.0,3.0211425838529493,33.10005973715651,5,median across RVD class A-E regional average rent/sale pairs
+2016-12-01,Hong Kong,405.0,159855.0,2.8751055644177534,34.7813315926893,5,median across RVD class A-E regional average rent/sale pairs
+2016-12-01,Kowloon,318.0,144527.0,2.8894255052689117,34.60895593869732,5,median across RVD class A-E regional average rent/sale pairs
+2016-12-01,New Territories,245.0,97830.0,3.0511196360067805,32.77485380116959,5,median across RVD class A-E regional average rent/sale pairs
+2017-01-01,Hong Kong,424.0,185736.0,2.7550796781566014,36.29659090909091,5,median across RVD class A-E regional average rent/sale pairs
+2017-01-01,Kowloon,331.0,149225.0,2.7823756073044064,35.940510597302506,5,median across RVD class A-E regional average rent/sale pairs
+2017-01-01,New Territories,244.0,98651.0,2.968209198245411,33.69034772182254,5,median across RVD class A-E regional average rent/sale pairs
+2017-02-01,Hong Kong,434.0,178320.0,2.873485868102288,34.80093676814988,5,median across RVD class A-E regional average rent/sale pairs
+2017-02-01,Kowloon,339.0,162119.0,2.5166698536260403,39.73504901960784,5,median across RVD class A-E regional average rent/sale pairs
+2017-02-01,New Territories,251.0,108045.0,2.854990285102502,35.02638888888889,5,median across RVD class A-E regional average rent/sale pairs
+2017-03-01,Hong Kong,432.0,177600.0,2.918918918918919,34.25925925925926,5,median across RVD class A-E regional average rent/sale pairs
+2017-03-01,Kowloon,338.0,161246.0,2.5526214603773116,39.1754130223518,5,median across RVD class A-E regional average rent/sale pairs
+2017-03-01,New Territories,242.0,104857.0,2.8472821397756687,35.121212121212125,5,median across RVD class A-E regional average rent/sale pairs
+2017-04-01,Hong Kong,427.0,184974.0,2.7376820526127994,36.52725118483412,5,median across RVD class A-E regional average rent/sale pairs
+2017-04-01,Kowloon,351.0,145273.0,2.7564749201432903,36.28071167388949,4,median across RVD class A-E regional average rent/sale pairs
+2017-04-01,New Territories,246.0,107567.0,2.7990669776741086,35.726190476190474,5,median across RVD class A-E regional average rent/sale pairs
+2017-05-01,Hong Kong,438.0,181567.0,2.822098729394659,35.43462138953942,5,median across RVD class A-E regional average rent/sale pairs
+2017-05-01,Kowloon,335.0,152209.0,2.822434941429219,35.43040037243948,5,median across RVD class A-E regional average rent/sale pairs
+2017-05-01,New Territories,250.0,109354.0,2.8294322043606095,35.34278002699055,5,median across RVD class A-E regional average rent/sale pairs
+2017-06-01,Hong Kong,430.0,190235.0,2.6872026703813705,37.21341940532081,5,median across RVD class A-E regional average rent/sale pairs
+2017-06-01,Kowloon,359.0,162729.0,2.64734620135317,37.773676880222844,5,median across RVD class A-E regional average rent/sale pairs
+2017-06-01,New Territories,259.0,111370.0,2.8014725689144293,35.69551282051282,5,median across RVD class A-E regional average rent/sale pairs
+2017-07-01,Hong Kong,436.0,184957.0,2.822277610471623,35.432375478927206,5,median across RVD class A-E regional average rent/sale pairs
+2017-07-01,Kowloon,358.0,151987.0,2.8818254192792803,34.70022831050228,5,median across RVD class A-E regional average rent/sale pairs
+2017-07-01,New Territories,259.0,101408.0,2.982013253392237,33.53439153439153,5,median across RVD class A-E regional average rent/sale pairs
+2017-08-01,Hong Kong,438.0,182970.0,2.8004590916543695,35.70843091334895,5,median across RVD class A-E regional average rent/sale pairs
+2017-08-01,Kowloon,362.0,182005.0,2.3208153622153236,43.08830492424242,5,median across RVD class A-E regional average rent/sale pairs
+2017-08-01,New Territories,265.0,107839.0,2.9687815866231553,33.68385214007782,5,median across RVD class A-E regional average rent/sale pairs
+2017-09-01,Hong Kong,454.0,180860.0,2.8928452947030854,34.568042813455655,5,median across RVD class A-E regional average rent/sale pairs
+2017-09-01,Kowloon,360.0,169957.0,2.548880010826268,39.23291782086796,5,median across RVD class A-E regional average rent/sale pairs
+2017-09-01,New Territories,257.0,108131.0,2.922475932070414,34.2175615212528,5,median across RVD class A-E regional average rent/sale pairs
+2017-10-01,Hong Kong,457.0,184141.0,2.7565832704286386,36.276792750197004,5,median across RVD class A-E regional average rent/sale pairs
+2017-10-01,Kowloon,361.0,158590.0,2.731571978056624,36.60895660203139,5,median across RVD class A-E regional average rent/sale pairs
+2017-10-01,New Territories,260.0,108076.0,2.8313409082497505,35.31895424836601,5,median across RVD class A-E regional average rent/sale pairs
+2017-11-01,Hong Kong,446.0,190567.0,2.9406980222179078,34.00553176302641,5,median across RVD class A-E regional average rent/sale pairs
+2017-11-01,Kowloon,358.0,172766.0,2.4796545616614383,40.328197945845005,5,median across RVD class A-E regional average rent/sale pairs
+2017-11-01,New Territories,262.0,113119.0,2.8681682585730317,34.86545801526717,5,median across RVD class A-E regional average rent/sale pairs
+2017-12-01,Hong Kong,458.0,200471.0,2.741543664669703,36.47580058224163,5,median across RVD class A-E regional average rent/sale pairs
+2017-12-01,Kowloon,361.0,157133.0,2.779810733582379,35.97367216117216,5,median across RVD class A-E regional average rent/sale pairs
+2017-12-01,New Territories,257.0,112829.0,2.830449444413732,35.330078125,5,median across RVD class A-E regional average rent/sale pairs
+2018-01-01,Hong Kong,472.0,203758.0,2.803325513599466,35.671918767507,5,median across RVD class A-E regional average rent/sale pairs
+2018-01-01,Kowloon,367.0,170613.0,2.5838853727544397,38.7014072119613,5,median across RVD class A-E regional average rent/sale pairs
+2018-01-01,New Territories,269.0,120848.0,2.6711240566662253,37.43742255266419,5,median across RVD class A-E regional average rent/sale pairs
+2018-02-01,Hong Kong,450.0,206056.0,2.725472687036534,36.69088319088319,5,median across RVD class A-E regional average rent/sale pairs
+2018-02-01,Kowloon,382.0,205891.0,2.2322491026805444,44.79786771105309,5,median across RVD class A-E regional average rent/sale pairs
+2018-02-01,New Territories,262.0,125806.0,2.667300122166418,37.4910941475827,5,median across RVD class A-E regional average rent/sale pairs
+2018-03-01,Hong Kong,448.0,188657.0,2.8496159697228305,35.092447916666664,5,median across RVD class A-E regional average rent/sale pairs
+2018-03-01,Kowloon,373.5,157524.0,2.751280030495637,36.409873980186475,4,median across RVD class A-E regional average rent/sale pairs
+2018-03-01,New Territories,260.0,116440.0,2.691877725378129,37.1487898789879,5,median across RVD class A-E regional average rent/sale pairs
+2018-04-01,Hong Kong,460.0,208410.0,2.648625305887433,37.755434782608695,5,median across RVD class A-E regional average rent/sale pairs
+2018-04-01,Kowloon,342.0,180819.0,2.4223118145770077,41.282876712328765,5,median across RVD class A-E regional average rent/sale pairs
+2018-04-01,New Territories,266.0,119473.0,2.6117773402541613,38.28810307017544,5,median across RVD class A-E regional average rent/sale pairs
+2018-05-01,Hong Kong,469.0,218381.0,2.577147279296276,38.80259417199716,5,median across RVD class A-E regional average rent/sale pairs
+2018-05-01,Kowloon,378.0,167171.0,2.6703196128515114,37.44870071684588,5,median across RVD class A-E regional average rent/sale pairs
+2018-05-01,New Territories,265.0,123144.0,2.652440968310982,37.701121794871796,5,median across RVD class A-E regional average rent/sale pairs
+2018-06-01,Hong Kong,459.0,218786.0,2.501074108946642,39.9828216374269,5,median across RVD class A-E regional average rent/sale pairs
+2018-06-01,Kowloon,384.0,189263.0,2.415686108748144,41.39610673665792,5,median across RVD class A-E regional average rent/sale pairs
+2018-06-01,New Territories,265.0,128706.0,2.558128005552526,39.09108527131783,5,median across RVD class A-E regional average rent/sale pairs
+2018-07-01,Hong Kong,443.0,216671.0,2.364875779407489,42.28551912568306,5,median across RVD class A-E regional average rent/sale pairs
+2018-07-01,Kowloon,378.5,162970.5,2.7717312458475543,36.192127850122816,4,median across RVD class A-E regional average rent/sale pairs
+2018-07-01,New Territories,272.0,126511.0,2.69224624745605,37.143704850361196,5,median across RVD class A-E regional average rent/sale pairs
+2018-08-01,Hong Kong,449.0,208694.0,2.547270165888813,39.25771256583898,5,median across RVD class A-E regional average rent/sale pairs
+2018-08-01,Kowloon,382.0,157093.0,2.892937596332451,34.56693989071038,5,median across RVD class A-E regional average rent/sale pairs
+2018-08-01,New Territories,278.0,124646.0,2.657124977937519,37.634661835748794,5,median across RVD class A-E regional average rent/sale pairs
+2018-09-01,Hong Kong,463.0,225441.0,2.437888405392098,41.01910480349345,5,median across RVD class A-E regional average rent/sale pairs
+2018-09-01,Kowloon,378.0,173088.0,2.658273733148443,37.618398268398266,5,median across RVD class A-E regional average rent/sale pairs
+2018-09-01,New Territories,270.0,118306.0,2.758947137085186,36.24571078431372,5,median across RVD class A-E regional average rent/sale pairs
+2018-10-01,Hong Kong,468.0,220943.0,2.541832056231698,39.34170227920228,5,median across RVD class A-E regional average rent/sale pairs
+2018-10-01,Kowloon,390.0,143634.5,3.2528302635998663,30.744979722658293,4,median across RVD class A-E regional average rent/sale pairs
+2018-10-01,New Territories,275.0,134054.0,2.7616952292728114,36.20964360587002,5,median across RVD class A-E regional average rent/sale pairs
+2018-11-01,Hong Kong,467.0,223330.0,2.661482725103826,37.5730411686587,5,median across RVD class A-E regional average rent/sale pairs
+2018-11-01,Kowloon,393.0,188677.0,2.435908987316949,41.052436901653614,5,median across RVD class A-E regional average rent/sale pairs
+2018-11-01,New Territories,273.0,115504.0,2.8154869095442585,35.51783517835178,5,median across RVD class A-E regional average rent/sale pairs
+2018-12-01,Hong Kong,442.0,189205.0,2.7814084791678715,36.15571823367638,4,median across RVD class A-E regional average rent/sale pairs
+2018-12-01,Kowloon,381.0,154644.5,2.8851450623548054,34.74732371936654,4,median across RVD class A-E regional average rent/sale pairs
+2018-12-01,New Territories,263.0,119084.0,2.819569024050316,35.46641318124208,5,median across RVD class A-E regional average rent/sale pairs
+2019-01-01,Hong Kong,467.0,204993.0,2.73375188421068,36.57976445396146,5,median across RVD class A-E regional average rent/sale pairs
+2019-01-01,Kowloon,368.0,145988.0,3.0014219564662556,33.31754130223518,5,median across RVD class A-E regional average rent/sale pairs
+2019-01-01,New Territories,272.0,121424.0,2.6881011991039663,37.200980392156865,5,median across RVD class A-E regional average rent/sale pairs
+2019-02-01,Hong Kong,469.0,194115.0,2.7942199211807432,35.78816371681416,5,median across RVD class A-E regional average rent/sale pairs
+2019-02-01,Kowloon,361.5,172733.0,2.517291575608666,40.13383761246091,4,median across RVD class A-E regional average rent/sale pairs
+2019-02-01,New Territories,275.0,124009.0,2.6876190059311464,37.207654723127035,5,median across RVD class A-E regional average rent/sale pairs
+2019-03-01,Hong Kong,458.0,206658.0,2.6594663647185204,37.601528384279476,5,median across RVD class A-E regional average rent/sale pairs
+2019-03-01,Kowloon,368.0,194186.0,2.2741083291277433,43.97327898550725,5,median across RVD class A-E regional average rent/sale pairs
+2019-03-01,New Territories,265.0,126010.0,2.6439633781124328,37.82200647249191,5,median across RVD class A-E regional average rent/sale pairs
+2019-04-01,Hong Kong,452.0,225161.0,2.3503182167426866,42.54743008314437,5,median across RVD class A-E regional average rent/sale pairs
+2019-04-01,Kowloon,372.0,183519.0,2.491295179245746,40.139763779527556,5,median across RVD class A-E regional average rent/sale pairs
+2019-04-01,New Territories,267.0,127335.0,2.5292122643452473,39.53800217155266,5,median across RVD class A-E regional average rent/sale pairs
+2019-05-01,Hong Kong,464.0,222399.0,2.438859886959923,41.002765486725664,5,median across RVD class A-E regional average rent/sale pairs
+2019-05-01,Kowloon,364.0,162146.0,2.6849404085008346,37.24477447744774,5,median across RVD class A-E regional average rent/sale pairs
+2019-05-01,New Territories,268.0,130284.0,2.4841240194247294,40.255639097744364,5,median across RVD class A-E regional average rent/sale pairs
+2019-06-01,Hong Kong,460.0,224557.0,2.452829348450505,40.76924473493101,5,median across RVD class A-E regional average rent/sale pairs
+2019-06-01,Kowloon,369.0,163757.0,2.7040065462850444,36.98215898825655,5,median across RVD class A-E regional average rent/sale pairs
+2019-06-01,New Territories,265.0,134434.0,2.516244064989616,39.74177282377919,5,median across RVD class A-E regional average rent/sale pairs
+2019-07-01,Hong Kong,461.0,219802.0,2.505891666135886,39.90595497458243,5,median across RVD class A-E regional average rent/sale pairs
+2019-07-01,Kowloon,365.0,183860.0,2.382247362123355,41.97716894977169,5,median across RVD class A-E regional average rent/sale pairs
+2019-07-01,New Territories,277.0,128381.0,2.611293120061669,38.29520295202952,5,median across RVD class A-E regional average rent/sale pairs
+2019-08-01,Hong Kong,462.0,218581.0,2.492439873548021,40.12132892804699,5,median across RVD class A-E regional average rent/sale pairs
+2019-08-01,Kowloon,375.5,176460.0,2.693612971297796,37.60955868956523,4,median across RVD class A-E regional average rent/sale pairs
+2019-08-01,New Territories,279.0,122635.0,2.809047648994822,35.59925373134328,5,median across RVD class A-E regional average rent/sale pairs
+2019-09-01,Hong Kong,461.0,212944.0,2.5415132617026073,39.34663710273466,5,median across RVD class A-E regional average rent/sale pairs
+2019-09-01,Kowloon,367.0,195162.0,2.158207028007501,46.33475783475784,5,median across RVD class A-E regional average rent/sale pairs
+2019-09-01,New Territories,265.0,122968.0,2.586038644200117,38.669182389937106,5,median across RVD class A-E regional average rent/sale pairs
+2019-10-01,Hong Kong,444.0,180111.0,2.8049369555440813,35.65142517814727,5,median across RVD class A-E regional average rent/sale pairs
+2019-10-01,Kowloon,360.0,198012.0,2.1332040482395005,46.87784090909091,5,median across RVD class A-E regional average rent/sale pairs
+2019-10-01,New Territories,264.0,125072.0,2.5412787003955377,39.3502688172043,5,median across RVD class A-E regional average rent/sale pairs
+2019-11-01,Hong Kong,440.0,213381.0,2.4744471157225805,40.41306818181818,5,median across RVD class A-E regional average rent/sale pairs
+2019-11-01,Kowloon,357.0,178721.0,2.3970322457909257,41.71825396825397,5,median across RVD class A-E regional average rent/sale pairs
+2019-11-01,New Territories,259.0,127526.0,2.474789454699434,40.40747782002535,5,median across RVD class A-E regional average rent/sale pairs
+2019-12-01,Hong Kong,435.0,217222.0,2.408595814420271,41.51796636085627,5,median across RVD class A-E regional average rent/sale pairs
+2019-12-01,Kowloon,385.0,173052.0,2.610014009634022,38.31397058823529,5,median across RVD class A-E regional average rent/sale pairs
+2019-12-01,New Territories,264.0,123794.0,2.644033213364695,37.82100750267953,5,median across RVD class A-E regional average rent/sale pairs
+2020-01-01,Hong Kong,439.0,215087.0,2.421345781009545,41.299347158218126,5,median across RVD class A-E regional average rent/sale pairs
+2020-01-01,Kowloon,350.0,176580.5,2.4125023544920356,41.651141015316995,4,median across RVD class A-E regional average rent/sale pairs
+2020-01-01,New Territories,262.0,126413.0,2.4870859800811624,40.20769720101781,5,median across RVD class A-E regional average rent/sale pairs
+2020-02-01,Hong Kong,431.0,201529.0,2.566380024711084,38.9653905645785,5,median across RVD class A-E regional average rent/sale pairs
+2020-02-01,Kowloon,367.0,165604.0,2.5352785967360054,39.446490086817064,4,median across RVD class A-E regional average rent/sale pairs
+2020-02-01,New Territories,260.0,132884.0,2.4408370819479757,40.969551282051285,5,median across RVD class A-E regional average rent/sale pairs
+2020-03-01,Hong Kong,425.0,210191.0,2.3578554743067017,42.41142050040355,5,median across RVD class A-E regional average rent/sale pairs
+2020-03-01,Kowloon,340.0,195049.0,2.128695866166963,46.977119460500965,5,median across RVD class A-E regional average rent/sale pairs
+2020-03-01,New Territories,250.0,123308.0,2.4329321698511044,41.102666666666664,5,median across RVD class A-E regional average rent/sale pairs
+2020-04-01,Hong Kong,417.0,197467.0,2.4064780444327405,41.55450336700337,5,median across RVD class A-E regional average rent/sale pairs
+2020-04-01,Kowloon,340.0,161870.0,2.4788989430461563,40.34049079754601,5,median across RVD class A-E regional average rent/sale pairs
+2020-04-01,New Territories,249.0,126238.0,2.3289342353332594,42.93809523809524,5,median across RVD class A-E regional average rent/sale pairs
+2020-05-01,Hong Kong,416.0,203498.0,2.453095362116581,40.764823717948715,5,median across RVD class A-E regional average rent/sale pairs
+2020-05-01,Kowloon,331.0,185049.0,2.302092959162168,43.4387323943662,5,median across RVD class A-E regional average rent/sale pairs
+2020-05-01,New Territories,254.0,130435.0,2.3367961053398245,42.79363517060367,5,median across RVD class A-E regional average rent/sale pairs
+2020-06-01,Hong Kong,412.0,218654.0,2.2611065884914066,44.22613268608414,5,median across RVD class A-E regional average rent/sale pairs
+2020-06-01,Kowloon,338.0,197924.0,2.1123661434648673,47.34027777777778,5,median across RVD class A-E regional average rent/sale pairs
+2020-06-01,New Territories,251.0,129453.0,2.326713170030822,42.97908366533864,5,median across RVD class A-E regional average rent/sale pairs
+2020-07-01,Hong Kong,420.0,225440.0,2.1983676366217173,45.48829701372074,5,median across RVD class A-E regional average rent/sale pairs
+2020-07-01,Kowloon,337.0,190223.0,2.176392970355846,45.9475845410628,5,median across RVD class A-E regional average rent/sale pairs
+2020-07-01,New Territories,254.0,128353.0,2.3760451448577524,42.08674242424242,5,median across RVD class A-E regional average rent/sale pairs
+2020-08-01,Hong Kong,406.0,207449.0,2.296468047568318,43.54513014273719,5,median across RVD class A-E regional average rent/sale pairs
+2020-08-01,Kowloon,348.0,184821.0,2.2010485821416395,45.432890855457224,5,median across RVD class A-E regional average rent/sale pairs
+2020-08-01,New Territories,258.0,128927.0,2.489473648293605,40.16913377192982,5,median across RVD class A-E regional average rent/sale pairs
+2020-09-01,Hong Kong,416.0,210354.0,2.3731424170683706,42.13822115384615,5,median across RVD class A-E regional average rent/sale pairs
+2020-09-01,Kowloon,326.0,185294.0,2.2342871328807195,44.75700483091787,5,median across RVD class A-E regional average rent/sale pairs
+2020-09-01,New Territories,251.0,131513.0,2.343958956403336,42.662863070539416,5,median across RVD class A-E regional average rent/sale pairs
+2020-10-01,Hong Kong,411.0,216517.0,2.2680658897973824,44.090429845904296,5,median across RVD class A-E regional average rent/sale pairs
+2020-10-01,Kowloon,345.0,181797.0,2.277265301407614,43.91231884057971,5,median across RVD class A-E regional average rent/sale pairs
+2020-10-01,New Territories,259.0,132406.0,2.4862272520395896,40.22158469945355,5,median across RVD class A-E regional average rent/sale pairs
+2020-11-01,Hong Kong,412.0,216007.0,2.255482461216535,44.33641215106732,5,median across RVD class A-E regional average rent/sale pairs
+2020-11-01,Kowloon,336.0,172377.0,2.3390591552237248,42.752232142857146,5,median across RVD class A-E regional average rent/sale pairs
+2020-11-01,New Territories,257.0,129560.0,2.3956067278611983,41.74307862679956,5,median across RVD class A-E regional average rent/sale pairs
+2020-12-01,Hong Kong,413.0,199347.0,2.3055275474423995,43.37402088772846,5,median across RVD class A-E regional average rent/sale pairs
+2020-12-01,Kowloon,349.0,179630.0,2.2846963202137727,43.769493177387915,5,median across RVD class A-E regional average rent/sale pairs
+2020-12-01,New Territories,261.0,132295.0,2.4741426238432225,40.41804180418042,5,median across RVD class A-E regional average rent/sale pairs
+2021-01-01,Hong Kong,401.0,203860.0,2.3609443777511006,42.355932203389834,5,median across RVD class A-E regional average rent/sale pairs
+2021-01-01,Kowloon,335.5,173605.0,2.358586400842571,42.51317140951534,4,median across RVD class A-E regional average rent/sale pairs
+2021-01-01,New Territories,252.0,133466.0,2.3344748097909367,42.836187214611876,5,median across RVD class A-E regional average rent/sale pairs
+2021-02-01,Hong Kong,398.0,209623.0,2.3012741922403555,43.45418739635158,5,median across RVD class A-E regional average rent/sale pairs
+2021-02-01,Kowloon,350.0,198589.0,2.3654671006601165,42.27494855967078,5,median across RVD class A-E regional average rent/sale pairs
+2021-02-01,New Territories,256.0,134299.0,2.312549329123915,43.24232081911263,5,median across RVD class A-E regional average rent/sale pairs
+2021-03-01,Hong Kong,405.0,212374.0,2.35622062964393,42.44084732214229,5,median across RVD class A-E regional average rent/sale pairs
+2021-03-01,Kowloon,348.0,167141.0,2.174716833745606,45.98299808429119,5,median across RVD class A-E regional average rent/sale pairs
+2021-03-01,New Territories,254.0,137198.0,2.294649733074021,43.57963594994312,5,median across RVD class A-E regional average rent/sale pairs
+2021-04-01,Hong Kong,412.0,211389.0,2.25366504406568,44.372166246851386,5,median across RVD class A-E regional average rent/sale pairs
+2021-04-01,Kowloon,345.0,181398.0,2.4007455731593663,41.65372670807454,5,median across RVD class A-E regional average rent/sale pairs
+2021-04-01,New Territories,257.0,132257.0,2.3142195937258934,43.21111111111111,5,median across RVD class A-E regional average rent/sale pairs
+2021-05-01,Hong Kong,420.0,221965.0,2.2327844479985584,44.78712671509282,5,median across RVD class A-E regional average rent/sale pairs
+2021-05-01,Kowloon,359.0,184829.0,2.330803066618334,42.903667595171775,5,median across RVD class A-E regional average rent/sale pairs
+2021-05-01,New Territories,262.0,136021.0,2.329617899888948,42.925494350282484,5,median across RVD class A-E regional average rent/sale pairs
+2021-06-01,Hong Kong,431.0,210166.0,2.3695554942283716,42.20200803212851,5,median across RVD class A-E regional average rent/sale pairs
+2021-06-01,Kowloon,350.0,186379.0,2.2534727624893365,44.375952380952384,5,median across RVD class A-E regional average rent/sale pairs
+2021-06-01,New Territories,254.0,139237.0,2.283282334850344,43.79659863945578,5,median across RVD class A-E regional average rent/sale pairs
+2021-07-01,Hong Kong,418.0,218195.0,2.265863104104127,44.1332928802589,5,median across RVD class A-E regional average rent/sale pairs
+2021-07-01,Kowloon,342.5,184229.0,2.2179552957250124,45.30344299594702,4,median across RVD class A-E regional average rent/sale pairs
+2021-07-01,New Territories,262.0,139443.0,2.4585450964582414,40.674462365591395,5,median across RVD class A-E regional average rent/sale pairs
+2021-08-01,Hong Kong,416.0,212493.0,2.3210176335220454,43.0845498783455,5,median across RVD class A-E regional average rent/sale pairs
+2021-08-01,Kowloon,347.0,193601.0,2.150815336697641,46.49399615754083,5,median across RVD class A-E regional average rent/sale pairs
+2021-08-01,New Territories,266.0,135707.0,2.369811431982138,42.19745024875622,5,median across RVD class A-E regional average rent/sale pairs
+2021-09-01,Hong Kong,417.0,228079.0,2.1939766484419874,45.57933653077538,5,median across RVD class A-E regional average rent/sale pairs
+2021-09-01,Kowloon,357.0,183862.0,2.3300083758471026,42.91830065359477,5,median across RVD class A-E regional average rent/sale pairs
+2021-09-01,New Territories,262.0,134346.0,2.4292869413728857,41.16434262948207,5,median across RVD class A-E regional average rent/sale pairs
+2021-10-01,Hong Kong,428.0,213691.0,2.2967743143136583,43.53932355338223,5,median across RVD class A-E regional average rent/sale pairs
+2021-10-01,Kowloon,356.5,183913.0,2.350123158152029,43.147379873399515,4,median across RVD class A-E regional average rent/sale pairs
+2021-10-01,New Territories,271.0,133457.0,2.435967729302107,41.051446945337624,5,median across RVD class A-E regional average rent/sale pairs
+2021-11-01,Hong Kong,412.0,218572.0,2.190582508281024,45.6499582289056,5,median across RVD class A-E regional average rent/sale pairs
+2021-11-01,Kowloon,382.0,160924.0,2.6189368269968085,38.183433433433436,5,median across RVD class A-E regional average rent/sale pairs
+2021-11-01,New Territories,268.0,135305.0,2.3768522966630945,42.07245024875622,5,median across RVD class A-E regional average rent/sale pairs
+2021-12-01,Hong Kong,419.0,220620.0,2.21920043513734,45.06127450980392,5,median across RVD class A-E regional average rent/sale pairs
+2021-12-01,Kowloon,364.0,193351.0,2.2591039094703413,44.265338827838825,5,median across RVD class A-E regional average rent/sale pairs
+2021-12-01,New Territories,264.0,132671.0,2.5401558974085883,39.367662473794546,5,median across RVD class A-E regional average rent/sale pairs
+2022-01-01,Hong Kong,430.0,212167.0,2.3165204484613957,43.16819221967963,5,median across RVD class A-E regional average rent/sale pairs
+2022-01-01,Kowloon,348.0,183525.0,2.275439313445035,43.94755747126437,5,median across RVD class A-E regional average rent/sale pairs
+2022-01-01,New Territories,268.0,134957.0,2.435137789514078,41.065438034188034,5,median across RVD class A-E regional average rent/sale pairs
+2022-02-01,Hong Kong,427.0,214997.0,2.271659604552622,44.02067977067977,5,median across RVD class A-E regional average rent/sale pairs
+2022-02-01,Kowloon,359.0,172362.0,2.504729474082482,39.92447129909365,5,median across RVD class A-E regional average rent/sale pairs
+2022-02-01,New Territories,261.0,136181.0,2.456929646142863,40.70120614035088,5,median across RVD class A-E regional average rent/sale pairs
+2022-03-01,Hong Kong,422.0,201036.0,2.3756939055691517,42.0929648241206,5,median across RVD class A-E regional average rent/sale pairs
+2022-03-01,Kowloon,339.5,169004.5,2.4283924695173194,41.20468401782871,4,median across RVD class A-E regional average rent/sale pairs
+2022-03-01,New Territories,255.0,130502.0,2.526587693984219,39.579073482428115,5,median across RVD class A-E regional average rent/sale pairs
+2022-04-01,Hong Kong,408.0,203320.0,2.323733862959285,43.034188034188034,5,median across RVD class A-E regional average rent/sale pairs
+2022-04-01,Kowloon,344.0,188048.0,2.161211283533329,46.270348837209305,5,median across RVD class A-E regional average rent/sale pairs
+2022-04-01,New Territories,254.0,136885.0,2.4027391225997636,41.619166666666665,5,median across RVD class A-E regional average rent/sale pairs
+2022-05-01,Hong Kong,402.0,199798.0,2.4144385829687987,41.41749585406302,5,median across RVD class A-E regional average rent/sale pairs
+2022-05-01,Kowloon,339.5,162963.0,2.4773615696365763,40.3673005323853,4,median across RVD class A-E regional average rent/sale pairs
+2022-05-01,New Territories,252.0,135286.0,2.235264550655648,44.73743386243386,5,median across RVD class A-E regional average rent/sale pairs
+2022-06-01,Hong Kong,419.0,206727.0,2.4321931823129055,41.11515513126491,5,median across RVD class A-E regional average rent/sale pairs
+2022-06-01,Kowloon,336.5,152579.5,2.6933868709700484,37.41881056201551,4,median across RVD class A-E regional average rent/sale pairs
+2022-06-01,New Territories,260.0,132643.0,2.270756843557519,44.038180610889775,5,median across RVD class A-E regional average rent/sale pairs
+2022-07-01,Hong Kong,421.0,206080.0,2.3699534161490683,42.19492219492219,5,median across RVD class A-E regional average rent/sale pairs
+2022-07-01,Kowloon,340.0,181060.0,2.210837629490764,45.23172514619883,5,median across RVD class A-E regional average rent/sale pairs
+2022-07-01,New Territories,255.0,128222.0,2.4145622436087413,41.41537467700258,5,median across RVD class A-E regional average rent/sale pairs
+2022-08-01,Hong Kong,404.0,200336.0,2.4738439421771425,40.422921711057306,5,median across RVD class A-E regional average rent/sale pairs
+2022-08-01,Kowloon,334.0,149001.0,2.657700283890712,37.62651515151515,5,median across RVD class A-E regional average rent/sale pairs
+2022-08-01,New Territories,258.0,130519.0,2.432092438149373,41.116858237547895,5,median across RVD class A-E regional average rent/sale pairs
+2022-09-01,Hong Kong,409.0,204390.0,2.366064875972406,42.264267990074444,5,median across RVD class A-E regional average rent/sale pairs
+2022-09-01,Kowloon,333.0,158107.0,2.5176834826851917,39.873388852651786,4,median across RVD class A-E regional average rent/sale pairs
+2022-09-01,New Territories,256.0,126012.0,2.574737409103151,38.83891213389121,5,median across RVD class A-E regional average rent/sale pairs
+2022-10-01,Hong Kong,397.0,200180.0,2.3798581276850834,42.019311502938706,5,median across RVD class A-E regional average rent/sale pairs
+2022-10-01,Kowloon,332.5,152227.0,2.6552078137727584,37.682308864328924,4,median across RVD class A-E regional average rent/sale pairs
+2022-10-01,New Territories,255.0,124261.0,2.610797743755036,38.30246913580247,5,median across RVD class A-E regional average rent/sale pairs
+2022-11-01,Hong Kong,415.0,187274.0,2.659205228702329,37.60522088353414,5,median across RVD class A-E regional average rent/sale pairs
+2022-11-01,Kowloon,327.0,155560.0,2.5147852918488045,39.76482617586912,5,median across RVD class A-E regional average rent/sale pairs
+2022-11-01,New Territories,250.0,120471.0,2.7789279963193008,35.985099337748345,5,median across RVD class A-E regional average rent/sale pairs
+2022-12-01,Hong Kong,407.0,175042.0,2.7421990150935205,36.467083333333335,5,median across RVD class A-E regional average rent/sale pairs
+2022-12-01,Kowloon,323.0,155809.0,2.626292447804684,38.07649071358749,5,median across RVD class A-E regional average rent/sale pairs
+2022-12-01,New Territories,246.0,119894.0,2.6617839393146747,37.5687893081761,5,median across RVD class A-E regional average rent/sale pairs
+2023-01-01,Hong Kong,419.0,197219.0,2.6285499875772618,38.04378858024691,5,median across RVD class A-E regional average rent/sale pairs
+2023-01-01,Kowloon,335.0,162296.0,2.4762156131153046,40.38420542635659,5,median across RVD class A-E regional average rent/sale pairs
+2023-01-01,New Territories,245.0,123360.0,2.5226046652989895,39.64156626506024,5,median across RVD class A-E regional average rent/sale pairs
+2023-02-01,Hong Kong,407.0,187173.0,2.609350707634114,38.323710073710075,5,median across RVD class A-E regional average rent/sale pairs
+2023-02-01,Kowloon,345.0,171987.0,2.400181409059987,41.66351744186046,5,median across RVD class A-E regional average rent/sale pairs
+2023-02-01,New Territories,243.0,125067.0,2.379524574827892,42.025201612903224,5,median across RVD class A-E regional average rent/sale pairs
+2023-03-01,Hong Kong,409.0,202866.0,2.372009109461418,42.15835411471322,5,median across RVD class A-E regional average rent/sale pairs
+2023-03-01,Kowloon,343.0,162022.0,2.683806946323861,37.260504201680675,5,median across RVD class A-E regional average rent/sale pairs
+2023-03-01,New Territories,250.0,132408.0,2.27092527488967,44.03491436100132,5,median across RVD class A-E regional average rent/sale pairs
+2023-04-01,Hong Kong,418.0,194444.0,2.5673201538746375,38.951121794871796,5,median across RVD class A-E regional average rent/sale pairs
+2023-04-01,Kowloon,341.5,156681.0,2.6159073025942456,38.22820715917092,4,median across RVD class A-E regional average rent/sale pairs
+2023-04-01,New Territories,250.0,136083.0,2.3694147262429204,42.20451527224436,5,median across RVD class A-E regional average rent/sale pairs
+2023-05-01,Hong Kong,426.0,198502.0,2.4906550059949017,40.150080906148865,5,median across RVD class A-E regional average rent/sale pairs
+2023-05-01,Kowloon,349.0,155387.0,2.6952061626777013,37.10291308500477,5,median across RVD class A-E regional average rent/sale pairs
+2023-05-01,New Territories,254.0,126415.0,2.411106276944983,41.4747375328084,5,median across RVD class A-E regional average rent/sale pairs
+2023-06-01,Hong Kong,428.0,183442.0,2.688588218619509,37.19424168694242,5,median across RVD class A-E regional average rent/sale pairs
+2023-06-01,Kowloon,377.0,147452.0,2.7507256598757563,36.354043392504934,5,median across RVD class A-E regional average rent/sale pairs
+2023-06-01,New Territories,250.0,125352.0,2.472412002736136,40.446333333333335,5,median across RVD class A-E regional average rent/sale pairs
+2023-07-01,Hong Kong,437.0,181501.0,2.7107288665076226,36.890447154471545,5,median across RVD class A-E regional average rent/sale pairs
+2023-07-01,Kowloon,348.0,155312.0,2.665602142783558,37.514975845410625,5,median across RVD class A-E regional average rent/sale pairs
+2023-07-01,New Territories,260.0,126312.0,2.6124745660529025,38.277884615384615,5,median across RVD class A-E regional average rent/sale pairs
+2023-08-01,Hong Kong,428.0,194803.0,2.636509704676006,37.928933021806856,5,median across RVD class A-E regional average rent/sale pairs
+2023-08-01,Kowloon,348.0,139096.0,2.8450363196125905,35.148936170212764,5,median across RVD class A-E regional average rent/sale pairs
+2023-08-01,New Territories,260.0,119594.0,2.6991320634814455,37.04894671623296,5,median across RVD class A-E regional average rent/sale pairs
+2023-09-01,Hong Kong,424.0,210025.0,2.336946536836303,42.790880503144656,5,median across RVD class A-E regional average rent/sale pairs
+2023-09-01,Kowloon,354.5,148657.5,2.87304959786469,35.25962927787519,4,median across RVD class A-E regional average rent/sale pairs
+2023-09-01,New Territories,257.0,121808.0,2.3819086162686522,41.98313878080415,5,median across RVD class A-E regional average rent/sale pairs
+2023-10-01,Hong Kong,442.0,171662.0,3.0174215579721797,33.140878090366584,5,median across RVD class A-E regional average rent/sale pairs
+2023-10-01,Kowloon,364.0,157730.0,2.738857541368161,36.511574074074076,5,median across RVD class A-E regional average rent/sale pairs
+2023-10-01,New Territories,266.0,119531.0,2.6505904040655675,37.72744360902256,5,median across RVD class A-E regional average rent/sale pairs
+2023-11-01,Hong Kong,433.0,171789.0,2.979152810586428,33.566589684372595,5,median across RVD class A-E regional average rent/sale pairs
+2023-11-01,Kowloon,359.5,147545.5,2.8879092991969757,34.766493138918236,4,median across RVD class A-E regional average rent/sale pairs
+2023-11-01,New Territories,261.0,118008.0,2.76944380336949,36.108333333333334,5,median across RVD class A-E regional average rent/sale pairs
+2023-12-01,Hong Kong,429.0,182607.0,2.819169035141041,35.47144522144522,5,median across RVD class A-E regional average rent/sale pairs
+2023-12-01,Kowloon,361.0,155251.0,2.790320191174292,35.83818097876269,5,median across RVD class A-E regional average rent/sale pairs
+2023-12-01,New Territories,263.0,112808.0,2.7001708271339617,37.03469387755102,5,median across RVD class A-E regional average rent/sale pairs
+2024-01-01,Hong Kong,440.0,157031.0,3.281608795490919,30.472858354537745,5,median across RVD class A-E regional average rent/sale pairs
+2024-01-01,Kowloon,363.0,156020.0,2.791949750032047,35.817263544536274,5,median across RVD class A-E regional average rent/sale pairs
+2024-01-01,New Territories,258.0,114155.0,2.8170767493353015,35.4977904040404,5,median across RVD class A-E regional average rent/sale pairs
+2024-02-01,Hong Kong,438.0,162295.0,2.967841921735761,33.69451697127937,5,median across RVD class A-E regional average rent/sale pairs
+2024-02-01,Kowloon,346.0,144208.0,2.9054190573180847,34.751853058451395,4,median across RVD class A-E regional average rent/sale pairs
+2024-02-01,New Territories,259.0,107026.0,2.997172478793591,33.36477987421384,5,median across RVD class A-E regional average rent/sale pairs
+2024-03-01,Hong Kong,418.0,168895.0,2.9698925367832087,33.671251993620416,5,median across RVD class A-E regional average rent/sale pairs
+2024-03-01,Kowloon,351.0,163346.0,2.6887710748962323,37.19171220400729,5,median across RVD class A-E regional average rent/sale pairs
+2024-03-01,New Territories,259.0,115956.0,2.809570224182803,35.59263233190272,5,median across RVD class A-E regional average rent/sale pairs
+2024-04-01,Hong Kong,427.0,165168.0,3.051438535309503,32.77142857142857,5,median across RVD class A-E regional average rent/sale pairs
+2024-04-01,Kowloon,354.0,172216.0,2.4666697635527477,40.54048964218456,5,median across RVD class A-E regional average rent/sale pairs
+2024-04-01,New Territories,264.0,113840.0,2.8269055735013295,35.374368686868685,5,median across RVD class A-E regional average rent/sale pairs
+2024-05-01,Hong Kong,431.0,172964.0,2.976341897735945,33.598290598290596,5,median across RVD class A-E regional average rent/sale pairs
+2024-05-01,Kowloon,376.0,161752.0,2.8265492853256835,35.37882764654418,5,median across RVD class A-E regional average rent/sale pairs
+2024-05-01,New Territories,268.0,107781.0,2.9232506696782745,34.20849297573435,5,median across RVD class A-E regional average rent/sale pairs
+2024-06-01,Hong Kong,444.0,166178.0,3.018450095680535,33.129585326953745,5,median across RVD class A-E regional average rent/sale pairs
+2024-06-01,Kowloon,365.0,169861.0,2.5785789557343946,38.781050228310505,5,median across RVD class A-E regional average rent/sale pairs
+2024-06-01,New Territories,263.0,110599.0,2.8535520212660153,35.04404309252218,5,median across RVD class A-E regional average rent/sale pairs
+2024-07-01,Hong Kong,436.0,172665.0,2.988445834419251,33.46220930232558,5,median across RVD class A-E regional average rent/sale pairs
+2024-07-01,Kowloon,372.0,155287.0,2.8746772105842733,34.78651433691756,5,median across RVD class A-E regional average rent/sale pairs
+2024-07-01,New Territories,268.0,108404.0,2.9777498985277298,33.58240396530359,5,median across RVD class A-E regional average rent/sale pairs
+2024-08-01,Hong Kong,450.0,168839.0,2.956662856330587,33.82191506410256,5,median across RVD class A-E regional average rent/sale pairs
+2024-08-01,Kowloon,369.0,142936.0,3.0978899647394638,32.28003613369467,5,median across RVD class A-E regional average rent/sale pairs
+2024-08-01,New Territories,279.0,108240.0,2.9822616407982263,33.531598513011154,5,median across RVD class A-E regional average rent/sale pairs
+2024-09-01,Hong Kong,440.0,172802.0,2.982764367264161,33.52594696969697,5,median across RVD class A-E regional average rent/sale pairs
+2024-09-01,Kowloon,377.0,146413.0,3.18824148128923,31.365252784918596,5,median across RVD class A-E regional average rent/sale pairs
+2024-09-01,New Territories,272.0,106197.0,2.953721475794412,33.855595667870034,5,median across RVD class A-E regional average rent/sale pairs
+2024-10-01,Hong Kong,436.0,157013.0,3.370421557450657,29.669879062736207,5,median across RVD class A-E regional average rent/sale pairs
+2024-10-01,Kowloon,366.0,154484.0,2.843012868646591,35.173952641165755,5,median across RVD class A-E regional average rent/sale pairs
+2024-10-01,New Territories,270.0,111516.0,2.880786946678117,34.71273712737128,5,median across RVD class A-E regional average rent/sale pairs
+2024-11-01,Hong Kong,425.0,168109.0,2.990916607677162,33.43456642800318,5,median across RVD class A-E regional average rent/sale pairs
+2024-11-01,Kowloon,366.0,151978.0,3.032017792048849,32.98133680555556,5,median across RVD class A-E regional average rent/sale pairs
+2024-11-01,New Territories,273.0,107109.0,2.846121768140117,35.13553113553114,5,median across RVD class A-E regional average rent/sale pairs
+2024-12-01,Hong Kong,429.0,162199.0,3.0998958070025093,32.259148766905334,5,median across RVD class A-E regional average rent/sale pairs
+2024-12-01,Kowloon,369.0,152098.0,2.911280884692764,34.349141824751584,5,median across RVD class A-E regional average rent/sale pairs
+2024-12-01,New Territories,278.0,107970.0,2.939478242611936,34.019642857142856,5,median across RVD class A-E regional average rent/sale pairs
+2025-01-01,Hong Kong,434.0,157342.0,3.309987161724142,30.211597542242703,5,median across RVD class A-E regional average rent/sale pairs
+2025-01-01,Kowloon,360.0,160908.0,3.1413061897054444,31.83389136904762,5,median across RVD class A-E regional average rent/sale pairs
+2025-01-01,New Territories,274.0,105889.0,3.214368303399368,31.11031175059952,5,median across RVD class A-E regional average rent/sale pairs
+2025-02-01,Hong Kong,429.0,163107.0,3.1414960731299084,31.831967213114755,5,median across RVD class A-E regional average rent/sale pairs
+2025-02-01,Kowloon,371.0,152226.0,3.090142288439557,32.360969387755105,5,median across RVD class A-E regional average rent/sale pairs
+2025-02-01,New Territories,277.0,104305.0,3.1868079190834573,31.37936221419976,5,median across RVD class A-E regional average rent/sale pairs
+2025-03-01,Hong Kong,431.0,158433.0,3.2493230576963135,30.775641025641026,5,median across RVD class A-E regional average rent/sale pairs
+2025-03-01,Kowloon,365.0,160967.0,2.698689793560171,37.05501841620626,5,median across RVD class A-E regional average rent/sale pairs
+2025-03-01,New Territories,276.0,101467.0,3.173823512742523,31.507738095238096,5,median across RVD class A-E regional average rent/sale pairs
+2025-04-01,Hong Kong,434.0,157818.0,3.300003801847698,30.302995391705068,5,median across RVD class A-E regional average rent/sale pairs
+2025-04-01,Kowloon,368.0,142936.0,3.0894945989813625,32.367753623188406,5,median across RVD class A-E regional average rent/sale pairs
+2025-04-01,New Territories,278.0,106811.0,2.9694600021134945,33.67615658362989,5,median across RVD class A-E regional average rent/sale pairs
+2025-05-01,Hong Kong,435.0,158795.0,3.2419156774457636,30.845959595959595,5,median across RVD class A-E regional average rent/sale pairs
+2025-05-01,Kowloon,372.0,150184.0,3.0282853033612103,33.021987686895336,5,median across RVD class A-E regional average rent/sale pairs
+2025-05-01,New Territories,276.0,105205.0,2.9324201070402176,34.10152582159625,5,median across RVD class A-E regional average rent/sale pairs
+2025-06-01,Hong Kong,443.0,159628.0,3.3302428145438143,30.027840481565086,5,median across RVD class A-E regional average rent/sale pairs
+2025-06-01,Kowloon,379.0,150243.0,3.1788502625746293,31.457914572864322,5,median across RVD class A-E regional average rent/sale pairs
+2025-06-01,New Territories,271.0,104552.0,3.13910856588795,31.856177606177607,5,median across RVD class A-E regional average rent/sale pairs
+2025-07-01,Hong Kong,440.0,156628.0,3.3710447684960543,29.66439393939394,5,median across RVD class A-E regional average rent/sale pairs
+2025-07-01,Kowloon,392.0,153951.0,3.149053919753688,31.755569306930692,5,median across RVD class A-E regional average rent/sale pairs
+2025-07-01,New Territories,282.0,110310.0,3.2096517186432965,31.156028368794328,5,median across RVD class A-E regional average rent/sale pairs
+2025-08-01,Hong Kong,429.0,164649.0,3.0683453892826558,32.59085510688836,5,median across RVD class A-E regional average rent/sale pairs
+2025-08-01,Kowloon,398.0,145731.0,3.277271136546102,30.51319095477387,5,median across RVD class A-E regional average rent/sale pairs
+2025-08-01,New Territories,283.0,108584.0,3.0874566756682045,32.38911845730028,5,median across RVD class A-E regional average rent/sale pairs
+2025-09-01,Hong Kong,450.0,171096.0,3.078973208023566,32.478359908883824,5,median across RVD class A-E regional average rent/sale pairs
+2025-09-01,Kowloon,402.0,154921.0,3.6146392891209396,27.665277777777778,5,median across RVD class A-E regional average rent/sale pairs
+2025-09-01,New Territories,280.0,111664.0,3.009027081243731,33.233333333333334,5,median across RVD class A-E regional average rent/sale pairs
+2025-10-01,Hong Kong,459.0,175814.0,2.969046833585494,33.68084291187739,5,median across RVD class A-E regional average rent/sale pairs
+2025-10-01,Kowloon,399.0,154217.0,3.104716081884617,32.20906432748538,5,median across RVD class A-E regional average rent/sale pairs
+2025-10-01,New Territories,278.0,108685.0,2.9143516091833526,34.31294964028777,5,median across RVD class A-E regional average rent/sale pairs
+2025-11-01,Hong Kong,443.0,166371.0,3.1736300196548677,31.50965909090909,5,median across RVD class A-E regional average rent/sale pairs
+2025-11-01,Kowloon,396.0,172853.0,2.749156797972844,36.374789562289564,5,median across RVD class A-E regional average rent/sale pairs
+2025-11-01,New Territories,280.0,112115.0,2.939740549588506,34.01660735468565,5,median across RVD class A-E regional average rent/sale pairs
+2025-12-01,Hong Kong,454.0,163705.0,3.3279374484591187,30.048641703377385,5,median across RVD class A-E regional average rent/sale pairs
+2025-12-01,Kowloon,420.0,150200.0,3.250636335721264,30.858654862714907,4,median across RVD class A-E regional average rent/sale pairs
+2025-12-01,New Territories,278.0,107733.0,2.7993857462930793,35.722122302158276,5,median across RVD class A-E regional average rent/sale pairs
+2026-01-01,Hong Kong,483.0,165730.0,3.497254570687262,28.593857832988267,5,median across RVD class A-E regional average rent/sale pairs
+2026-01-01,Kowloon,387.0,160179.0,2.8992564568389114,34.491602067183464,5,median across RVD class A-E regional average rent/sale pairs
+2026-01-01,New Territories,277.0,114069.0,3.05175915253307,32.76798561151079,5,median across RVD class A-E regional average rent/sale pairs
+2026-02-01,Hong Kong,467.0,174921.0,3.155710292074708,31.68858695652174,5,median across RVD class A-E regional average rent/sale pairs
+2026-02-01,Kowloon,425.0,165731.0,2.860056356384744,34.96434599156118,5,median across RVD class A-E regional average rent/sale pairs
+2026-02-01,New Territories,280.0,113753.0,2.9788818554178413,33.56964285714286,5,median across RVD class A-E regional average rent/sale pairs
+2026-03-01,Hong Kong,450.0,175625.0,3.218220640569395,31.073071479122433,5,median across RVD class A-E regional average rent/sale pairs
+2026-03-01,Kowloon,424.0,173560.0,2.9177229776446185,34.27330173775671,5,median across RVD class A-E regional average rent/sale pairs
+2026-03-01,New Territories,290.0,124327.0,3.0285888342543843,33.01867816091954,5,median across RVD class A-E regional average rent/sale pairs
+2026-04-01,Hong Kong,458.0,173890.0,3.1606187819886133,31.639374090247454,5,median across RVD class A-E regional average rent/sale pairs
+2026-04-01,Kowloon,404.0,176877.0,2.74088773554504,36.4845297029703,5,median across RVD class A-E regional average rent/sale pairs
+2026-04-01,New Territories,284.0,118519.0,2.9367917618165365,34.05076291079812,5,median across RVD class A-E regional average rent/sale pairs
+2026-05-01,Hong Kong,461.0,195646.0,2.8275558917636956,35.366232827187275,5,median across RVD class A-E regional average rent/sale pairs
+2026-05-01,Kowloon,435.0,171622.0,3.41887758422457,29.249365482233504,5,median across RVD class A-E regional average rent/sale pairs
+2026-05-01,New Territories,283.0,119937.0,2.861502288701568,34.94667832167832,5,median across RVD class A-E regional average rent/sale pairs
+2026-06-01,Hong Kong,462.0,187204.0,3.0063460182474735,33.262970859985785,5,median across RVD class A-E regional average rent/sale pairs
+2026-06-01,Kowloon,449.0,168227.0,3.2028152436885873,31.22253155159614,5,median across RVD class A-E regional average rent/sale pairs
+2026-06-01,New Territories,293.0,115390.0,2.9904821001431188,33.43942436412316,5,median across RVD class A-E regional average rent/sale pairs
+2026-07-01,Hong Kong,479.0,190242.0,3.002491563377172,33.305672268907564,5,median across RVD class A-E regional average rent/sale pairs
+2026-07-01,Kowloon,423.0,173155.0,3.056221304611475,32.72014361300076,5,median across RVD class A-E regional average rent/sale pairs
+2026-07-01,New Territories,302.0,114013.0,2.956271812769452,33.826388888888886,5,median across RVD class A-E regional average rent/sale pairs
+2026-08-01,Hong Kong,505.0,180625.0,3.255363321799308,30.718537414965986,5,median across RVD class A-E regional average rent/sale pairs
+2026-08-01,Kowloon,457.0,175618.0,3.1910168661526725,31.337972876516773,5,median across RVD class A-E regional average rent/sale pairs
+2026-08-01,New Territories,307.0,116190.0,2.956091924508923,33.82844733984799,5,median across RVD class A-E regional average rent/sale pairs

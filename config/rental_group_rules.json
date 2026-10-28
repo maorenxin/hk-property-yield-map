@@ -1,0 +1,2261 @@
+{
+  "version": 1,
+  "estates": {
+    "太古城": {
+      "aliases": [
+        "太古城",
+        "Taikoo Shing"
+      ],
+      "type": "tai_garden",
+      "gardens": {
+        "漢宮": "HMA034:EA0028",
+        "唐宮": "HMA034:EA0028",
+        "匯豪峰": "HMA034:EA0028",
+        "東山": "HMA034:EA0030",
+        "天山": "HMA034:EA0030",
+        "泰山": "HMA034:EA0030",
+        "盧山": "HMA034:EA0031",
+        "南山": "HMA034:EA0031",
+        "寶山": "HMA034:EA0031",
+        "華山": "HMA034:EA0032",
+        "恆山": "HMA034:EA0032",
+        "龍山": "HMA034:EA0032",
+        "鳳山": "HMA034:EA0032",
+        "富山": "HMA034:EA0033",
+        "金山": "HMA034:EA0033",
+        "怡山": "HMA034:EA0033",
+        "興安": "HMA034:EA0034",
+        "建安": "HMA034:EA0034",
+        "高安": "HMA034:EA0034",
+        "順安": "HMA034:EA0035",
+        "寶安": "HMA034:EA0035",
+        "寧安": "HMA034:EA0035",
+        "隋宮": "HMA034:EA0036",
+        "齊宮": "HMA034:EA0036",
+        "元宮": "HMA034:EA0037",
+        "燕宮": "HMA034:EA0037",
+        "夏宮": "HMA034:EA0037",
+        "明宮": "HMA034:EA0037",
+        "啟天": "HMA034:EA0038",
+        "海天": "HMA034:EA0038",
+        "富天": "HMA034:EA0038",
+        "彩天": "HMA034:EA0038",
+        "景天": "HMA034:EA0039",
+        "南天": "HMA034:EA0039",
+        "逸天": "HMA034:EA0039",
+        "冠天": "HMA034:EA0039",
+        "恆天": "HMA034:EA0039",
+        "智星": "HMA034:EA0040",
+        "耀星": "HMA034:EA0040",
+        "金星": "HMA034:EA0040",
+        "銀星": "HMA034:EA0040",
+        "天星": "HMA034:EA0041",
+        "恆星": "HMA034:EA0041",
+        "春櫻": "HMA034:EA0043",
+        "碧藤": "HMA034:EA0043",
+        "雅蓮": "HMA034:EA0043",
+        "海棠": "HMA034:EA0044",
+        "美菊": "HMA034:EA0044",
+        "紫樺": "HMA034:EA0045",
+        "金楓": "HMA034:EA0045",
+        "銀柏": "HMA034:EA0045",
+        "青松": "HMA034:EA0046",
+        "翠榕": "HMA034:EA0046",
+        "綠楊": "HMA034:EA0046",
+        "衛星": "HMA034:EA0285",
+        "海星": "HMA034:EA0285"
+      },
+      "phase_groups": {
+        "翠湖台": "HMA034:EA0029",
+        "觀海台": "HMA034:EA0042"
+      },
+      "tower_to_garden": {
+        "33": "青松"
+      }
+    },
+    "匯璽": {
+      "aliases": [
+        "匯璽",
+        "汇玺"
+      ],
+      "type": "hui_xi",
+      "groups": {
+        "I": "HMA081:SP0192",
+        "II": "HMA081:SP0193",
+        "III": "HMA081:SP0194"
+      }
+    },
+    "日出康城": {
+      "aliases": [
+        "日出康城",
+        "LOHAS Park"
+      ],
+      "type": "lohas",
+      "projects": [
+        {
+          "aliases": [
+            "緻藍天",
+            "The Capitol"
+          ],
+          "towers": [],
+          "group": "HMA114:SK0106"
+        },
+        {
+          "aliases": [
+            "首都",
+            "The Metropolis"
+          ],
+          "towers": [
+            1,
+            2
+          ],
+          "group": "HMA114:SK0108"
+        },
+        {
+          "aliases": [
+            "首都",
+            "The Metropolis"
+          ],
+          "towers": [
+            3,
+            5,
+            6
+          ],
+          "group": "HMA114:SK0107"
+        },
+        {
+          "aliases": [
+            "領都",
+            "Le Prestige"
+          ],
+          "towers": [
+            1,
+            2
+          ],
+          "group": "HMA114:SK0109"
+        },
+        {
+          "aliases": [
+            "領都",
+            "Le Prestige"
+          ],
+          "towers": [
+            3,
+            5
+          ],
+          "group": "HMA114:SK0110"
+        },
+        {
+          "aliases": [
+            "領都",
+            "Le Prestige"
+          ],
+          "towers": [
+            6,
+            7,
+            8
+          ],
+          "group": "HMA114:SK0111"
+        },
+        {
+          "aliases": [
+            "領都",
+            "領凱",
+            "Le Prestige"
+          ],
+          "towers": [
+            9,
+            10,
+            11
+          ],
+          "group": "HMA114:SK0112"
+        },
+        {
+          "aliases": [
+            "Malibu"
+          ],
+          "towers": [
+            1
+          ],
+          "group": "HMA114:SK0194"
+        },
+        {
+          "aliases": [
+            "Malibu"
+          ],
+          "towers": [
+            2
+          ],
+          "group": "HMA114:SK0195"
+        },
+        {
+          "aliases": [
+            "Malibu"
+          ],
+          "towers": [
+            3
+          ],
+          "group": "HMA114:SK0196"
+        },
+        {
+          "aliases": [
+            "晉海",
+            "Wings at Sea"
+          ],
+          "towers": [
+            1
+          ],
+          "group": "HMA114:SK0197"
+        },
+        {
+          "aliases": [
+            "晉海",
+            "Wings at Sea"
+          ],
+          "towers": [
+            2
+          ],
+          "group": "HMA114:SK0198"
+        },
+        {
+          "aliases": [
+            "晉海II",
+            "晉海 II",
+            "Wings at Sea II"
+          ],
+          "towers": [
+            3
+          ],
+          "group": "HMA114:SK0199"
+        },
+        {
+          "aliases": [
+            "晉海II",
+            "晉海 II",
+            "Wings at Sea II"
+          ],
+          "towers": [
+            5
+          ],
+          "group": "HMA114:SK0200"
+        },
+        {
+          "aliases": [
+            "LP6"
+          ],
+          "towers": [
+            1,
+            2
+          ],
+          "group": "HMA114:SK0201"
+        },
+        {
+          "aliases": [
+            "LP6"
+          ],
+          "towers": [
+            3
+          ],
+          "group": "HMA114:SK0202"
+        },
+        {
+          "aliases": [
+            "LP6"
+          ],
+          "towers": [
+            5
+          ],
+          "group": "HMA114:SK0203"
+        },
+        {
+          "aliases": [
+            "Sea To Sky"
+          ],
+          "towers": [],
+          "group": "HMA114:SK0194"
+        },
+        {
+          "aliases": [
+            "Marini"
+          ],
+          "towers": [],
+          "group": "HMA114:SK0194"
+        },
+        {
+          "aliases": [
+            "Montara"
+          ],
+          "towers": [
+            2
+          ],
+          "group": "HMA114:SK0194"
+        }
+      ]
+    },
+    "映灣園": {
+      "aliases": [
+        "映灣園",
+        "Caribbean Coast"
+      ],
+      "type": "phase_tower",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            1,
+            2
+          ],
+          "group": "HMA174:IS0016"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            3,
+            5
+          ],
+          "group": "HMA174:IS0017"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            6,
+            7,
+            8
+          ],
+          "group": "HMA174:IS0005"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "towers": [
+            9,
+            10
+          ],
+          "group": "HMA174:IS0006"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "towers": [
+            11,
+            12
+          ],
+          "group": "HMA174:IS0007"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "towers": [
+            15,
+            16
+          ],
+          "group": "HMA174:IS0021"
+        }
+      ]
+    },
+    "珀麗灣": {
+      "aliases": [
+        "珀麗灣",
+        "Park Island"
+      ],
+      "type": "phase_tower",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "group": "HMA109:TW0084"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "group": "HMA109:TW0085"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "towers": [
+            1,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "group": "HMA109:TW0086"
+        },
+        {
+          "phases": [
+            "5",
+            "6"
+          ],
+          "towers": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35
+          ],
+          "group": "HMA109:TW0087"
+        }
+      ]
+    },
+    "沙田第一城": {
+      "aliases": [
+        "沙田第一城",
+        "City One Shatin"
+      ],
+      "type": "phase_tower",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA062:ST0024"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            4,
+            5,
+            6
+          ],
+          "group": "HMA062:ST0023"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "group": "HMA062:ST0025"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            13,
+            14,
+            15
+          ],
+          "group": "HMA062:ST0026"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            16,
+            17,
+            20,
+            23
+          ],
+          "group": "HMA062:ST0027"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            18,
+            19,
+            21,
+            22
+          ],
+          "group": "HMA062:ST0028"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "towers": [
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "group": "HMA062:ST0035"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "towers": [
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "group": "HMA062:ST0031"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "towers": [
+            42,
+            43,
+            44,
+            45
+          ],
+          "group": "HMA062:ST0032"
+        },
+        {
+          "phases": [
+            "5"
+          ],
+          "towers": [
+            46,
+            47,
+            48
+          ],
+          "group": "HMA062:ST0029"
+        },
+        {
+          "phases": [
+            "5"
+          ],
+          "towers": [
+            49,
+            50,
+            51,
+            52
+          ],
+          "group": "HMA062:ST0030"
+        },
+        {
+          "phases": [
+            "5",
+            "6"
+          ],
+          "towers": [
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "group": "HMA062:ST0034"
+        },
+        {
+          "phases": [
+            "7"
+          ],
+          "towers": [
+            34,
+            35,
+            36
+          ],
+          "group": "HMA062:ST0033"
+        }
+      ]
+    },
+    "嘉湖山莊": {
+      "aliases": [
+        "嘉湖山莊",
+        "Kingswood Villas"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phase_names": [
+            "美湖居"
+          ],
+          "towers": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "group": "HMA031:YL0144"
+        },
+        {
+          "phase_names": [
+            "美湖居"
+          ],
+          "towers": [
+            5,
+            6,
+            7,
+            8
+          ],
+          "group": "HMA031:YL0145"
+        },
+        {
+          "phase_names": [
+            "景湖居"
+          ],
+          "towers": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "group": "HMA031:YL0146"
+        },
+        {
+          "phase_names": [
+            "景湖居"
+          ],
+          "towers": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "group": "HMA031:YL0147"
+        },
+        {
+          "phase_names": [
+            "景湖居"
+          ],
+          "towers": [
+            5,
+            6,
+            7
+          ],
+          "group": "HMA031:YL0148"
+        },
+        {
+          "phase_names": [
+            "景湖居"
+          ],
+          "towers": [
+            8,
+            9,
+            10
+          ],
+          "group": "HMA031:YL0149"
+        },
+        {
+          "phase_names": [
+            "翠湖居"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA031:YL0150"
+        },
+        {
+          "phase_names": [
+            "翠湖居"
+          ],
+          "towers": [
+            4,
+            5,
+            6
+          ],
+          "group": "HMA031:YL0151"
+        },
+        {
+          "phase_names": [
+            "樂湖居"
+          ],
+          "towers": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "group": "HMA031:YL0152"
+        },
+        {
+          "phase_names": [
+            "樂湖居"
+          ],
+          "towers": [
+            11,
+            12,
+            13,
+            14
+          ],
+          "group": "HMA031:YL0153"
+        },
+        {
+          "phase_names": [
+            "樂湖居"
+          ],
+          "towers": [
+            5,
+            6,
+            7
+          ],
+          "group": "HMA031:YL0154"
+        },
+        {
+          "phase_names": [
+            "樂湖居"
+          ],
+          "towers": [
+            8,
+            9,
+            10
+          ],
+          "group": "HMA031:YL0155"
+        },
+        {
+          "phase_names": [
+            "賞湖居"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA031:YL0156"
+        },
+        {
+          "phase_names": [
+            "賞湖居"
+          ],
+          "towers": [
+            4,
+            5,
+            6
+          ],
+          "group": "HMA031:YL0157"
+        },
+        {
+          "phase_names": [
+            "麗湖居"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA031:YL0158"
+        },
+        {
+          "phase_names": [
+            "麗湖居"
+          ],
+          "towers": [
+            4,
+            5,
+            6
+          ],
+          "group": "HMA031:YL0159"
+        },
+        {
+          "phase_names": [
+            "麗湖居"
+          ],
+          "towers": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "group": "HMA031:YL0160"
+        }
+      ]
+    },
+    "新都城": {
+      "aliases": [
+        "新都城",
+        "Metro City"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            1,
+            2
+          ],
+          "group": "HMA159:SK0142"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            3,
+            4
+          ],
+          "group": "HMA159:SK0141"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            5,
+            6
+          ],
+          "group": "HMA159:SK0140"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA159:SK0147"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            4,
+            5,
+            6
+          ],
+          "group": "HMA159:SK0148"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            7,
+            8,
+            9
+          ],
+          "group": "HMA159:SK0149"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            10,
+            11
+          ],
+          "group": "HMA159:SK0150"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "phase_names": [
+            "都會豪庭"
+          ],
+          "towers": [
+            1,
+            2
+          ],
+          "group": "HMA159:SK0139"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "phase_names": [
+            "都會豪庭"
+          ],
+          "towers": [
+            3,
+            4
+          ],
+          "group": "HMA159:SK0138"
+        }
+      ]
+    },
+    "美孚新邨": {
+      "aliases": [
+        "美孚新邨",
+        "Mei Foo Sun Chuen"
+      ],
+      "type": "address_ranges",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            1,
+            5,
+            9,
+            15,
+            19,
+            23,
+            25
+          ],
+          "group": "HMA092:SP0119"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            10,
+            18,
+            29
+          ],
+          "group": "HMA092:SP0120"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            2,
+            6,
+            14,
+            22
+          ],
+          "group": "HMA092:SP0121"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "streets": [
+            "吉利徑"
+          ],
+          "numbers": [
+            1,
+            5,
+            9,
+            15,
+            19
+          ],
+          "group": "HMA092:SP0122"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            2,
+            26,
+            30,
+            33,
+            34,
+            37
+          ],
+          "group": "HMA092:SP0124"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            40,
+            44,
+            48
+          ],
+          "group": "HMA092:SP0125"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            52,
+            60,
+            64,
+            88
+          ],
+          "group": "HMA092:SP0126"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            53,
+            56,
+            68
+          ],
+          "group": "HMA092:SP0127"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            57,
+            61,
+            65
+          ],
+          "group": "HMA092:SP0128"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "streets": [
+            "吉利徑"
+          ],
+          "numbers": [
+            6
+          ],
+          "group": "HMA092:SP0129"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            41,
+            45,
+            49
+          ],
+          "group": "HMA092:SP0129"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "streets": [
+            "百老匯"
+          ],
+          "numbers": [
+            72,
+            76,
+            80,
+            84
+          ],
+          "group": "HMA092:SP0130"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "numbers": [
+            109,
+            113,
+            117
+          ],
+          "group": "HMA092:SP0131"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "numbers": [
+            69,
+            75,
+            81,
+            85,
+            89
+          ],
+          "group": "HMA092:SP0132"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "numbers": [
+            93,
+            97,
+            101,
+            105
+          ],
+          "group": "HMA092:SP0133"
+        },
+        {
+          "phases": [
+            "5"
+          ],
+          "streets": [
+            "恆柏"
+          ],
+          "numbers": [
+            1,
+            5
+          ],
+          "group": "HMA092:SP0134"
+        },
+        {
+          "phases": [
+            "5"
+          ],
+          "streets": [
+            "蘭秀"
+          ],
+          "numbers": [
+            9
+          ],
+          "group": "HMA092:SP0134"
+        },
+        {
+          "phases": [
+            "5"
+          ],
+          "streets": [
+            "蘭秀"
+          ],
+          "numbers": [
+            1,
+            2,
+            5,
+            6
+          ],
+          "group": "HMA092:SP0135"
+        },
+        {
+          "phases": [
+            "5"
+          ],
+          "streets": [
+            "蘭秀"
+          ],
+          "numbers": [
+            10,
+            14,
+            15,
+            18,
+            22
+          ],
+          "group": "HMA092:SP0136"
+        },
+        {
+          "phases": [
+            "6"
+          ],
+          "streets": [
+            "蘭秀"
+          ],
+          "numbers": [
+            17,
+            21,
+            25
+          ],
+          "group": "HMA092:SP0137"
+        },
+        {
+          "phases": [
+            "6"
+          ],
+          "streets": [
+            "恆柏"
+          ],
+          "numbers": [
+            9
+          ],
+          "group": "HMA092:SP0137"
+        },
+        {
+          "phases": [
+            "6"
+          ],
+          "streets": [
+            "恆柏"
+          ],
+          "numbers": [
+            2,
+            6,
+            15
+          ],
+          "group": "HMA092:SP0138"
+        },
+        {
+          "phases": [
+            "6"
+          ],
+          "streets": [
+            "蘭秀"
+          ],
+          "numbers": [
+            26,
+            30,
+            34,
+            38,
+            42,
+            46
+          ],
+          "group": "HMA092:SP0140"
+        },
+        {
+          "phases": [
+            "7"
+          ],
+          "group": "HMA092:SP0141"
+        },
+        {
+          "phases": [
+            "8"
+          ],
+          "numbers": [
+            114,
+            118,
+            122,
+            126,
+            130
+          ],
+          "group": "HMA092:SP0143"
+        },
+        {
+          "phases": [
+            "8"
+          ],
+          "numbers": [
+            94,
+            98,
+            102,
+            106,
+            110
+          ],
+          "group": "HMA092:SP0144"
+        }
+      ]
+    },
+    "海怡半島": {
+      "aliases": [
+        "海怡半島",
+        "South Horizons"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "tower_labels": [
+            "1",
+            "2"
+          ],
+          "group": "HMA200:SO0063"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "tower_labels": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "group": "HMA200:SO0064"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "tower_labels": [
+            "7",
+            "8"
+          ],
+          "group": "HMA200:SO0065"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "tower_labels": [
+            "9",
+            "10"
+          ],
+          "group": "HMA200:SO0066"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "tower_labels": [
+            "11",
+            "12",
+            "13"
+          ],
+          "group": "HMA200:SO0067"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "tower_labels": [
+            "13a",
+            "14",
+            "15",
+            "16"
+          ],
+          "group": "HMA200:SO0068"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "tower_labels": [
+            "17",
+            "18"
+          ],
+          "group": "HMA200:SO0069"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "tower_labels": [
+            "19",
+            "20"
+          ],
+          "group": "HMA200:SO0070"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "tower_labels": [
+            "21",
+            "22"
+          ],
+          "group": "HMA200:SO0071"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "tower_labels": [
+            "23",
+            "23a"
+          ],
+          "group": "HMA200:SO0072"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "tower_labels": [
+            "25",
+            "26",
+            "27",
+            "28"
+          ],
+          "group": "HMA200:SO0073"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "tower_labels": [
+            "29",
+            "30",
+            "31"
+          ],
+          "group": "HMA200:SO0074"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "tower_labels": [
+            "32",
+            "33",
+            "33a"
+          ],
+          "group": "HMA200:SO0075"
+        }
+      ]
+    },
+    "天晉": {
+      "aliases": [
+        "天晉",
+        "The Wings"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "group": "HMA112:SK0059"
+        },
+        {
+          "phases": [
+            "2",
+            "3"
+          ],
+          "group": "HMA112:SK0060"
+        },
+        {
+          "phase_names": [
+            "海天晉"
+          ],
+          "group": "HMA112:SK0184"
+        },
+        {
+          "phases": [
+            "3a",
+            "3b"
+          ],
+          "tower_labels": [
+            "1",
+            "1a",
+            "1b",
+            "2",
+            "2a",
+            "2b"
+          ],
+          "group": "HMA112:SK0187"
+        },
+        {
+          "phases": [
+            "3a",
+            "3b"
+          ],
+          "tower_labels": [
+            "3",
+            "3a",
+            "3b",
+            "4",
+            "4a",
+            "4b",
+            "5",
+            "5a",
+            "5b"
+          ],
+          "group": "HMA112:SK0188"
+        },
+        {
+          "phase_names": [
+            "iiia"
+          ],
+          "tower_labels": [
+            "1",
+            "2"
+          ],
+          "group": "HMA112:SK0187"
+        },
+        {
+          "phase_names": [
+            "iiia"
+          ],
+          "tower_labels": [
+            "3",
+            "4",
+            "5"
+          ],
+          "group": "HMA112:SK0188"
+        },
+        {
+          "phase_names": [
+            "iiib"
+          ],
+          "group": "HMA112:SK0187"
+        }
+      ]
+    },
+    "淘大花園": {
+      "aliases": [
+        "淘大花園",
+        "Amoy Gardens"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "letters": [
+            "A",
+            "B",
+            "C"
+          ],
+          "group": "HMA005:KW0011"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "letters": [
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "group": "HMA005:KW0012"
+        },
+        {
+          "phases": [
+            "2a"
+          ],
+          "letters": [
+            "H",
+            "I",
+            "J",
+            "K"
+          ],
+          "group": "HMA005:KW0013"
+        },
+        {
+          "phases": [
+            "3b"
+          ],
+          "letters": [
+            "Q",
+            "R",
+            "S"
+          ],
+          "group": "HMA005:KW0014"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "letters": [
+            "L",
+            "M",
+            "N",
+            "O",
+            "P"
+          ],
+          "group": "HMA005:KW0015"
+        }
+      ]
+    },
+    "海茵莊園": {
+      "aliases": [
+        "海茵莊園"
+      ],
+      "type": "estate_only",
+      "group": "HMA114:SYN-HAIYIN"
+    },
+    "將軍澳中心": {
+      "aliases": [
+        "將軍澳中心"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            5,
+            6
+          ],
+          "group": "HMA112:SK0057"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            7,
+            8,
+            9
+          ],
+          "group": "HMA112:SK0058"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA112:SK0056"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            10,
+            11,
+            12
+          ],
+          "group": "HMA112:SK0055"
+        },
+        {
+          "phase_names": [
+            "將軍澳豪庭"
+          ],
+          "group": "HMA112:SK0055"
+        }
+      ]
+    },
+    "海之戀": {
+      "aliases": [
+        "海之戀",
+        "海之恋"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "towers": [
+            1,
+            2
+          ],
+          "group": "HMA102:TW0115"
+        },
+        {
+          "towers": [
+            3
+          ],
+          "group": "HMA102:TW0116"
+        },
+        {
+          "towers": [
+            5
+          ],
+          "group": "HMA102:TW0117"
+        },
+        {
+          "towers": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "group": "HMA102:TW0118"
+        }
+      ]
+    },
+    "嘉亨灣": {
+      "aliases": [
+        "嘉亨灣",
+        "嘉亨湾"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA057:EA0158"
+        },
+        {
+          "towers": [
+            5,
+            6
+          ],
+          "group": "HMA057:EA0157"
+        }
+      ]
+    },
+    "名城": {
+      "aliases": [
+        "名城",
+        "Festival City"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "group": "HMA188:ST0110"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "group": "HMA188:ST0109"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "group": "HMA188:ST0111"
+        }
+      ]
+    },
+    "瓏門": {
+      "aliases": [
+        "瓏門",
+        "珑门",
+        "Century Gateway"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "group": "HMA037:TM0116"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            6,
+            7,
+            8
+          ],
+          "group": "HMA037:TM0117"
+        },
+        {
+          "towers": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "group": "HMA037:TM0116"
+        },
+        {
+          "towers": [
+            6,
+            7,
+            8
+          ],
+          "group": "HMA037:TM0117"
+        }
+      ]
+    },
+    "栢慧豪園": {
+      "aliases": [
+        "栢慧豪園",
+        "柏慧豪園",
+        "柏慧豪廷"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phase_names": [
+            "柏慧豪廷"
+          ],
+          "towers": [
+            7,
+            8,
+            9
+          ],
+          "group": "HMA031:YL0140"
+        },
+        {
+          "phase_names": [
+            "柏慧豪園"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA031:YL0141"
+        },
+        {
+          "phase_names": [
+            "柏慧豪園"
+          ],
+          "towers": [
+            5,
+            6
+          ],
+          "group": "HMA031:YL0142"
+        },
+        {
+          "towers": [
+            7,
+            8,
+            9
+          ],
+          "group": "HMA031:YL0140"
+        },
+        {
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA031:YL0141"
+        },
+        {
+          "towers": [
+            5,
+            6
+          ],
+          "group": "HMA031:YL0142"
+        }
+      ]
+    },
+    "港灣豪庭": {
+      "aliases": [
+        "港灣豪庭",
+        "港湾豪庭"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA015:YM0059"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            4,
+            6
+          ],
+          "group": "HMA015:YM0060"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            5,
+            7
+          ],
+          "group": "HMA015:YM0061"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            8,
+            9,
+            10
+          ],
+          "group": "HMA015:YM0062"
+        }
+      ]
+    },
+    "維景灣畔": {
+      "aliases": [
+        "維景灣畔",
+        "维景湾畔"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA148:SK0010"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            5,
+            6
+          ],
+          "group": "HMA148:SK0011"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            7,
+            8
+          ],
+          "group": "HMA148:SK0012"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            9,
+            10
+          ],
+          "group": "HMA148:SK0013"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "towers": [
+            11,
+            12,
+            13
+          ],
+          "group": "HMA148:SK0014"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "towers": [
+            15,
+            16,
+            17
+          ],
+          "group": "HMA148:SK0015"
+        }
+      ]
+    },
+    "泓景臺": {
+      "aliases": [
+        "泓景臺",
+        "泓景台"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "towers": [
+            1,
+            2,
+            3
+          ],
+          "group": "HMA043:SP0015"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "towers": [
+            7,
+            8
+          ],
+          "group": "HMA043:SP0016"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "towers": [
+            5,
+            6
+          ],
+          "group": "HMA043:SP0017"
+        }
+      ]
+    },
+    "德福花園": {
+      "aliases": [
+        "德福花園",
+        "德福花园"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "letters": [
+            "A",
+            "B",
+            "C"
+          ],
+          "group": "HMA005:KW0018"
+        },
+        {
+          "letters": [
+            "D",
+            "E",
+            "F",
+            "G"
+          ],
+          "group": "HMA005:KW0019"
+        },
+        {
+          "letters": [
+            "H",
+            "I",
+            "J",
+            "L"
+          ],
+          "group": "HMA005:KW0020"
+        },
+        {
+          "letters": [
+            "M",
+            "N",
+            "K",
+            "U"
+          ],
+          "group": "HMA005:KW0022"
+        },
+        {
+          "letters": [
+            "O",
+            "P",
+            "Q"
+          ],
+          "group": "HMA005:KW0023"
+        },
+        {
+          "letters": [
+            "R",
+            "S",
+            "T"
+          ],
+          "group": "HMA005:KW0024"
+        }
+      ]
+    },
+    "浪澄灣": {
+      "aliases": [
+        "浪澄灣",
+        "浪澄湾"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "towers": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "group": "HMA134:YM0019"
+        },
+        {
+          "towers": [
+            6,
+            7,
+            8,
+            9
+          ],
+          "group": "HMA134:YM0018"
+        }
+      ]
+    },
+    "迎海": {
+      "aliases": [
+        "迎海",
+        "迎海．星灣",
+        "迎海。星灣",
+        "迎海．星灣御",
+        "迎海。星灣御",
+        "迎海．駿岸",
+        "迎海。駿岸",
+        "迎海．御峰",
+        "迎海。御峰"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phase_names": [
+            "星灣",
+            "星灣御"
+          ],
+          "towers": [
+            16,
+            17
+          ],
+          "group": "HMA996:ST0319"
+        },
+        {
+          "phase_names": [
+            "星灣御"
+          ],
+          "towers": [
+            22,
+            23,
+            24,
+            25
+          ],
+          "group": "HMA996:ST0320"
+        },
+        {
+          "phase_names": [
+            "駿岸",
+            "御峰"
+          ],
+          "group": "HMA996:ST0321"
+        },
+        {
+          "phases": [
+            "1"
+          ],
+          "group": "HMA996:ST0318"
+        },
+        {
+          "phase_names": [
+            "星灣"
+          ],
+          "towers": [
+            18,
+            19,
+            20,
+            21
+          ],
+          "group": "HMA996:ST0319"
+        },
+        {
+          "phases": [
+            "4",
+            "5"
+          ],
+          "group": "HMA996:ST0321"
+        }
+      ]
+    },
+    "新港城": {
+      "aliases": [
+        "新港城"
+      ],
+      "type": "generic",
+      "rules": [
+        {
+          "phases": [
+            "1"
+          ],
+          "letters": [
+            "A",
+            "B"
+          ],
+          "group": "HMA107:ST0214"
+        },
+        {
+          "phases": [
+            "2"
+          ],
+          "letters": [
+            "C",
+            "D"
+          ],
+          "group": "HMA107:ST0215"
+        },
+        {
+          "phases": [
+            "3"
+          ],
+          "letters": [
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R"
+          ],
+          "group": "HMA107:ST0216"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "letters": [
+            "E",
+            "F",
+            "G",
+            "M"
+          ],
+          "group": "HMA107:ST0217"
+        },
+        {
+          "phases": [
+            "4"
+          ],
+          "letters": [
+            "H",
+            "J",
+            "K",
+            "L"
+          ],
+          "group": "HMA107:ST0218"
+        },
+        {
+          "phases": [
+            "5"
+          ],
+          "group": "HMA107:ST0219"
+        },
+        {
+          "phase_names": [
+            "海濤居"
+          ],
+          "group": "HMA107:ST0219"
+        }
+      ]
+    }
+  }
+}

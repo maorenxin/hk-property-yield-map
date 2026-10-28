@@ -1,0 +1,2 @@
+source_name,headline,url,published_at,period,scope,metric,reported_value,reported_mom_pct,reported_yoy_pct,note,our_value,absolute_difference,pass,exact_match
+RTHK,HK home prices ease slightly in July,https://gbcode.rthk.hk/TuniS/news.rthk.hk/rthk/en/component/k2/1867761-20260827.htm,2026-08-27,2026-07,Hong Kong all sizes,RVD official price index,321.5,-0.46,11.6,RTHK reports the RVD all-size price index for July 2026.,320.3,-1.1999999999999886,True,False

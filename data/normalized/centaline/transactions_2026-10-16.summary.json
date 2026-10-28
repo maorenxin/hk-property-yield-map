@@ -1,0 +1,38 @@
+{
+ "generated_at": "2026-10-18T04:45:28.485739+00:00",
+ "snapshot": "2026-10-16",
+ "pages": 3366,
+ "records": 296708,
+ "duplicates_dropped": 29079,
+ "by_listing_type": {
+  "sale": 215386,
+  "rent": 81322
+ },
+ "by_data_source": {
+  "Land": 214647,
+  "AC": 82061
+ },
+ "by_first_or_second": {
+  "SecondHand": 217796,
+  "FirstHand": 78912
+ },
+ "by_estate_usage_region": {
+  "九龍": 126906,
+  "新界西": 69426,
+  "港島": 53533,
+  "新界東": 46830
+ },
+ "date_min": "2023-10-17",
+ "date_max": "2026-10-16",
+ "distinct_estates": 1844,
+ "distinct_bldg_grp": 2284,
+ "null_rates": {
+  "saleable_area_sqft": 0.1169,
+  "saleable_psf": 0.1169,
+  "bedrooms": 0.256,
+  "bldg_grp_id": 0.3363,
+  "rent_monthly_hkd": 0.7259,
+  "sale_price_hkd": 0.2741
+ },
+ "output": "data/normalized/centaline/transactions_2026-10-16.parquet"
+}

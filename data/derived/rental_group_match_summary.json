@@ -1,0 +1,46 @@
+{
+ "generated_at": "2026-10-19T15:05:56+08:00",
+ "rows": 22587,
+ "target_estates": {
+  "太古城": {
+   "total": 3766,
+   "before_assigned": 1199,
+   "after_assigned": 3723,
+   "matched": 3723,
+   "review": 43
+  },
+  "匯璽": {
+   "total": 6430,
+   "before_assigned": 4434,
+   "after_assigned": 6430,
+   "matched": 6430
+  },
+  "海茵莊園": {
+   "total": 1439,
+   "before_assigned": 1439,
+   "after_assigned": 1439,
+   "matched": 1439
+  },
+  "美孚新邨": {
+   "total": 1987,
+   "before_assigned": 1740,
+   "after_assigned": 1740,
+   "matched": 1740,
+   "review": 247
+  },
+  "嘉湖山莊": {
+   "total": 3232,
+   "before_assigned": 3232,
+   "after_assigned": 3232,
+   "matched": 3232
+  },
+  "新都城": {
+   "total": 2384,
+   "before_assigned": 2384,
+   "after_assigned": 2384,
+   "matched": 2384
+  }
+ },
+ "audit_rows": 21850,
+ "rules": "/Users/mao/code/hongkong/config/rental_group_rules.json"
+}

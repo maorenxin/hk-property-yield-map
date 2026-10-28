@@ -1,0 +1,133 @@
+{
+ "generated_at": "2026-10-19T15:05:58+08:00",
+ "raw_records": 32592,
+ "assigned": 22269,
+ "groups": 627,
+ "targets": {
+  "映灣園": {
+   "total": 243,
+   "assigned": 243,
+   "unmatched": 0
+  },
+  "珀麗灣": {
+   "total": 591,
+   "assigned": 591,
+   "unmatched": 0
+  },
+  "嘉亨灣": {
+   "total": 309,
+   "assigned": 308,
+   "unmatched": 1
+  },
+  "日出康城": {
+   "total": 2548,
+   "assigned": 2548,
+   "unmatched": 0
+  },
+  "栢慧豪園": {
+   "total": 272,
+   "assigned": 272,
+   "unmatched": 0
+  },
+  "浪澄灣": {
+   "total": 245,
+   "assigned": 245,
+   "unmatched": 0
+  },
+  "名城": {
+   "total": 292,
+   "assigned": 292,
+   "unmatched": 0
+  },
+  "天晉": {
+   "total": 403,
+   "assigned": 401,
+   "unmatched": 2
+  },
+  "迎海": {
+   "total": 254,
+   "assigned": 242,
+   "unmatched": 12
+  },
+  "瓏門": {
+   "total": 291,
+   "assigned": 291,
+   "unmatched": 0
+  },
+  "海之戀": {
+   "total": 317,
+   "assigned": 315,
+   "unmatched": 2
+  },
+  "匯璽": {
+   "total": 970,
+   "assigned": 970,
+   "unmatched": 0
+  },
+  "新港城": {
+   "total": 240,
+   "assigned": 240,
+   "unmatched": 0
+  },
+  "沙田第一城": {
+   "total": 974,
+   "assigned": 972,
+   "unmatched": 2
+  },
+  "海怡半島": {
+   "total": 390,
+   "assigned": 390,
+   "unmatched": 0
+  },
+  "太古城": {
+   "total": 685,
+   "assigned": 672,
+   "unmatched": 13
+  },
+  "嘉湖山莊": {
+   "total": 455,
+   "assigned": 455,
+   "unmatched": 0
+  },
+  "美孚新邨": {
+   "total": 303,
+   "assigned": 257,
+   "unmatched": 46
+  },
+  "淘大花園": {
+   "total": 361,
+   "assigned": 361,
+   "unmatched": 0
+  },
+  "德福花園": {
+   "total": 260,
+   "assigned": 260,
+   "unmatched": 0
+  },
+  "新都城": {
+   "total": 465,
+   "assigned": 465,
+   "unmatched": 0
+  },
+  "維景灣畔": {
+   "total": 269,
+   "assigned": 269,
+   "unmatched": 0
+  },
+  "將軍澳中心": {
+   "total": 333,
+   "assigned": 333,
+   "unmatched": 0
+  },
+  "泓景臺": {
+   "total": 265,
+   "assigned": 264,
+   "unmatched": 1
+  },
+  "港灣豪庭": {
+   "total": 270,
+   "assigned": 270,
+   "unmatched": 0
+  }
+ }
+}

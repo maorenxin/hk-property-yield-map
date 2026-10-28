@@ -1,0 +1,101 @@
+id,name,district,match,n_poly,min_dist_m,area_m2,n_candidates,n_name_hits,yield,osm_check,osm_centroid_m,osm_area_ratio,review_label
+HMA133:KC0200,黃埔新邨,九龍城區,name,6,9.2,2085.2,45,6,4.165,pass,1.1,0.98,pass
+HMA029:YL0010,(Yuen Long Town Centre) Yuen Long On Ning Road / Kik Yeung Road / Castle Peak Road - Yuen Long / Man Hop Path 1970's private residential buildings,元朗區,name,2,14.1,551.5,48,2,,pass,1.3,0.88,pass
+HMA011:TM0003,碧翠花園,屯門區,name,26,30.9,2894.1,45,26,3.499,pass,2.3,0.92,pass
+HMA161:KW0305,(Kwun Tong) Tai Hing Building / Chi Cheong Building / Kwun Tong Lap Shing Building & other residential buildings (Luen On Street / Yee On Street / Ngau Tau Kok Raod 1960's-1970's),觀塘區,name,30,4.0,2656.2,95,30,,pass,2.1,0.23,pass
+HMA053:CW0039,(Mid-Levels West) Robinson Road 1970-1980's private residential buildings,中西區,name,1,76.9,690.2,29,1,3.204,mismatch,97.1,0.99,pass
+HMA042:EA0143,萬德閣,東區,name,2,24.4,929.2,57,2,3.886,pass,1.4,0.86,pass
+HMA041:EA0109,(North Point) Fort Street / Kin Wah Street 1990's private residential buildings with more than 9 storeys,東區,name,4,22.3,1044.9,74,4,,mismatch,29.9,0.3,pass
+HMA033:YM0075,(Prince Edward) Fa Yuen Street - Prince Edward South Section / Tung Choi Street - Prince Edward South Section / Bute Street - East Section / Nullah Road Pre-war to 1960's private residential buildings,油尖旺區,name,7,44.4,743.6,174,7,,pass,0.4,0.11,pass
+HMA161:KW0252,(Kwun Tong) Fulrich Garden / Lai Yue Building / Yee On Building & other residential buildings (Kung Lok Road / Horse Shoe Lane / Hong Ning Road / Yee On Street 1990's),觀塘區,name,4,33.4,1411.3,112,4,,pass,7.3,0.4,pass
+HMA026:WC0025,慧景臺,中西區,name,3,33.6,647.4,26,3,,pass,4.5,0.84,pass
+HMA151:SO0023,漁安苑,南區,name,7,8.4,3105.7,24,7,,pass,4.9,1.04,pass
+HMA108:KC0168,(Ma Tau Wai) Ma Tau Wai Road - Ma Tau Wai Section / Tin Kwong Road / Maidstone Lane 1990-2000's private residential buildings,九龍城區,name,8,14.1,1877.3,183,8,,pass,0.9,1.0,pass
+HMA015:YM0044,(Tai Kok Tsui) Tung Chau Street / Bedford Road / Larch Street / Tong Mi Road / Fuk Tsun Street 1970-1980's private residential buildings,油尖旺區,name,2,45.1,1133.6,59,2,,mismatch,56.8,1.17,pass
+HMA111:CW0083,(Kennedy Town) Luen Wai Apartments / Luen Gay Apartments / Luen Hong Apartments / Luen Yau Apartments (Belcher's Street 1970's private residential buildings),中西區,name,8,13.3,5548.2,86,8,5.039,pass,0.1,0.85,pass
+HMA068:YM0111,(Mong Kok) Cheung Hing Mansion / Cheung Wang Building / Cheung Fat Mansion (Cheung Wong Road 1970's private residential buildings),油尖旺區,name,3,18.0,1610.0,114,3,,pass,2.5,1.41,pass
+HMA012:CW0007,(Sheung Wan) Wing Lok Street / Gilman's Bazaar / Bonham Strand / Bonham Strand West / Jervois Street / Hillier Street / Mercer Street / Burd Street 1970-1980's private residential buildings,中西區,name,7,31.0,1505.1,149,7,,pass,0.7,1.0,pass
+HMA012:CW0005,康威花園,中西區,name,5,14.2,1433.7,88,5,4.162,pass,4.2,0.55,pass
+HMA015:YM0065,(Tai Kok Tsui) Ivy Street - East Section / Fuk Tsun Street / Palm Street / Ash Street / Oak Street / Tong Mi Road / Larch Street 1990-2000's private residential buildings,油尖旺區,name,6,36.4,2104.2,89,6,3.466,pass,0.6,1.05,pass
+HMA041:EA0102,怡景大廈,東區,name,1,65.7,551.8,50,1,,mismatch,75.7,2.38,pass
+HMA041:EA0124,(North Point) Peacock Road / Ming Yuen Western Street / King's Road 1980's private residential buildings with more than 9 storeys,東區,name,4,55.6,1852.7,85,4,,mismatch,56.3,0.2,pass
+HMA093:SO0046,(Aberdeen) Tsung Man Street / Sai On Street / Wu Pak Street / Wu Nam Street / Tung Sing Road / Chengtu Road 1970-1980 private residential buildings,南區,name,5,23.5,1718.1,102,5,,pass,0.7,1.0,pass
+HMA112:SK0023,彩明苑,將軍澳 (西貢區),name,5,20.8,3839.2,20,5,,pass,0.5,0.98,pass
+HMA012:CW0001,(Sheung Wan) Des Voeux Road West / Queen's Road West - Sheung Wan Section / Wilmer Street / Ko Shing Street 1950-1960's private residential buildings,中西區,name,1,24.4,599.4,116,1,,pass,3.1,1.07,pass
+HMA110:EA0019,(Quarry Bay) Yick Cheong Building / Fook Cheong Building (King's Road 1970's private residential buildings),東區,name,2,33.0,2022.8,30,2,6.622,pass,2.6,0.85,pass
+HMA040:KW0037,(Ngau Tau Kok) Foo Yue Building / Yen Hau Mansion / Foo On Building & other residential buildings (Ting Fu Street / Ting On Street 1970's-1980's),觀塘區,name,8,28.3,2714.3,56,8,,mismatch,29.7,2.96,pass
+HMA160:WC0096,(Wan Chai) Morrison Hill Road / Tin Lok Lane / Canal Road West / Bowrington Road / Leighton Road 1970-1980's private residential buildings,灣仔區,name,3,22.1,361.6,91,3,,pass,0.6,0.7,pass
+HMA139:TM0183,彩華花園,屯門區,name,4,9.3,1950.0,21,4,4.046,pass,0.4,1.05,pass
+HMA160:WC0076,(Wan Chai) Johnston Road / Thomson Road 1970-1980's private residential buildings,灣仔區,name,1,69.9,302.7,87,1,4.593,mismatch,74.3,0.16,pass
+HMA068:YM0109,(Mong Kok) Canton Road - Mong Kok Section / Shantung Street / Ferry Street - Mong Kok Section 1970-1980's private residential buildings,油尖旺區,name,2,49.8,515.8,126,2,,mismatch,34.0,1.41,pass
+HMA041:EA0104,(North Point) On Ning Building / Han Palace Building / Maylun Apartments (King's Road - North Point Section 1960's private residential buildings),東區,name,3,34.1,1888.6,77,3,,pass,5.3,0.03,pass
+HMA074:YM0124,(Yau Ma Tei) Nathan Road / Portland Street / Temple Street / Reclamation Street / Shanghai Street / Arthur Street / Cliff Road / Wing Sing Lane 1970-1980's private residential buildings,油尖旺區,name,10,14.5,2215.8,166,10,,missing,,,pass
+HMA111:CW0074,(Kennedy Town) Sands Street / Li Po Lung Path / Ching Lin Terrace 1990-2000's private residential buildings with more than 9 storeys,中西區,name,10,21.3,1700.8,105,10,,pass,22.9,0.89,pass
+HMA053:CW0042,(Mid-Levels West) Lyttelton Garden / Scholastic Garden / The Babington (Lyttelton Road 1990-2000's private residential buildings),中西區,name,2,47.2,2878.8,71,2,3.505,mismatch,50.6,6.21,pass
+HMA172:YM0156,(Tsim Sha Tsui) Granville Road / Kimberley Street / Kimberley Road / Hillwood Road / Observatory Road / Kimberley Road / Austin Avenue / Chatham Road South Pre-war to 1960's private residential buildings,油尖旺區,name,2,72.2,1313.3,92,2,,mismatch,67.4,3.34,pass
+HMA002:KC0007,(Kowloon City) Junction Road - Kowloon City Section / Fuk Lo Tsun Road / Lion Rock Road 1970-1980's private residential buildings,九龍城區,name,3,67.8,680.9,150,3,,mismatch,64.8,0.9,pass
+HMA163:EA0262,(Shau Kei Wan) Shau Kei Wan Main Street - North Section 1970-1980's private residential buildings),東區,name,7,5.4,2742.7,55,7,,pass,0.7,0.33,pass
+HMA172:YM0154,(Tsim Sha Tsui) Haiphong Road / Hankow Road / Lock Road / Ashley Road / Middle Road / Peking Road Pre-war to 1960's private residential buildings,油尖旺區,name,2,2.3,732.8,80,2,,pass,2.6,1.0,pass
+HMA034:EA0028,(Taikoo Shing) Taikoo Shing Kam Din Terrace - Han Kung Mansion / Tang Kung Mansion and Splendid Place 1970-2000's private residential buildings,東區,name,3,61.3,1869.8,29,3,3.324,mismatch,56.6,1.1,pass
+HMA160:WC0074,熙華大廈,灣仔區,name,2,57.7,729.3,72,2,4.434,mismatch,45.4,2.12,pass
+HMA058:KC0091,文豪閣,九龍城區,name,1,112.5,435.3,34,1,,mismatch,112.1,0.88,pass
+HMA033:YM0085,(Prince Edward) Prince Edward Road West - Prince Edward Section / Fa Yuen Street - Prince Edward South Section / Bute Street - East Section / Nullah Road 1970-1980's private residential buildings,油尖旺區,name,1,38.4,383.5,146,1,,pass,2.3,1.12,pass
+HMA041:EA0100,(North Point) Empire Apartments / Majestic Apartments / Coronet Court / Winner House (King's Road - North Point Section 1960's private residential buildings),東區,name,3,25.2,2511.0,70,3,,pass,9.6,1.82,pass
+HMA163:EA0273,東旭苑,東區,name,3,12.6,2974.9,20,3,,pass,0.1,1.0,pass
+HMA058:KC0089,富威花園,九龍城區,name,13,20.0,6331.1,91,13,,pass,1.8,0.9,pass
+HMA061:EA0168,杏花邨,東區,name,12,1.6,5986.2,15,12,3.584,pass,2.1,0.97,pass
+HMA026:CW0119,(Mid-Levels Central) Old Peak Road / Tregunter Path / Brewin Path / Bowen Road / Macdonnell Road / Kennedy Road / Magazine Gap Road - Mid-Levels Central Section 1960's private residential buildings,中西區,name,2,46.6,1081.6,42,2,,pass,4.0,1.0,pass
+HMA059:YM0139,康僑大廈,油尖旺區,name,1,58.5,402.1,173,1,,mismatch,64.4,4.24,pass
+HMA999:TP0093,比華利山別墅,大埔區,name,60,6.9,3427.3,251,129,,pass,1.3,1.02,pass
+HMA058:KC0103,御龍居,九龍城區,name,4,22.5,3848.8,32,4,3.45,pass,0.7,0.86,pass
+HMA112:SK0055,將軍澳中心,將軍澳 (西貢區),name,7,19.0,3428.2,10,7,3.153,pass,25.8,0.02,pass
+HMA053:CW0030,(Mid-Levels West) Bonham Road - West of Park Road / St. Stephen's Lane / Hing Hon Road 1980's private residential buildings,中西區,name,8,42.2,2678.9,93,8,3.926,mismatch,39.0,0.61,pass
+HMA172:YM0155,(Tsim Sha Tsui) Tsim Sha Tsui Mansion / Burlington Hse / Alpha Hse / Harilela Mansion / Hai Phong Mansion / Golden Crown Court / Majestic Hse / Comfort Bldg / Milton Mansion (Nathan Rd - South Section Pre-war to 1960's private residential buildings),油尖旺區,name,2,41.6,1749.6,82,2,,missing,,,pass
+HMA013:KC0024,(To Kwa Wan) near Tam Kung Road 1950-1960's private residential buildings,九龍城區,name,2,32.0,605.8,100,2,,pass,3.5,0.86,pass
+HMA161:KW0234,(Kwun Tong) Fung King Building / Yuet Wah Mansion  / Sze Hing Building & other residential buildings (Yuet Wah Street / Ping Shing Lane 1960's),觀塘區,name,8,10.0,2147.4,50,8,,mismatch,17.5,0.2,pass
+HMA077:SP0075,(Cheung Sha Wan) East of Tonkin Street 1970's residential buildings,深水埗區,name,2,65.5,227.8,89,2,,mismatch,71.1,0.17,pass
+HMA107:ST0229,錦英苑,沙田區,name,2,50.9,1326.3,12,2,,mismatch,46.1,0.4,pass
+HMA033:YM0066,(Prince Edward) Prince Edward Road West - Prince Edward Section / Lai Chi Kok Road - South Section / Canton Road - Prince Edward Section Pre-war to 1960's private residential buildings,油尖旺區,name,4,18.5,515.2,164,4,,mismatch,4.9,0.42,pass
+HMA059:YM0189,(Jordan) Man Wah Building ( Man Ying Street / Man Wui Street Pre-war to 1960's private residential buildings),油尖旺區,name,3,7.7,1659.5,38,3,,missing,,,pass
+HMA012:CW0010,(Sheung Wan) Queen's Road West - Sheung Wan Section 1970-1980's private residential buildings,中西區,pip,1,14.1,1296.5,113,0,,pass,1.9,0.97,pass
+HMA059:YM0151,(Jordan) Austin Road to Jordan Road 1990-2000's private residential buildings,油尖旺區,pip,1,7.5,251.0,107,0,4.124,pass,3.0,1.19,pass
+HMA038:TM0138,(Tuen Mun Ferry Pier) Yuet Wu Villa Block 13-15 / 2Gether (Wu Sau Street / Wu On Street 1990-2000's residential buildings),屯門區,pip,1,9.1,629.2,31,0,3.52,pass,0.8,1.04,pass
+HMA171:SP0162,(Sham Shui Po) East of Nam Cheong Street / North of Tai Po Road 1970's residential buildings,深水埗區,pip,1,6.8,162.7,82,0,,pass,3.5,1.0,pass
+HMA104:TW0047,(Tsuen Wan Town Centre) Tin Po Building / Cheuk Ming Building / Wah Shing Building & other residential buildings (Hau Tei Square / Sha Tsui Road / Chuen Lung Street / Tai Ho Road / Tsuen Wan Market Street / Hoi Pa Street 1960's-1970's),荃灣區,pip,1,26.2,4576.6,26,0,,pass,22.8,1.99,pass
+HMA094:EA0191,(Chai Wan) Winner Centre / Sun Tak House (Chai Wan Road / Yee Fung Street 1980-1990's private residential buildings),東區,pip,1,3.0,376.2,25,0,,mismatch,36.4,1.35,pass
+HMA041:EA0090,(North Point) Wharf Road / Java Road / Marble Road / Tong Shui Road / Tsat Tsz Mui Road / Kam Hong Street / Ming Yuen Western Street / North Point Road / Chun Yeung Street 1990's private residential buildings with more than 9 storeys,東區,pip,1,11.4,2356.3,63,0,4.392,pass,13.2,3.89,pass
+HMA084:YL0179,寶珊園,元朗區,pip,1,8.6,173.0,25,0,,pass,3.8,1.07,pass
+HMA032:WC0002,(Tin Hau) Ngan Tao Bldg / Hoi Tao Bldg / Kam Tao Bldg / Hoi Shing Bldg / Fai Hon Bldg / Cheung Shing Mans / Fook Lee Bldg / Timmar Ct / Park View Mans (Whitfield Rd / Wing Hing St / King Ming Rd / Shell St / Ngan Mok St / Lau Sin St 1970's),灣仔區,pip,1,9.4,508.1,112,0,4.439,pass,5.1,0.99,pass
+HMA996:ST0320,迎海,沙田區,pip,1,10.4,558.7,15,0,3.134,pass,2.2,0.97,pass
+HMA012:CW0006,(Sheung Wan) 1950-1960's private residential buildings,中西區,pip,1,9.5,492.7,144,0,,pass,15.4,1.86,pass
+HMA033:YM0081,(Prince Edward) Prince Edward Road West / Lai Chi Kok Road - South Section / Shanghai Street / Reclamation Street / Canton Road / Portland Street 1970-1980's private residential buildings,油尖旺區,pip,1,7.2,138.6,122,0,,pass,9.2,1.25,pass
+HMA172:YM0158,(Tsim Sha Tsui) Middle Road / Carnarvon Road / Granville Road / Hanoi Road / Cameron Road / Cameron Lane / Humphreys Avenue / Mody Road / Minden Row / Minden Avenue Pre-war to 1960's private residential buildings,油尖旺區,pip,1,10.2,506.2,113,0,,pass,3.0,1.6,pass
+HMA138:TM0120,(Tuen Mun San Hui) Yan Oi Tong Circuit / Tat Yan Square / Castle Peak Road - San Hui 1970's-1980's residential buildings,屯門區,pip,1,10.1,951.0,15,0,4.807,pass,1.4,1.38,pass
+HMA111:CW0068,(Kennedy Town) Tung Hing Mansion / Hang Fai Building / Kennedy Mansion / Po Fat Building / Kelley Court / Kuk Fung Building / Shing Tai Building / 10-16 Pokfield Road and other buildings (Kennedy Town 1960-1970's private residential buildings),中西區,pip,1,5.0,423.2,77,0,,pass,9.9,2.17,pass
+HMA053:CW0041,(Mid-Levels West) Kotewall Road / Po Shan Road / Lyttelton Road / Babington Path / Honiton Road 1970's private residential buildings,中西區,pip,1,8.8,340.8,70,0,4.1,mismatch,39.3,1.02,pass
+HMA130:WC0038,(Happy Valley) Wong Nai Chung Road / Ventris Road / Blue Pool Road / Broom Road / Tai Hang Road 1970-1990's private residential buildings with less than 8 storeys,灣仔區,pip,1,24.7,414.1,74,0,,mismatch,56.8,0.84,pass
+HMA104:TW0058,(Tsuen Wan Town Centre) Ping Oi Building / Shui Yuet House / Kwong Fat Building & other residential buildings (San Tsuen Street / Wo Tik Street / Sha Tsui Road / Ho Pui Street / Chuen Lung Street / Yi Pei Square / Chung On Street 1950's-1960's),荃灣區,pip,1,5.2,118.4,113,0,,pass,2.6,0.57,pass
+HMA015:YM0064,奧柏．御峯,油尖旺區,pip,1,17.6,890.9,48,0,4.154,pass,6.4,1.01,pass
+HMA058:KC0086,寶雲閣,九龍城區,pip,1,5.7,408.5,36,0,3.994,pass,6.8,0.82,pass
+HMA026:CW0124,(Mid-Levels Central) May Road / Brewin Path / Bowen Road / Macdonnell Road / Magazine Gap Road - Mid-Levels Central Section 1990-2000's private residential buildings,中西區,pip,1,6.8,311.8,39,0,3.008,pass,2.1,1.07,pass
+HMA058:KC0088,(Ho Man Tin) Ho Man Tin Street / Yau Moon Street / Man Wan Road 1970-1980's private residential buildings,九龍城區,pip,1,12.1,387.7,50,0,,pass,7.6,0.99,pass
+HMA996:ST0319,迎海,沙田區,pip,1,48.7,10943.4,19,0,3.199,pass,9.6,3.23,pass
+HMA036:TM0094,御海灣,屯門區,pip,1,6.9,263.5,28,0,3.35,pass,20.4,0.57,pass
+HMA053:CW0027,(Mid-Levels West) Bonham Road / Pok Fu Lam Road - Mid-Levels West Section 1990's private residential buildings,中西區,near,1,9.1,116.9,79,0,3.746,pass,4.7,1.06,review
+HMA996:ST0321,迎海,沙田區,near,1,17.0,558.7,14,0,3.112,pass,2.2,0.97,review
+HMA057:EA0164,(Sai Wan Ho) Sai Wan Ho St / Tai Cheong St / Tai Foo St / Tai Lok St / Tai Ning St / Wai Hang St / Tai Shek St / Shing On St / Hoi Ning St / Hing Man St Pre-war to 1960's private residential buildings with less than 9 storeys,東區,near,1,8.6,70.5,110,0,,pass,4.5,0.45,review
+HMA179:NO0054,歌賦嶺,北區,near,1,13.6,156.4,82,0,,pass,2.7,0.96,review
+HMA014:WC0012,(Tai Hang) 1970-1980's private residential buildings,灣仔區,near,1,17.9,75.0,142,0,3.947,pass,11.0,1.97,review
+HMA170:ST0163,(Sha Tin) village houses / houses / villas,沙田區,near,1,6.9,65.5,129,0,,pass,1.6,1.01,review
+HMA174:IS0001,昇薈,離島區,near,1,2.3,80.1,29,0,3.334,mismatch,39.9,0.23,review
+HMA041:EA0098,(North Point) Chun Yeung Street / Marble Road 1950-1960's private residential buildings with more than 10 storeys,東區,near,1,6.7,69.0,71,0,,pass,2.2,0.54,review
+HMA144:WC0055,(Causeway Bay) Hennessy Road / Sharp Street East / Sun Wui Road / Hoi Ping Road / Lee Garden Road / Jardine's Crescent / Jardine's Bazaar / Pak Sha Road / Kai Chiu Road / Lan Fong Road / Yun Ping Road / Kai Chiu Road 1960's private residential buildings,灣仔區,near,1,10.4,115.7,100,0,,pass,3.6,1.09,review
+HMA056:CW0092,(Sai Ying Pun) Queen's Road West - Sai Ying Pun Section / Des Voeux Road West - Sai Ying Pun Section 1970's private residential buildings with more than 9 storeys,中西區,near,1,16.5,65.6,127,0,,pass,1.0,0.64,review
+HMA053:CW0050,慧明苑,中西區,none,0,,,13,0,2.642,missing,,,miss
+HMA119:SK0163,清水灣花園,西貢區,none,0,,,1,0,,missing,,,miss
+HMA107:ST0228,錦英苑,沙田區,none,0,,,8,0,,missing,,,miss
+HMA070:WC0028,(Mid-Levels East) Shiu Fai Terrace / Tung Shan Terrace 1970-2000's private residential buildings,灣仔區,none,0,,,14,0,,missing,,,miss
+HMA155:SO0090,(Pok Fu Lam) Bisney Road / Crown Terrace / Consort Rise / Northcote Close / Pok Fu Lam Road - Pok Fu Lam Section / Sassoon Road / Scenic Villa Drive private residential buildings / houses,南區,none,0,,,14,0,,missing,,,miss
+HMA058:KC0096,(Ho Man Tin) Boundary Street / Prince Edward Road West - Ho Man Tin Section / Forfar Road / Earl Street / La Salle Road / Julia Avenue / Peace Avenue / Victory Avenue / Soares Avenue 1990's private residential buildings,九龍城區,none,0,,,29,0,,missing,,,miss
+HMA090:KC0145,陽光廣場,九龍城區,none,0,,,52,0,,no_official,,,miss
+HMA025:CW0127,史超域台,中西區,none,0,,,27,0,,missing,,,miss

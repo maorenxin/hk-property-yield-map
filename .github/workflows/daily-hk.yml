@@ -1,0 +1,125 @@
+name: Daily Hong Kong data refresh
+
+on:
+  schedule:
+    # 02:00 Asia/Hong_Kong (18:00 UTC previous day)
+    - cron: '0 18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends zstd
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Resolve Hong Kong snapshot date
+        run: |
+          SNAPSHOT=$(python -c 'from datetime import datetime; from zoneinfo import ZoneInfo; print(datetime.now(ZoneInfo("Asia/Hong_Kong")).date())')
+          WINDOW_START=$(python -c "from datetime import date,timedelta; print(date.fromisoformat('$SNAPSHOT')-timedelta(days=365))")
+          echo "HK_SNAPSHOT=$SNAPSHOT" >> "$GITHUB_ENV"
+          echo "HK_WINDOW_START=$WINDOW_START" >> "$GITHUB_ENV"
+          echo "Snapshot: $SNAPSHOT; rolling window starts: $WINDOW_START"
+
+      - name: Download latest durable data snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/hk-data
+          gh release download data-latest \
+            --repo "${{ github.repository }}" \
+            --pattern 'hk-data-latest.tar.zst' \
+            --pattern 'hk-data-latest.sha256' \
+            --dir /tmp/hk-data \
+            --clobber
+          cd /tmp/hk-data
+          sha256sum -c hk-data-latest.sha256
+          tar -I zstd -xf hk-data-latest.tar.zst -C "$GITHUB_WORKSPACE"
+
+      - name: Fetch current 30-day Hong Kong records
+        run: |
+          python src/update_hk_daily.py \
+            --snapshot "$HK_SNAPSHOT" \
+            --days 30 \
+            --chunk-days 7 \
+            --pace 1.0 \
+            --base-parquet data/normalized/centaline/transactions_full_latest.parquet \
+            --out data/normalized/centaline/transactions_full_latest.parquet
+
+      - name: Rebuild building metrics and site
+        run: |
+          python src/build_building_metrics.py
+          python src/build_artifacts.py
+
+      - name: Run acceptance tests
+        run: python -m pytest -q
+
+      - name: Package durable data snapshot
+        run: |
+          set -o pipefail
+          tar --exclude='.DS_Store' --exclude='__pycache__' \
+            --exclude='data/normalized/hangzhou' \
+            --exclude='data/derived/hangzhou' \
+            --exclude='data/derived/beike' \
+            --exclude='data/normalized/centaline/transactions_full_2026-10-18.parquet' \
+            -cf - \
+            data/normalized \
+            data/derived \
+            data/raw/official \
+            data/raw/news \
+            data/raw/centaline/ccl.json \
+            data/raw/centaline/detail_sample_manifest.json \
+            data/raw/centaline/coordinate_manifest.json \
+            data/raw/centaline/hma_cache \
+            data/raw/centaline/transaction_search/2026-10-16 \
+            data/raw/centaline/daily | zstd -T0 -6 -q -o /tmp/hk-data-latest.tar.zst
+          cd /tmp
+          sha256sum hk-data-latest.tar.zst > hk-data-latest.sha256
+          gh release view data-latest --repo "${{ github.repository }}" >/dev/null || \
+            gh release create data-latest --repo "${{ github.repository }}" \
+              --title "Latest normalized Hong Kong data snapshot" \
+              --notes "Automatically refreshed daily. See hk-data-latest.sha256 for integrity data."
+          gh release upload data-latest \
+            --repo "${{ github.repository }}" \
+            hk-data-latest.tar.zst \
+            hk-data-latest.sha256 \
+            --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy refreshed map to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

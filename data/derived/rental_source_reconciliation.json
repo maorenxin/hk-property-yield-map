@@ -1,0 +1,18 @@
+{
+ "generated_at": "2026-10-19T15:06:35+08:00",
+ "hse_rows_in_overlap_groups": 18133,
+ "mid_rows_in_overlap_groups": 3202,
+ "overlap_groups": 102,
+ "matched_pairs": 2123,
+ "exact_pairs": 1,
+ "date_shift_pairs": 2122,
+ "relaxed_pairs": 0,
+ "hse_unmatched": 16010,
+ "mid_unmatched_in_overlap": 1079,
+ "exact_rate_of_hse": 0.0001,
+ "date_shift_rate_of_hse": 0.117,
+ "relaxed_rate_of_hse": 0.0,
+ "exact_rent_diff_median": 0.0,
+ "exact_area_diff_median": 0.0,
+ "note": "Exact = same group/day and same rent/area plus matching floor-unit token; relaxed = same group/day and within 1% rent/area without conflicting unit token. This is a lower-bound overlap because 28Hse group assignment is partial."
+}

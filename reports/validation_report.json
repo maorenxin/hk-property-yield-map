@@ -1,0 +1,435 @@
+{
+  "generated_at": "2026-10-28T18:08:31+08:00",
+  "latest_period": "2026-08",
+  "latest_overall": {
+    "rent": 457.0,
+    "price": 175618.0,
+    "yield": 3.1910168661526725,
+    "price_to_rent": 31.337972876516773
+  },
+  "latest_by_region": [
+    {
+      "period": "2026-08-01",
+      "region": "Hong Kong",
+      "rent_monthly_hkd_m2": 505.0,
+      "sale_price_hkd_m2": 180625.0,
+      "gross_yield_pct": 3.255363321799308,
+      "price_to_rent_years": 30.718537414965986,
+      "classes": 5,
+      "metric_definition": "median across RVD class A-E regional average rent/sale pairs"
+    },
+    {
+      "period": "2026-08-01",
+      "region": "Kowloon",
+      "rent_monthly_hkd_m2": 457.0,
+      "sale_price_hkd_m2": 175618.0,
+      "gross_yield_pct": 3.1910168661526725,
+      "price_to_rent_years": 31.337972876516773,
+      "classes": 5,
+      "metric_definition": "median across RVD class A-E regional average rent/sale pairs"
+    },
+    {
+      "period": "2026-08-01",
+      "region": "New Territories",
+      "rent_monthly_hkd_m2": 307.0,
+      "sale_price_hkd_m2": 116190.0,
+      "gross_yield_pct": 2.956091924508923,
+      "price_to_rent_years": 33.82844733984799,
+      "classes": 5,
+      "metric_definition": "median across RVD class A-E regional average rent/sale pairs"
+    }
+  ],
+  "validations": [
+    {
+      "check": "raw_csv_vs_rvd_parquet",
+      "table": "1.1M",
+      "title": "PRIVATE  DOMESTIC  -  AVERAGE  RENTS  BY  CLASS [MONTHLY]",
+      "raw_non_null_rows": 4973,
+      "tidy_non_null_rows": 4973,
+      "missing_or_extra_keys": 0,
+      "value_mismatches": 0,
+      "remark_mismatches": 0,
+      "pass": true
+    },
+    {
+      "check": "raw_csv_vs_rvd_parquet",
+      "table": "1.2M",
+      "title": "PRIVATE  DOMESTIC  -  AVERAGE  PRICES  BY  CLASS [MONTHLY]",
+      "raw_non_null_rows": 4950,
+      "tidy_non_null_rows": 4950,
+      "missing_or_extra_keys": 0,
+      "value_mismatches": 0,
+      "remark_mismatches": 0,
+      "pass": true
+    },
+    {
+      "check": "raw_csv_vs_rvd_parquet",
+      "table": "1.3M",
+      "title": "PRIVATE  DOMESTIC  -  RENTAL  INDICES  BY  CLASS  ( TERRITORY-WIDE ) [MONTHLY]",
+      "raw_non_null_rows": 3232,
+      "tidy_non_null_rows": 3232,
+      "missing_or_extra_keys": 0,
+      "value_mismatches": 0,
+      "remark_mismatches": 0,
+      "pass": true
+    },
+    {
+      "check": "raw_csv_vs_rvd_parquet",
+      "table": "1.4M",
+      "title": "PRIVATE  DOMESTIC  -  PRICE  INDICES  BY  CLASS  ( TERRITORY-WIDE ) [MONTHLY]",
+      "raw_non_null_rows": 3232,
+      "tidy_non_null_rows": 3232,
+      "missing_or_extra_keys": 0,
+      "value_mismatches": 0,
+      "remark_mismatches": 0,
+      "pass": true
+    },
+    {
+      "check": "mirror_manifest_sha256",
+      "file": "raw/1.1M.csv",
+      "expected_sha256": "4fa2c99820dae1488b59dff814d76d96169d8878937d4e830131b9e0662dbf3d",
+      "actual_sha256": "4fa2c99820dae1488b59dff814d76d96169d8878937d4e830131b9e0662dbf3d",
+      "bytes_expected": 29253,
+      "bytes_actual": 29253,
+      "pass": true
+    },
+    {
+      "check": "mirror_manifest_sha256",
+      "file": "raw/1.2M.csv",
+      "expected_sha256": "4f398097f02a5ef003b92ccd8612144f2e440b1d499dc3678586d3f1a49fda42",
+      "actual_sha256": "4f398097f02a5ef003b92ccd8612144f2e440b1d499dc3678586d3f1a49fda42",
+      "bytes_expected": 41936,
+      "bytes_actual": 41936,
+      "pass": true
+    },
+    {
+      "check": "mirror_manifest_sha256",
+      "file": "raw/1.3M.csv",
+      "expected_sha256": "94953fe99a89e3e00eb5c557dd02184dda0e5621aa2ae9ee059e07e63fc26ad4",
+      "actual_sha256": "94953fe99a89e3e00eb5c557dd02184dda0e5621aa2ae9ee059e07e63fc26ad4",
+      "bytes_expected": 25298,
+      "bytes_actual": 25298,
+      "pass": true
+    },
+    {
+      "check": "mirror_manifest_sha256",
+      "file": "raw/1.4M.csv",
+      "expected_sha256": "5c298ae13c1406cb77fcbfcebea16d4a72fc867c418831451ba4f49d659822ea",
+      "actual_sha256": "5c298ae13c1406cb77fcbfcebea16d4a72fc867c418831451ba4f49d659822ea",
+      "bytes_expected": 25270,
+      "bytes_actual": 25270,
+      "pass": true
+    },
+    {
+      "check": "mirror_manifest_sha256",
+      "file": "rvd.parquet",
+      "expected_sha256": "a4ed7dd86edf002a39dae5d29e252dce592f443f1c12e48e2f4e0a9f9fd360c7",
+      "actual_sha256": "a4ed7dd86edf002a39dae5d29e252dce592f443f1c12e48e2f4e0a9f9fd360c7",
+      "bytes_expected": 466808,
+      "bytes_actual": 466808,
+      "pass": true
+    },
+    {
+      "check": "mirror_manifest_sha256",
+      "file": "areas.parquet",
+      "expected_sha256": "aa3b8841e1608fce38178b77c2b673daafc07e19953c695d2239cdc6757e99a2",
+      "actual_sha256": "aa3b8841e1608fce38178b77c2b673daafc07e19953c695d2239cdc6757e99a2",
+      "bytes_expected": 324416,
+      "bytes_actual": 324416,
+      "pass": true
+    },
+    {
+      "check": "derived_aggregate_vs_official_index_trend",
+      "metric": "rent",
+      "periods_compared": 320,
+      "sign_concordance": 0.83125,
+      "yoy_correlation": 0.767397,
+      "pass": true,
+      "note": "Aggregate of RVD regional/class averages compared with RVD territory-wide index; levels are not expected to be identical because index weighting differs."
+    },
+    {
+      "check": "derived_aggregate_vs_official_index_trend",
+      "metric": "price",
+      "periods_compared": 320,
+      "sign_concordance": 0.85625,
+      "yoy_correlation": 0.874742,
+      "pass": true,
+      "note": "Aggregate of RVD regional/class averages compared with RVD territory-wide index; levels are not expected to be identical because index weighting differs."
+    },
+    {
+      "check": "centaline_ccl_raw_integrity",
+      "source": "Centaline CCL public API",
+      "points": 1711,
+      "first_date": "1994-01-02",
+      "last_date": "2026-10-11",
+      "latest_index": 160.05,
+      "vote_date": "2026-10-11T00:00:00",
+      "publish_date": "2026-10-16T16:00:00",
+      "pass": true,
+      "note": "Exact value-level integrity check on the downloaded public JSON; no interpolation is used here."
+    },
+    {
+      "check": "derived_rvd_average_vs_centaline_ccl",
+      "periods_compared": 320,
+      "sign_concordance": 0.83125,
+      "yoy_correlation": 0.874017,
+      "pass": true,
+      "note": "RVD regional/class average price vs Centaline CCL; CCL is a weekly transaction-based index and RVD uses a different methodology, so exact levels are not expected."
+    },
+    {
+      "check": "rvd_official_index_vs_centaline_ccl",
+      "periods_compared": 320,
+      "sign_concordance": 0.94375,
+      "yoy_correlation": 0.971997,
+      "pass": true,
+      "note": "RVD All Classes price index vs Centaline CCL; CCL is a weekly transaction-based index and RVD uses a different methodology, so exact levels are not expected."
+    },
+    {
+      "check": "centaline_detail_formula_and_coverage",
+      "sale_rows": 904,
+      "rent_rows": 990,
+      "matched_cells": 68,
+      "districts": 18,
+      "formula_exact": true,
+      "published_unit_price_mismatches_over_0_51_hkd": 0,
+      "building_points": 40,
+      "coordinates_in_hong_kong_bounds": true,
+      "pass": true,
+      "note": "Current snapshot sample; same district + saleable-area band + month pairing. Building points use Centaline building-group grid coordinates converted from HK 1980 Grid to WGS84; 0.51 tolerance covers published integer rounding."
+    },
+    {
+      "check": "news_vs_our_public_index",
+      "source_name": "RTHK",
+      "headline": "HK home prices ease slightly in July",
+      "period": "2026-07",
+      "reported_value": 321.5,
+      "our_value": 320.3,
+      "absolute_difference": -1.1999999999999886,
+      "pass": true,
+      "exact_match": false,
+      "note": "RTHK reports the RVD all-size price index for July 2026. The reported figure differs from the current RVD snapshot; keep this as a visible revision/definition gap.",
+      "source_url": "https://gbcode.rthk.hk/TuniS/news.rthk.hk/rthk/en/component/k2/1867761-20260827.htm"
+    },
+    {
+      "check": "crawl_manifest_integrity",
+      "leaves": 205,
+      "page_files": 3366,
+      "pages_match": true,
+      "hash_sample_checked": 40,
+      "hash_sample_ok": 40,
+      "pass": true,
+      "note": "抽样核对了 40 个原始分页的 SHA-256 与字节数；全量哈希清单见 manifest.json"
+    },
+    {
+      "check": "full_transaction_corpus_coverage",
+      "records": 1806389,
+      "scope": "full_history",
+      "api_total": 2595027,
+      "coverage_pct": 69.61,
+      "duplicates_dropped": 50,
+      "date_min": "1990-01-12",
+      "date_max": "2026-10-28",
+      "pass": true,
+      "note": "中原接口 day='' 全历史；当前快照覆盖地图明细组，非全港全量"
+    },
+    {
+      "check": "building_level_map_points",
+      "building_points": 1973,
+      "building_with_yield": 1328,
+      "grid_coord_points": 996,
+      "estate_fallback_points": 332,
+      "estate_points": 421,
+      "coordinates_in_hong_kong_bounds": true,
+      "pass": true,
+      "note": "楼宇组级点位（CentaMap 坐标）+ 屋苑中心近似坐标（明确标注 geo=estate）"
+    },
+    {
+      "check": "external_chart_corroboration",
+      "etnet_vs_lr_exact_months": "67/67",
+      "price_etnet_vs_ours_corr": 0.9227,
+      "price_etnet_vs_ours_3m_direction": 87.88,
+      "volume_ours_vs_lr_corr": 0.9343,
+      "pass": true,
+      "note": "ET Net 成交宗数逐月复现官方 LR；ET Net 均价 vs 我们的等权屋苑中位呎价强相关；我们的成交量 vs LR 相关 0.9+"
+    }
+  ],
+  "provenance": {
+    "mirror": "https://huggingface.co/datasets/alreadyopen/hk-property",
+    "mirror_pipeline": "https://github.com/AlreadyOpen/hk-property",
+    "mirror_built": "2026-10-13T02:13:10",
+    "mirror_latest_month": "2026-08-01",
+    "source_urls": {
+      "1.1M": "https://www.rvd.gov.hk/datagovhk/1.1M.csv",
+      "1.2M": "https://www.rvd.gov.hk/datagovhk/1.2M.csv",
+      "1.3M": "https://www.rvd.gov.hk/datagovhk/1.3M.csv",
+      "1.4M": "https://www.rvd.gov.hk/datagovhk/1.4M.csv"
+    },
+    "downloaded_files": {
+      "1.1A(86-98).csv": {
+        "bytes": 2886,
+        "sha256": "6b92e96818c2e76a87a41137011623187415d15a5efa64c426f25382edfbbe65"
+      },
+      "1.1A(from_99).csv": {
+        "bytes": 3042,
+        "sha256": "63561b8116d0fc1be4782b5d23fa7182a452573326fae0c61097c93c81a37f0a"
+      },
+      "1.1M.csv": {
+        "bytes": 29253,
+        "sha256": "4fa2c99820dae1488b59dff814d76d96169d8878937d4e830131b9e0662dbf3d"
+      },
+      "1.1Q(82-98).csv": {
+        "bytes": 10916,
+        "sha256": "91e1ab9484bfdbd40833af00afcfde189e7357ececf95219d4c8a81220ec82dd"
+      },
+      "1.1Q(from_99).csv": {
+        "bytes": 10472,
+        "sha256": "17ce9e001abd25df581668754847b52af34d6d070a9f182ce4fd4f090db144d1"
+      },
+      "1.2A(86-98).csv": {
+        "bytes": 2997,
+        "sha256": "4cf6b834383f2ea256d0a779f64d799cbd95db4e98bc1a8b9ccd4bba8217a493"
+      },
+      "1.2A(from_99).csv": {
+        "bytes": 4068,
+        "sha256": "00628cc3eed452f29180d25e4b3b7a7beca561f503e522d8512d316187f2d004"
+      },
+      "1.2M.csv": {
+        "bytes": 41936,
+        "sha256": "4f398097f02a5ef003b92ccd8612144f2e440b1d499dc3678586d3f1a49fda42"
+      },
+      "1.2Q(82-98).csv": {
+        "bytes": 11268,
+        "sha256": "35e8a23a734c0e3eaf43a49e5729a58afdfc503796662110150fd351eeec6481"
+      },
+      "1.2Q(from_99).csv": {
+        "bytes": 14695,
+        "sha256": "f01051b95646e1c426eb278163e449226a454b849ab91d4e099080e7f8990a35"
+      },
+      "1.3A.csv": {
+        "bytes": 2967,
+        "sha256": "84efefafd7c94da0a2ff91a5cc3ce03dcf389c50a5bc98afb4fd9f8b8561a5b7"
+      },
+      "1.3M.csv": {
+        "bytes": 25298,
+        "sha256": "94953fe99a89e3e00eb5c557dd02184dda0e5621aa2ae9ee059e07e63fc26ad4"
+      },
+      "1.3Q.csv": {
+        "bytes": 11837,
+        "sha256": "dd743710d819853503eac452db771a5db1105a23de9a26e463bb247e503a8ddf"
+      },
+      "1.4A.csv": {
+        "bytes": 2928,
+        "sha256": "95f1416e9d4cfb5d08ef56f5f7483e4296198f284ceca439761b48ef61c21cec"
+      },
+      "1.4M.csv": {
+        "bytes": 25270,
+        "sha256": "5c298ae13c1406cb77fcbfcebea16d4a72fc867c418831451ba4f49d659822ea"
+      },
+      "1.4Q.csv": {
+        "bytes": 11684,
+        "sha256": "4657cd1d97d682bd305a2f0ccfcc6d5d459fbbd90a3a9e22e61cf8f6e07aab97"
+      },
+      "1.5M.csv": {
+        "bytes": 28837,
+        "sha256": "8c089abd2c56382cf9dd635cb4839ab63136056d2608e01ce4d8fa4bfbd13045"
+      }
+    },
+    "centaline_ccl": {
+      "url": "https://hk-api.centanet.com/centanetapi/api/Index/CCL",
+      "bytes": 35301,
+      "sha256": "d10477f3e53b9e3960025f834e597fa2a9857b395ebfb42053acd2c8a72ef3f5",
+      "latest_index": 160.05,
+      "latest_month": "2026-10"
+    },
+    "centaline_detail": {
+      "generated_at": "2026-10-16T19:59:06+08:00",
+      "api_url": "https://hk-api.centanet.com/centanetapi/api/Transaction/Search",
+      "request_parameters": {
+        "postType": [
+          "Sale",
+          "Rent"
+        ],
+        "day": "Day1095",
+        "sort": "InsOrRegDate",
+        "order": "Descending",
+        "size_per_request": 100,
+        "offsets": [
+          0,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ]
+      },
+      "samples": {
+        "sale": {
+          "rows": 904,
+          "min_date": "2024-10-07T00:00:00",
+          "max_date": "2026-10-16T00:00:00"
+        },
+        "rent": {
+          "rows": 990,
+          "min_date": "2026-10-01T00:00:00",
+          "max_date": "2026-10-16T00:00:00"
+        }
+      },
+      "input_files": {
+        "rent_sample_1000.json": {
+          "bytes": 2337755,
+          "sha256": "46696e27676fe8312bb528a73c29e1a7d0f3af8ef0ccb30e541a274a16e695ec"
+        },
+        "sale_sample_1000.json": {
+          "bytes": 2409294,
+          "sha256": "4934cd60640d73dff5f236138364085be3225762b939d4066a838e455ce3fdb9"
+        }
+      },
+      "output_files": {
+        "centaline_district_ratio.csv": {
+          "bytes": 5294,
+          "sha256": "2ddf4b323653e008bda972f8b35d6790570aa8eb54d37b506341a692eb253758"
+        },
+        "centaline_matched_cells.csv": {
+          "bytes": 9563,
+          "sha256": "b9e8a7069c1a92821b5f384f8c74398fd02c7e187831966de25f9ebca81125da"
+        },
+        "centaline_rent_sample_normalized.csv": {
+          "bytes": 326145,
+          "sha256": "55857afd08a430c884bdcd0deb657e7c00a95731195a0eeca04d5f73fe9b578b"
+        },
+        "centaline_sale_sample_normalized.csv": {
+          "bytes": 299742,
+          "sha256": "1464e235dc1e0af9085f2cbe60aaa5ee982864d4783c79dfba7bc68c47a7f27a"
+        }
+      },
+      "districts": 18,
+      "matched_cells": 68
+    },
+    "centaline_coordinates": {
+      "hmas": 143,
+      "hma_pages": 143,
+      "coords": 2019,
+      "raw_records": 2000,
+      "records_with_coords": 845,
+      "matched_cells": 86,
+      "building_points": 40
+    },
+    "method": "same month + same region + same RVD class; gross yield = monthly rent * 12 / sale price"
+  },
+  "artifacts": {
+    "html_report": "site/index.html",
+    "building_details": "site/building_details.js",
+    "ratio_by_region_class_month": "data/derived/ratio_by_region_class_month.csv",
+    "ratio_by_region_month": "data/derived/ratio_by_region_month.csv",
+    "centaline_district_ratio": "data/derived/centaline_district_ratio.csv",
+    "centaline_matched_cells": "data/derived/centaline_matched_cells.csv",
+    "news_comparison": "data/derived/news_comparison.csv",
+    "centaline_building_points": "data/derived/centaline_building_points.csv",
+    "centaline_building_points_geojson": "data/derived/centaline_building_points.geojson",
+    "map_geojson": "data/derived/ratio_map.geojson"
+  }
+}
