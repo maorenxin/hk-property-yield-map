@@ -84,7 +84,7 @@ jobs:
       - name: Package durable data snapshot
         run: |
           set -o pipefail
-          tar --exclude='.DS_Store' --exclude='__pycache__' \
+          tar --exclude='.DS_Store' --exclude='._*' --exclude='__MACOSX' --exclude='__pycache__' \
             --exclude='data/normalized/hangzhou' \
             --exclude='data/derived/hangzhou' \
             --exclude='data/derived/beike' \
