@@ -2,8 +2,8 @@ name: Daily Hong Kong data refresh
 
 on:
   schedule:
-    # 02:17 Asia/Hong_Kong (18:17 UTC previous day); avoid the top of the hour
-    - cron: '17 18 * * *'
+    # 05:00 Asia/Hong_Kong (21:00 UTC previous day)
+    - cron: '0 21 * * *'
   workflow_dispatch:
 
 permissions:
