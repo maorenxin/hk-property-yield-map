@@ -2,7 +2,8 @@
 
 **长期访问地图：** https://maorenxin.github.io/hk-property-yield-map/
 
-- 数据每天香港时间 **05:00** 自动更新（GitHub Actions，`workflow_dispatch` 也可手动触发）。
+- 数据每天香港时间 **05:00** 主触发，**07:17** 备用触发；发布前有幂等门禁，若当天 Pages build 和 `data-latest` 都已更新，备用/迟到任务会直接跳过。
+- 手动强制重跑可用：`gh workflow run "Daily Hong Kong data refresh" --repo maorenxin/hk-property-yield-map -f force=true`。
 - 每日任务刷新中原地產公开买卖/租赁最近 30 天记录；28Hse/Midland 历史补充沿用最近一次成功快照，并在站点保留来源口径。
 - 静态地图由 GitHub Pages 发布；全量原始数据与最新核心数据在仓库的 Releases 中。
 - 技术实现与人工复核入口见 `README.md` 后续章节；数据许可与边界见 `DATA_NOTICE.md`。

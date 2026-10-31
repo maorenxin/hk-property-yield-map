@@ -154,6 +154,30 @@ def merge_school_access(df: pd.DataFrame, level: str, keys: list[str]) -> pd.Dat
     return out
 
 
+def _rolling_window_bounds(months: pd.PeriodIndex):
+    """Return inclusive day bounds for each trailing three-calendar-month window."""
+    starts = np.asarray(
+        [np.datetime64((m.start_time - pd.DateOffset(months=2)).date()) for m in months],
+        dtype="datetime64[D]",
+    )
+    ends = np.asarray([np.datetime64(m.end_time.date()) for m in months], dtype="datetime64[D]")
+    return starts, ends
+
+
+def _candidate_month_indices(month_values, pos: dict, lo: int, hi: int) -> list[int]:
+    """Months whose three-month window can contain at least one source month."""
+    out: set[int] = set()
+    for month in pd.Series(month_values).dropna().unique():
+        base = pos.get(month)
+        if base is None:
+            continue
+        for offset in (0, 1, 2):
+            idx = base + offset
+            if lo <= idx <= hi:
+                out.add(idx)
+    return sorted(out)
+
+
 def deals_preview(df: pd.DataFrame, key: str = "bldg_grp_id") -> dict:
     """Most recent 60 sale + 60 rent deals per group, with source links."""
     out = {}
@@ -191,39 +215,38 @@ def history_preview(df: pd.DataFrame, key: str = "bldg_grp_id") -> dict:
     if key == "estate_name":
         sub = sub[sub[key].astype(str).str.strip().ne("")]
     sub["analysis_date"] = pd.to_datetime(sub["analysis_date"])
+    sub["_month"] = sub["analysis_date"].dt.to_period("M")
     months = pd.period_range(sub["analysis_date"].min().to_period("M"),
                              sub["analysis_date"].max().to_period("M"), freq="M")
     ids = sorted(sub[key].dropna().unique())
     n = len(months)
     data = {bid: {"s": [0] * n, "sn": [0] * n, "r": [0] * n, "rn": [0] * n} for bid in ids}
     pos = {m: i for i, m in enumerate(months)}
+    window_starts, window_ends = _rolling_window_bounds(months)
     for bid, g in sub.groupby(key):
         g = g[g.analysis_date.notna()]
         if g.empty:
             continue
-        lo = pos.get(g.analysis_date.min().to_period("M"), 0)
-        hi = pos.get(g.analysis_date.max().to_period("M"), n - 1)
+        lo = pos.get(g["_month"].min(), 0)
+        hi = pos.get(g["_month"].max(), n - 1)
         e = data.get(bid)
-        for side, key, nkey in (("sale", "s", "sn"), ("rent", "r", "rn")):
+        for side, value_key, count_key in (("sale", "s", "sn"), ("rent", "r", "rn")):
             gg = g[g.listing_type == side].sort_values("analysis_date")
             if gg.empty:
                 continue
             dates = gg.analysis_date.to_numpy(dtype="datetime64[D]")
             vals = gg.saleable_psf.to_numpy(dtype=float)
-            for i in range(lo, hi + 1):
-                m = months[i]
-                ws = np.datetime64((m.start_time - pd.DateOffset(months=2)).date())
-                we = np.datetime64(m.end_time.date())
-                left = np.searchsorted(dates, ws, side="left")
-                right = np.searchsorted(dates, we, side="right")
+            for i in _candidate_month_indices(gg["_month"], pos, lo, hi):
+                left = np.searchsorted(dates, window_starts[i], side="left")
+                right = np.searchsorted(dates, window_ends[i], side="right")
                 if right - left < MIN_N:
                     continue
                 mid = float(np.median(vals[left:right]))
                 if side == "sale":
-                    e[key][i] = int(round(mid))
+                    e[value_key][i] = int(round(mid))
                 else:
-                    e[key][i] = round(mid, 1)
-                e[nkey][i] = int(right - left)
+                    e[value_key][i] = round(mid, 1)
+                e[count_key][i] = int(right - left)
     return {
         "rule": "全历史近 3 个月滚动中位；售/租各 ≥1 宗才发布（0 = 未发布）",
         "window": {"start": str(months[0]), "end": str(months[-1]), "months": n},
@@ -240,52 +263,53 @@ def history_by_building(df: pd.DataFrame, mixed_ids: set[str]) -> dict:
     sub = sub[sub.bid.isin(mixed_ids)]
     if sub.empty:
         return {"months": [], "groups": {}, "buildings": {}}
+    sub["analysis_date"] = pd.to_datetime(sub["analysis_date"])
+    sub["_month"] = sub["analysis_date"].dt.to_period("M")
     sub["bkey"] = sub.building_name.fillna("") + "|" + sub.address_raw.fillna("")
     months = pd.period_range(df.analysis_date.min().to_period("M"),
                              df.analysis_date.max().to_period("M"), freq="M")
     n = len(months)
     keys = sub[["bid", "bkey"]].drop_duplicates().itertuples(index=False)
-    series = {(bid, bkey): {"s": [0] * n, "r": [0] * n} for bid, bkey in keys}
+    series = {(bid, bkey): {"s": {}, "r": {}} for bid, bkey in keys}
     pos = {m: i for i, m in enumerate(months)}
+    window_starts, window_ends = _rolling_window_bounds(months)
     for (bid, bkey), g in sub.groupby(["bid", "bkey"]):
         g = g[g.analysis_date.notna()]
         if g.empty:
             continue
-        lo = pos.get(g.analysis_date.min().to_period("M"), 0)
-        hi = pos.get(g.analysis_date.max().to_period("M"), n - 1)
+        lo = pos.get(g["_month"].min(), 0)
+        hi = pos.get(g["_month"].max(), n - 1)
         e = series.get((bid, bkey))
-        for side in ("sale", "rent"):
+        for side, value_key in (("sale", "s"), ("rent", "r")):
             gg = g[g.listing_type == side].sort_values("analysis_date")
             if gg.empty:
                 continue
             dates = gg.analysis_date.to_numpy(dtype="datetime64[D]")
             vals = gg.saleable_psf.to_numpy(dtype=float)
-            for i in range(lo, hi + 1):
-                m = months[i]
-                ws = np.datetime64((m.start_time - pd.DateOffset(months=2)).date())
-                we = np.datetime64(m.end_time.date())
-                left = np.searchsorted(dates, ws, side="left")
-                right = np.searchsorted(dates, we, side="right")
+            for i in _candidate_month_indices(gg["_month"], pos, lo, hi):
+                left = np.searchsorted(dates, window_starts[i], side="left")
+                right = np.searchsorted(dates, window_ends[i], side="right")
                 if right - left < MIN_N:
                     continue
-                e["s" if side == "sale" else "r"][i] = round(float(np.median(vals[left:right])), 1)
-    per_month = {}
+                e[value_key][i] = round(float(np.median(vals[left:right])), 1)
+    per_month: dict[str, dict[int, list[float]]] = {}
     for (bid, bkey), ser in series.items():
-        per_month.setdefault(bid, [[] for _ in range(n)])
-        for i in range(n):
-            if ser["s"][i] > 0 and ser["r"][i] > 0:
-                per_month[bid][i].append(ser["r"][i] * 12 / ser["s"][i] * 100)
+        per_month.setdefault(bid, {})
+        for i in set(ser["s"]).intersection(ser["r"]):
+            per_month[bid].setdefault(i, []).append(ser["r"][i] * 12 / ser["s"][i] * 100)
     groups, buildings = {}, {}
     for bid, per in per_month.items():
-        vals = [round(pd.Series(v).median(), 2) if v else None for v in per]
-        cnt = [len(v) for v in per]
+        vals = [round(pd.Series(per.get(i, [])).median(), 2) if per.get(i) else None
+                for i in range(n)]
+        cnt = [len(per.get(i, [])) for i in range(n)]
         groups[bid] = {"y": vals, "n": cnt}
     for (bid, bkey), ser in series.items():
-        idx = [i for i, (sv, rv) in enumerate(zip(ser["s"], ser["r"])) if sv > 0 or rv > 0]
+        idx = sorted(i for i in set(ser["s"]).union(ser["r"])
+                     if ser["s"].get(i, 0) > 0 or ser["r"].get(i, 0) > 0)
         buildings.setdefault(bid, {})[bkey] = {
             "m": idx,
-            "s": [ser["s"][i] for i in idx],
-            "r": [ser["r"][i] for i in idx],
+            "s": [ser["s"].get(i, 0) for i in idx],
+            "r": [ser["r"].get(i, 0) for i in idx],
         }
     return {"months": [str(m) for m in months], "groups": groups, "buildings": buildings}
 

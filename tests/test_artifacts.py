@@ -527,3 +527,21 @@ def test_rental_unit_token_normalization():
     y = add_dedupe_keys(x)
     assert (y.unit_token_tmp == "高層f").all()
     assert y.dedupe_key_tmp.nunique() == 1
+
+
+def test_history_preview_sparse_month_windows_preserve_output():
+    import sys
+    sys.path.insert(0, str(ROOT / "src"))
+    from build_building_metrics import history_preview
+
+    df = pd.DataFrame([
+        {"bldg_grp_id": "A", "analysis_date": "2026-01-10", "listing_type": "sale", "saleable_psf": 100.0},
+        {"bldg_grp_id": "A", "analysis_date": "2026-03-10", "listing_type": "sale", "saleable_psf": 120.0},
+        {"bldg_grp_id": "A", "analysis_date": "2026-03-20", "listing_type": "rent", "saleable_psf": 30.0},
+        {"bldg_grp_id": "B", "analysis_date": "2026-05-01", "listing_type": "sale", "saleable_psf": 200.0},
+    ])
+    out = history_preview(df)
+    assert out["months"] == ["2026-01", "2026-02", "2026-03", "2026-04", "2026-05"]
+    assert out["buildings"]["A"]["s"] == [100, 100, 110, 0, 0]
+    assert out["buildings"]["A"]["r"] == [0, 0, 30, 0, 0]
+    assert out["buildings"]["B"]["s"] == [0, 0, 0, 0, 200]

@@ -2,12 +2,22 @@ name: Daily Hong Kong data refresh
 
 on:
   schedule:
-    # 05:00 Asia/Hong_Kong (21:00 UTC previous day)
+    # Primary: 05:00 Asia/Hong_Kong (21:00 UTC previous day)
     - cron: '0 21 * * *'
+    # Backup: 07:17 Asia/Hong_Kong (23:17 UTC previous day). The guard below
+    # makes this a no-op when the primary run already published today.
+    - cron: '17 23 * * *'
   workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force refresh even if today is already published'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
+  actions: read
   pages: write
   id-token: write
 
@@ -19,9 +29,83 @@ env:
   PYTHONUNBUFFERED: '1'
 
 jobs:
-  refresh:
+  guard:
     runs-on: ubuntu-latest
-    timeout-minutes: 240
+    outputs:
+      run: ${{ steps.check.outputs.run }}
+    steps:
+      - name: Check whether today is already published
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE: ${{ github.event.inputs.force || 'false' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$FORCE" = "true" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "force=true"
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json
+          import os
+          import subprocess
+          import time
+          import urllib.request
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+
+          hk = ZoneInfo("Asia/Hong_Kong")
+          today = datetime.now(hk).date()
+          repo = os.environ["GITHUB_REPOSITORY"]
+          owner, name = repo.split("/", 1)
+          pages_url = f"https://{owner}.github.io/{name}/map_data.js?guard={int(time.time())}"
+          run = True
+          build_date = None
+          asset_date = None
+
+          try:
+              req = urllib.request.Request(
+                  pages_url,
+                  headers={"Cache-Control": "no-cache", "User-Agent": "hk-daily-guard"},
+              )
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  page = response.read().decode("utf-8")
+              payload = json.loads(page[len("window.HK_MAP_DATA="):].rstrip().rstrip(";"))
+              build = str(payload.get("build", ""))
+              if len(build) >= 8:
+                  build_date = datetime.strptime(build[:8], "%Y%m%d").date()
+          except Exception as exc:
+              print(f"pages check unavailable; will run: {exc}")
+
+          try:
+              raw = subprocess.check_output(
+                  ["gh", "api", f"repos/{repo}/releases/tags/data-latest"],
+                  text=True,
+              )
+              release = json.loads(raw)
+              assets = {a.get("name"): a for a in release.get("assets", [])}
+              tar = assets.get("hk-data-latest.tar.zst", {})
+              sha = assets.get("hk-data-latest.sha256", {})
+              if tar.get("state") == "uploaded" and sha.get("state") == "uploaded":
+                  stamp = tar.get("updated_at") or ""
+                  if stamp:
+                      asset_date = datetime.fromisoformat(stamp.replace("Z", "+00:00")).astimezone(hk).date()
+          except Exception as exc:
+              print(f"release check unavailable; will run: {exc}")
+
+          run = not (build_date == today and asset_date == today)
+          print(f"today={today} build_date={build_date} asset_date={asset_date} run={run}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write(f"run={'true' if run else 'false'}\n")
+          PY
+
+  refresh:
+    needs: guard
+    if: needs.guard.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
