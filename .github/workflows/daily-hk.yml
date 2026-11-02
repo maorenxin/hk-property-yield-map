@@ -157,6 +157,14 @@ jobs:
             --base-parquet data/normalized/centaline/transactions_full_latest.parquet \
             --out data/normalized/centaline/transactions_full_latest.parquet
 
+      - name: Resolve coordinates for newly unlocated buildings
+        run: |
+          python src/collect_orphan_coordinates.py \
+            --snapshot "$HK_SNAPSHOT" \
+            --workers 2 \
+            --pace 0.3 \
+            --limit 100
+
       - name: Rebuild building metrics and site
         run: |
           python src/build_building_metrics.py

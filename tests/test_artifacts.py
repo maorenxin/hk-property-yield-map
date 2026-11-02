@@ -203,9 +203,11 @@ def test_map_drawer_contract():
 def test_map_yield_filter_contract():
     js = (ROOT / "site/map.js").read_text()
     for token in ["minYield", "lgFilter", "applyYieldFilter", "最低回报率筛选", "lgCount", "Math.min(6",
-                  "lgSchool", "applySchoolFilter", "passesSchools", "let minYield = 3.0"]:
+                  "lgSchool", "applySchoolFilter", "passesSchools", "let minYield = 3.0",
+                  "lgBudgetShare", "applyBudgetShareFilter", "passesBudgetShare", "let minBudgetShare = 30"]:
         assert token in js, token
     assert 'id="lgFilter" min="0" max="6"' in js
+    assert 'id="lgBudgetShare" class="lg-budget" min="0" max="100" step="1" value="30"' in js
     html = (ROOT / "site/index.html").read_text()
     for token in ["lg-filter", "lg-count"]:
         assert token in html, token
@@ -221,9 +223,9 @@ def test_map_merged_legend_layer_defaults_and_grey_toggle():
                   "estateFallback", "屋苑级回退点", "lgSchool", "1 公里内学校"]:
         assert token in js, token
     assert "let showNoYield = false" in js
-    assert "let maxAge = 30" in js
+    assert "let maxAge = 20" in js
     # 灰色（无回报率）楼栋在勾选关闭后不进入气泡层
-    assert "if (b.yield == null) { if (!showNoYield || !passesAge(b) || !passesSchools(b)) continue; }" in js
+    assert "if (b.yield == null) { if (!showNoYield || !passesFilters(b)) continue; }" in js
     html = (ROOT / "site/index.html").read_text()
     for token in ["lg-check", ".hk-legend{left:12px;bottom:12px;width:214px"]:
         assert token in html, token
@@ -410,9 +412,10 @@ def test_map_age_filter_and_rent_source_note():
     for token in ["maxAge", "lgAge", "applyAgeFilter", "最高楼龄", "passesAge"]:
         assert token in js, token
     # 楼龄筛选同时作用于气泡/柱状图/热力图/标注；无楼龄记录的楼栋在筛选时一并隐藏
-    assert "if (b.yield == null) { if (!showNoYield || !passesAge(b) || !passesSchools(b)) continue; }" in js
-    assert js.count("!passesSchools(b)) continue;") >= 3
-    for token in ["lgSchool", "applySchoolFilter", "minSchools", "passesSchools"]:
+    assert "if (b.yield == null) { if (!showNoYield || !passesFilters(b)) continue; }" in js
+    assert js.count("!passesFilters(b)) continue;") >= 3
+    for token in ["lgSchool", "applySchoolFilter", "minSchools", "passesSchools",
+                  "lgBudgetShare", "applyBudgetShareFilter", "minBudgetShare", "passesBudgetShare"]:
         assert token in js, token
     # 租务数据口径提示（中原自家成交 ≠ 全市场）
     for token in ["租赁成交来自中原自家经手", "土地注册处全量"]:
@@ -424,6 +427,9 @@ def test_map_age_filter_and_rent_source_note():
     data = json.loads(data_js[len("window.HK_MAP_DATA="):].rstrip().rstrip(";"))
     # 楼龄筛选依赖地图数据里的 age_years
     assert sum(1 for b in data["buildings"] if b.get("age_years") is not None) >= 900
+    # 成交预算筛选依赖近5年 ≤HK$5M 的成交宗数占比
+    assert sum(1 for b in data["buildings"] if b.get("sale_le_5m_pct") is not None) >= 1800
+    assert sum(1 for b in data["estates"] if b.get("sale_le_5m_pct") is not None) >= 50
 
 
 def test_map_building_age_and_tab_redraw():
@@ -545,3 +551,128 @@ def test_history_preview_sparse_month_windows_preserve_output():
     assert out["buildings"]["A"]["s"] == [100, 100, 110, 0, 0]
     assert out["buildings"]["A"]["r"] == [0, 0, 30, 0, 0]
     assert out["buildings"]["B"]["s"] == [0, 0, 0, 0, 200]
+
+
+def test_sale_budget_share_uses_past_five_year_priced_sales():
+    import sys
+    sys.path.insert(0, str(ROOT / "src"))
+    from build_building_metrics import sale_budget_share
+
+    df = pd.DataFrame([
+        {"hma_id": "H1", "bldg_grp_id": "A", "listing_type": "sale", "analysis_date": "2022-01-01", "price_hkd": 4_500_000},
+        {"hma_id": "H1", "bldg_grp_id": "A", "listing_type": "sale", "analysis_date": "2023-01-01", "price_hkd": 5_000_000},
+        {"hma_id": "H1", "bldg_grp_id": "A", "listing_type": "sale", "analysis_date": "2024-01-01", "price_hkd": 5_500_000},
+        {"hma_id": "H1", "bldg_grp_id": "A", "listing_type": "sale", "analysis_date": "2025-01-01", "price_hkd": 6_000_000},
+        {"hma_id": "H1", "bldg_grp_id": "A", "listing_type": "sale", "analysis_date": "2018-01-01", "price_hkd": 4_000_000},
+        {"hma_id": "H1", "bldg_grp_id": "A", "listing_type": "sale", "analysis_date": "2025-02-01", "price_hkd": None},
+        {"hma_id": "H1", "bldg_grp_id": "A", "listing_type": "sale", "analysis_date": "2025-02-02", "price_hkd": 0},
+        {"hma_id": "H1", "bldg_grp_id": "A", "listing_type": "rent", "analysis_date": "2025-03-01", "price_hkd": 20_000},
+        {"hma_id": "H2", "bldg_grp_id": "B", "listing_type": "sale", "analysis_date": "2026-01-01", "price_hkd": 3_000_000},
+    ])
+    df["analysis_date"] = pd.to_datetime(df["analysis_date"])
+    out = sale_budget_share(df, ["hma_id", "bldg_grp_id"], "2026-11-02").set_index(["hma_id", "bldg_grp_id"])
+    assert out.loc[("H1", "A"), "sale_5y_n"] == 4
+    assert out.loc[("H1", "A"), "sale_le_5m_n"] == 2
+    assert out.loc[("H1", "A"), "sale_le_5m_pct"] == 50.0
+    assert out.loc[("H2", "B"), "sale_5y_n"] == 1
+    assert out.loc[("H2", "B"), "sale_le_5m_pct"] == 100.0
+
+
+def test_map_search_supports_addresses_and_simplified_traditional():
+    import sys
+    sys.path.insert(0, str(ROOT / "src"))
+    from build_building_metrics import compact_search_text, search_blob
+
+    assert compact_search_text("马乐径 1 号") == "马乐径1号"
+    key = search_blob("馬樂徑1號", "尚悅", "十八鄉路11號")
+    assert compact_search_text("馬樂徑1號") in key
+    assert compact_search_text("马乐径1号") in key
+    assert compact_search_text("尚悦") in key
+
+    data_js = (ROOT / "site/map_data.js").read_text()
+    data = json.loads(data_js[len("window.HK_MAP_DATA="):].rstrip().rstrip(";"))
+    assert all(b.get("search") for b in data["buildings"])
+    assert all(e.get("search") for e in data["estates"])
+    assert any(b.get("addresses") for b in data["buildings"])
+    sh = next(b for b in data["buildings"] if b.get("name") == "尚悅")
+    assert compact_search_text("尚悦") in sh["search"]
+    assert compact_search_text("十八乡路11号") in sh["search"]
+
+    js = (ROOT / "site/map.js").read_text()
+    for token in ["hkSearchInput", "setupSearch", "compactSearchText",
+                  "subsequenceGap", "hk-search-hit", "addresses", "简体・繁體",
+                  "const exact = out.filter"]:
+        assert token in js, token
+    html = (ROOT / "site/index.html").read_text()
+    for token in [".hk-search", ".hs-results", ".hk-search-hit", "@keyframes hkSearchPulse"]:
+        assert token in html, token
+    template = (ROOT / "src/build_artifacts.py").read_text()
+    for token in [".hk-search{{", ".hs-results{{", ".hk-search-hit span{{", "@keyframes hkSearchPulse{{"]:
+        assert token in template, token
+
+
+def test_orphan_buildings_are_plotted_and_searchable():
+    import sys
+    sys.path.insert(0, str(ROOT / "src"))
+    from build_building_metrics import address_matches, compact_search_text
+
+    assert address_matches("小瀝源路62號", "小瀝源路62-78號")
+    assert address_matches("南昌街1及3號", "南昌街1 & 3號")
+    assert not address_matches("元朗泰衡街2-28號", "泰利街1-29號")
+
+    pts = pd.read_csv(ROOT / "data/derived/orphan_building_points_12m.csv")
+    assert len(pts) >= 1000
+    assert pts.lat.between(22.1, 22.7).all()
+    assert pts.lon.between(113.8, 114.6).all()
+    assert pts.orphan_id.is_unique
+
+    required = {
+        "瑧蓺": "西源里1號",
+        "瑧璈": "德輔道西321號",
+        "尚嶺": "山道100號",
+        "藝里坊．1號": "忠正街8號",
+        "星鑽": "第三街88號",
+        "藝里坊．2號": "忠正街1號",
+    }
+    for name, addr in required.items():
+        row = pts[(pts.building_names == name) & (pts.address_raw == addr)]
+        assert len(row) == 1, (name, addr)
+        assert pd.notna(row.iloc[0]["gross_yield_pct"])
+
+    unresolved = pd.read_csv(ROOT / "data/derived/orphan_points_unresolved.csv")
+    assert len(unresolved) <= 20
+
+    details = json.loads((ROOT / "data/derived/orphan_details.json").read_text())
+    known = pts[pts.building_names.isin(required)].orphan_id
+    assert len(known) >= 6
+    assert all(oid in details["points"] for oid in known)
+
+    data_js = (ROOT / "site/map_data.js").read_text()
+    data = json.loads(data_js[len("window.HK_MAP_DATA="):].rstrip().rstrip(";"))
+    addr_points = [b for b in data["buildings"] if b.get("point_type") == "address"]
+    assert len(addr_points) >= 1000
+    for query in ["瑧蓺", "瑧璈", "尚嶺", "藝里坊1號", "星鑽", "藝里坊2號"]:
+        key = compact_search_text(query)
+        assert any(key in str(p.get("search") or "") for p in addr_points), query
+
+    js = (ROOT / "site/map.js").read_text()
+    for token in ["point_type === 'address'", "地址点", "地址级聚合", "hk-address-dot"]:
+        assert token in js, token
+    workflow = (ROOT / ".github/workflows/daily-hk.yml").read_text()
+    assert "collect_orphan_coordinates.py" in workflow
+
+
+def test_history_preview_can_align_orphan_points_to_global_months():
+    import sys
+    sys.path.insert(0, str(ROOT / "src"))
+    from build_building_metrics import history_preview
+
+    orphan = pd.DataFrame([
+        {"orphan_id": "A", "analysis_date": "2026-01-10", "listing_type": "sale", "saleable_psf": 100.0},
+        {"orphan_id": "A", "analysis_date": "2026-03-10", "listing_type": "rent", "saleable_psf": 30.0},
+    ])
+    span = pd.DataFrame({"analysis_date": pd.to_datetime(["2025-12-15", "2026-04-02"])})
+    out = history_preview(orphan, key="orphan_id", span_df=span)
+    assert out["months"] == ["2025-12", "2026-01", "2026-02", "2026-03", "2026-04"]
+    assert len(out["buildings"]["A"]["s"]) == 5
+    assert len(out["buildings"]["A"]["r"]) == 5

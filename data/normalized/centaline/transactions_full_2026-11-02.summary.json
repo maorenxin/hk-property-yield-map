@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-11-02T17:44:49+08:00",
+  "snapshot": "2026-11-02",
+  "window_days": 30,
+  "source_unique_records": {
+    "Sale": 4689,
+    "Rent": 2034
+  },
+  "base_records": 1808838,
+  "fresh_records": 6723,
+  "new_source_record_ids": 1579,
+  "records": 1810417,
+  "duplicates_dropped": 5144,
+  "by_listing_type": {
+    "sale": 1653414,
+    "rent": 157003
+  },
+  "by_data_source": {
+    "Land": 1652281,
+    "AC": 158136
+  },
+  "date_min": "1990-01-12",
+  "date_max": "2026-11-02",
+  "registration_date_min": "1995-07-01",
+  "registration_date_max": "2026-11-02",
+  "distinct_estates": 2099,
+  "distinct_bldg_grp": 2289,
+  "output": "data/normalized/centaline/transactions_full_latest.parquet"
+}

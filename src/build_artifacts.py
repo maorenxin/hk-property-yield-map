@@ -499,16 +499,22 @@ def full_corpus_validation() -> list[dict]:
         b = [f for f in gj["features"] if f["properties"].get("layer") == "building"]
         e = [f for f in gj["features"] if f["properties"].get("layer") == "estate"]
         by = [f for f in b if f["properties"].get("yield") is not None]
+        address = [f for f in b if f["properties"].get("point_type") == "address"]
+        groups = [f for f in b if f["properties"].get("point_type") != "address"]
+        groups_with_yield = [f for f in groups if f["properties"].get("yield") is not None]
+        address_with_yield = [f for f in address if f["properties"].get("yield") is not None]
         bounds_ok = all(113.8 < f["geometry"]["coordinates"][0] < 114.6 and
                         22.1 < f["geometry"]["coordinates"][1] < 22.7 for f in gj["features"])
-        grid = sum(1 for f in by if f["properties"].get("geo") == "grid")
+        grid = sum(1 for f in groups_with_yield if f["properties"].get("geo") == "grid")
         checks.append({
             "check": "building_level_map_points",
             "building_points": len(b), "building_with_yield": len(by),
-            "grid_coord_points": grid, "estate_fallback_points": len(by) - grid,
+            "building_group_points": len(groups), "building_group_with_yield": len(groups_with_yield),
+            "address_point_points": len(address), "address_point_with_yield": len(address_with_yield),
+            "grid_coord_points": grid, "estate_fallback_points": len(groups_with_yield) - grid,
             "estate_points": len(e), "coordinates_in_hong_kong_bounds": bounds_ok,
             "pass": len(by) >= 900 and bounds_ok,
-            "note": "楼宇组级点位（CentaMap 坐标）+ 屋苑中心近似坐标（明确标注 geo=estate）",
+            "note": "楼宇组点（CentaMap/屋苑中心）与无坐标组的地址级补点分开审计",
         })
 
     corr = DERIVED / "external_corroboration.json"
@@ -602,6 +608,8 @@ def build_report(region: pd.DataFrame, validations: list[dict], provenance: dict
         fp = DERIVED / name
         return json.loads(fp.read_text()) if fp.exists() else default
     group_images = _load_json("building_images.json", {})
+    orphan_details_payload = _load_json("orphan_details.json", {"points": {}})
+    orphan_details = orphan_details_payload.get("points", {})
     local_img_map = json.loads((SITE / "building_images_local.json").read_text()) \
         if (SITE / "building_images_local.json").exists() else {}
     hist_bldg = _load_json("building_history_by_building.json", {"groups": {}, "buildings": {}})
@@ -678,6 +686,24 @@ def build_report(region: pd.DataFrame, validations: list[dict], provenance: dict
     details_buildings = {}
     for b in map_buildings:
         raw_deals = b.pop("deals", None) or {}
+        if b.get("point_type") == "address":
+            orphan_rec = orphan_details.get(str(b.get("id") or ""))
+            if orphan_rec:
+                rec = dict(orphan_rec)
+                for side in ("sale", "rent"):
+                    if rec.get(side):
+                        rec[side] = [
+                            ({**d, "url": d["url"][len(CENTA_PREFIX):]}
+                             if str(d.get("url") or "").startswith(CENTA_PREFIX) else d)
+                            for d in rec[side]
+                        ]
+                if rec.get("img"):
+                    rec["img"] = [
+                        ({**x, "l": local_img_map[x["u"]]} if x.get("u") in local_img_map else x)
+                        for x in rec["img"]
+                    ]
+                details_buildings[b.get("id")] = rec
+            continue
         gid = str(b.get("id", "")).split(":", 1)[-1]
         rec = {}
         h = (hist.get("buildings") or {}).get(gid)
@@ -792,7 +818,10 @@ def build_report(region: pd.DataFrame, validations: list[dict], provenance: dict
         },
     }, ensure_ascii=False, separators=(",", ":"))
     (SITE / "map_data.js").write_text(map_data_js, encoding="utf-8")
-    building_with_yield = sum(1 for b in map_buildings if b.get("yield") is not None)
+    building_groups = [b for b in map_buildings if b.get("point_type") != "address"]
+    address_points = [b for b in map_buildings if b.get("point_type") == "address"]
+    building_with_yield = sum(1 for b in building_groups if b.get("yield") is not None)
+    address_with_yield = sum(1 for b in address_points if b.get("yield") is not None)
     estate_with_yield = sum(1 for e in map_estates if e.get("yield") is not None)
 
     def _fmt(v, spec):
@@ -1157,6 +1186,30 @@ table.data tbody tr:hover{{background:#f8fbfe}}
 .ok{{color:var(--ok);font-weight:650}} .fail{{color:var(--fail);font-weight:650}}
 code{{background:#eef2f7;padding:2px 6px;border-radius:5px;font-size:12px}}
 .map-fx{{position:absolute;z-index:1000}}
+.hk-search{{left:50%;top:12px;transform:translateX(-50%);width:min(420px,calc(100% - 500px));min-width:280px;z-index:1080;font-size:12px;color:var(--ink)}}
+.hs-box{{display:flex;align-items:center;height:42px;background:rgba(255,255,255,.98);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:0 8px 0 12px;transition:border-color .18s ease,box-shadow .18s ease}}
+.hs-box:focus-within{{border-color:#93c5fd;box-shadow:0 0 0 3px rgba(29,111,184,.12),var(--shadow)}}
+.hs-icon{{font-size:21px;line-height:1;color:var(--brand);transform:rotate(-20deg);margin-right:7px;flex:none}}
+.hs-input{{appearance:none;border:0;outline:0;background:transparent;min-width:0;width:100%;height:38px;font:inherit;font-size:12.5px;color:var(--ink)}}
+.hs-input::placeholder{{color:#94a3b8}}
+.hs-input::-webkit-search-cancel-button{{display:none}}
+.hs-clear{{display:none;appearance:none;border:0;background:#eef2f7;color:#64748b;width:25px;height:25px;border-radius:50%;font:18px/1 var(--ff);cursor:pointer;flex:none}}
+.hk-search.has-value .hs-clear{{display:block}}
+.hs-clear:hover{{background:#e2e8f0;color:var(--ink)}}
+.hs-results{{display:none;position:absolute;left:0;right:0;top:calc(100% + 6px);max-height:360px;overflow:auto;background:rgba(255,255,255,.99);border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 46px rgba(15,23,42,.18);padding:5px}}
+.hs-results.open{{display:block}}
+.hs-item{{display:flex;align-items:center;width:100%;gap:9px;appearance:none;border:0;background:transparent;text-align:left;padding:8px 9px;border-radius:8px;cursor:pointer;font:inherit;color:var(--ink)}}
+.hs-item:hover,.hs-item.active{{background:#f1f7fd}}
+.hs-kind{{flex:none;border-radius:5px;padding:1px 6px;font-size:10px;color:var(--brand);background:var(--brandt)}}
+.hs-main{{min-width:0;flex:1}}
+.hs-main b{{display:block;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+.hs-main small{{display:block;color:var(--muted);font-size:10.5px;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+.hs-yield{{flex:none;font-weight:750;color:var(--brand);font-variant-numeric:tabular-nums;font-size:11.5px}}
+.hs-empty{{padding:14px;text-align:center;color:var(--muted);font-size:12px}}
+.hs-empty small{{display:block;margin-top:3px;color:#94a3b8;font-size:10.5px}}
+.hk-search-hit{{background:transparent;border:0}}
+.hk-search-hit span{{display:block;width:38px;height:38px;border-radius:50%;border:3px solid #f97316;background:rgba(249,115,22,.12);box-shadow:0 0 0 5px rgba(249,115,22,.12);animation:hkSearchPulse 1.4s ease-out infinite}}
+@keyframes hkSearchPulse{{0%{{transform:scale(.72);opacity:1}}70%{{transform:scale(1.12);opacity:.25}}100%{{transform:scale(1.22);opacity:0}}}}
 .hk-controls{{left:12px;top:12px;width:214px;background:rgba(255,255,255,.97);border:1px solid var(--line);border-radius:12px;padding:11px 13px;box-shadow:var(--shadow)}}
 .mp-title{{font-size:11px;font-weight:750;color:var(--ink2);letter-spacing:.08em;margin-bottom:7px}}
 .mp-switch{{display:flex;align-items:center;gap:9px;padding:4px 2px;cursor:pointer;user-select:none}}
@@ -1182,11 +1235,13 @@ code{{background:#eef2f7;padding:2px 6px;border-radius:5px;font-size:12px}}
 .lg-filter-head.lg-gap{{margin-top:9px}}
 .lg-filter input.lg-age::-webkit-slider-runnable-track{{background:linear-gradient(90deg,#fde68a,#f59e0b,#b45309)}}
 .lg-filter input.lg-age::-webkit-slider-thumb{{border-color:#b45309}}
+.lg-filter input.lg-budget::-webkit-slider-runnable-track{{background:linear-gradient(90deg,#eef2ff,#a5b4fc,#4f46e5)}}
+.lg-filter input.lg-budget::-webkit-slider-thumb{{border-color:#4f46e5}}
 .lg-filter input.lg-school::-webkit-slider-runnable-track{{background:linear-gradient(90deg,#ecfdf5,#6ee7b7,#059669)}}
 .lg-filter input.lg-school::-webkit-slider-thumb{{border-color:#059669}}
 .lg-check{{display:flex;align-items:center;gap:7px;margin-top:6px;cursor:pointer;user-select:none;font-size:11.5px;color:#475569}}
 .lg-check input{{width:14px;height:14px;margin:0;accent-color:var(--brand2);flex:none;cursor:pointer}}
-.lg-filter-head{{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:11px;color:var(--muted);margin-bottom:2px}}
+.lg-filter-head{{display:flex;justify-content:space-between;align-items:baseline;gap:6px;font-size:10.5px;color:var(--muted);margin-bottom:2px}}
 .lg-filter-head output{{font-weight:750;color:var(--brand);font-size:11.5px;font-variant-numeric:tabular-nums}}
 .lg-filter input[type=range]{{-webkit-appearance:none;appearance:none;width:100%;height:18px;background:transparent;cursor:pointer;margin:0;display:block}}
 .lg-filter input[type=range]::-webkit-slider-runnable-track{{height:6px;border-radius:3px;background:linear-gradient(90deg,#eaf3fb,#c6dbef,#6baed6,#2171b5,#08306b)}}
@@ -1200,6 +1255,7 @@ code{{background:#eef2f7;padding:2px 6px;border-radius:5px;font-size:12px}}
 .hk-tip span{{display:block;color:#e2e8f0;font-variant-numeric:tabular-nums}}
 .hk-tip small{{display:block;max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#cbd5e1;font-size:10px;margin-top:2px}}
 .hk-dot{{cursor:pointer}}
+.hk-address-dot{{stroke-dasharray:2.2 1.2}}
 #hk-drawer{{position:fixed;top:var(--hdr-h);right:0;bottom:0;width:430px;min-width:340px;max-width:min(880px,86vw);background:#fff;border-left:1px solid var(--line);box-shadow:-20px 0 48px rgba(15,23,42,.16);z-index:1100;transform:translateX(103%);transition:transform .24s ease;display:flex;flex-direction:column}}
 #hk-drawer.open{{transform:none}}
 .drawer-grip{{position:absolute;left:0;top:0;bottom:0;width:8px;cursor:col-resize;touch-action:none;z-index:5}}
@@ -1315,9 +1371,14 @@ table.deals .link a{{color:var(--brand2);white-space:nowrap}}
   #hk-drawer.open{{transform:none}}
   .drawer-grip{{display:none}}
   .hk-controls{{width:190px}}
+  .hk-search{{left:214px;right:58px;width:auto;min-width:0;transform:none}}
   .appbar-in{{padding:8px 14px 0}}
   .tabs{{padding:4px 14px 0}}
   .wrap{{padding:0 14px}}
+}}
+@media (max-width:600px){{
+  .hk-search{{left:12px;right:56px;top:12px}}
+  .hk-controls{{top:66px}}
 }}
 @media (prefers-reduced-motion:reduce){{
   #hk-drawer{{transition:none}}
@@ -1371,9 +1432,9 @@ table.deals .link a{{color:var(--brand2);white-space:nowrap}}
   <b>口径声明：</b>这里的“租售比”是年化毛租金回报率 = 月租 × 12 ÷ 售价。RVD 历史层按同一月份、同一区域、同一房屋类别分别取公开平均值；Centaline 明细层按同一月份、同一 18 区、同一实用面积段配对。地图同时展示两层，但不把当前样本快照当成长期历史指数。<b>数据来源差异：</b>买卖成交来自土地注册处（全市场登记）；租务成交为中原地产自家经手，并补充 28Hse 当前租盘（叫租，不是成交）。香港一般住宅租约不在土地注册处登记，不存在全市场逐单租务成交库，因此同一楼宇的「售/租」宗数不可直接对比覆盖率。
   </div>
   <h2>楼栋级交互地图</h2>
-  <p class="small">地图是默认首页（顶部「地图」Tab）。底图固定高德地图（自动 GCJ-02 坐标纠偏）。图层默认开<b>气泡点</b>、<b>18 区边界</b>和<b>官方建筑轮廓</b>；轮廓在 z≥17 才加载，低缩放仍显示气泡，放大后自动切换。左上「图层」只保留气泡点、短名标注（默认关闭；开启只显示短名，悬停看全名）、18 区边界和官方轮廓。左下卡片把回报率、楼龄和学校筛选合为一体：默认只看 <b>>3%</b> 且 <b>≤30 年</b>；新增 <b>1 公里内学校</b>下限筛选（幼/小/中/大学大专，含边界触达），「样本不足楼栋」默认隐藏，可手动勾选显示。<b>点击</b>任意楼盘气泡即在右侧打开详情面板：年化毛回报率及历史走势、<b>楼龄</b>（按成交记录入伙年份中位推算，未知显示 —）、售价/租金中位与区间（金额统一为港币 HK$）、最近成交与租赁明细（含跳转原纪录的「详情」链接）。已定位 <b>{len(map_buildings)}</b> 个楼宇组（其中 {building_with_yield} 个有足够样本计算回报率）、<b>{len(map_estates)}</b> 个屋苑（其中 {sum(1 for e in map_estates if e.get("fallback"))} 个源数据无楼宇组 ID，已用屋苑级回退点显示）。提示：使用 <code>python3 -m http.server --directory site</code> 本地服务可获得最佳瓦片兼容性。</p>
+  <p class="small">地图是默认首页（顶部「地图」Tab）。底图固定高德地图（自动 GCJ-02 坐标纠偏）。图层默认开<b>气泡点</b>、<b>18 区边界</b>和<b>官方建筑轮廓</b>；轮廓在 z≥17 才加载，低缩放仍显示气泡，放大后自动切换。顶部搜索框支持按地址、楼盘或屋苑名称检索（简体/繁体均可），选中后自动定位并打开详情。左上「图层」只保留气泡点、短名标注（默认关闭；开启只显示短名，悬停看全名）、18 区边界和官方轮廓。左下卡片把回报率、楼龄、成交预算和学校筛选合为一体：默认只看 <b>>3%</b>、<b>≤20 年</b>，且近 5 年成交价 <b>≤HK$5,000,000</b> 的成交宗数占比 <b>≥30%</b>；该预算占比可上调至 100%。新增 <b>1 公里内学校</b>下限筛选（幼/小/中/大学大专，含边界触达），「样本不足楼栋」默认隐藏，可手动勾选显示。<b>点击</b>任意楼盘气泡即在右侧打开详情面板：年化毛回报率及历史走势、<b>楼龄</b>（按成交记录入伙年份中位推算，未知显示 —）、售价/租金中位与区间（金额统一为港币 HK$）、最近成交与租赁明细（含跳转原纪录的「详情」链接）。已定位 <b>{len(building_groups)}</b> 个楼宇组（其中 {building_with_yield} 个有足够样本计算回报率），并补建 <b>{len(address_points)}</b> 个地址级楼宇点（其中 {address_with_yield} 个可计算回报率）；另有 <b>{len(map_estates)}</b> 个屋苑（其中 {sum(1 for e in map_estates if e.get("fallback"))} 个源数据无楼宇组 ID，已用屋苑级回退点显示）。提示：使用 <code>python3 -m http.server --directory site</code> 本地服务可获得最佳瓦片兼容性。</p>
   <div class="grid">
-    <div class="card"><b>如何读图</b><p class="small">回报率在<b>同一楼宇组内部</b>用租金呎价与售价呎价配对计算；近 12 个月快照用于当前值，全历史走势为近 3 个月滚动中位，租/售两侧各 ≥1 宗才发布，灰色或无走势表示样本不足。楼龄按每栋的入伙年份取中位、再在楼宇组内跨栋取中位；街区型混合楼龄组会标注组内年份范围（如 1959–2024）。默认筛选为回报率 >3%、楼龄 ≤30 年；学校数按 1 公里缓冲区计算，幼儿园/小学/中学为教育局点位，大学为校园轮廓，边界触达也计入。</p></div>
+    <div class="card"><b>如何读图</b><p class="small">回报率在<b>同一楼宇组内部</b>用租金呎价与售价呎价配对计算；近 12 个月快照用于当前值，全历史走势为近 3 个月滚动中位，租/售两侧各 ≥1 宗才发布，灰色或无走势表示样本不足。楼龄按每栋的入伙年份取中位、再在楼宇组内跨栋取中位；街区型混合楼龄组会标注组内年份范围（如 1959–2024）。成交预算占比按过去 5 年有成交价记录的成交宗数计算，分子为成交价 ≤HK$5,000,000 的宗数；默认筛选为回报率 >3%、楼龄 ≤20 年、预算内成交占比 ≥30%。学校数按 1 公里缓冲区计算，幼儿园/小学/中学为教育局点位，大学为校园轮廓，边界触达也计入。</p></div>
     <div class="card"><b>口径与命名</b><p class="small">报告统一使用“港岛、九龙、新界”，金额统一为港币：呎价 = 每平方呎售价（HK$/呎），呎租 = 每平方呎月租（HK$/呎/月）；税费、管理费未扣除，属年化<b>毛</b>回报率。</p></div>
   </div>
   </div>

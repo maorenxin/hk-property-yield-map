@@ -1,16 +1,23 @@
 {
- "generated_at": "2026-10-28T12:01:19.902061+00:00",
- "history_months": 442,
+ "generated_at": "2026-11-02T10:02:33.969039+00:00",
+ "history_months": 443,
  "history_start": "1990-01",
- "history_end": "2026-10",
+ "history_end": "2026-11",
  "buildings_with_yield_history_ge3": 1791,
- "window_start": "2025-10-28",
- "snapshot": "2026-10-28",
- "records_full": 1839726,
- "records_12m": 122295,
- "sale_cross_source_dropped": 274,
+ "window_start": "2025-11-02",
+ "snapshot": "2026-11-02",
+ "records_full": 1841199,
+ "records_12m": 122095,
+ "sale_cross_source_dropped": 380,
  "building_points": 1971,
- "building_with_yield": 1579,
- "estate_points": 420,
- "estate_with_yield": 1030
+ "building_with_yield": 1575,
+ "orphan_address_points": 1039,
+ "orphan_address_with_yield": 439,
+ "estate_points": 423,
+ "estate_with_yield": 1025,
+ "sale_budget_rule": {
+  "years": 5,
+  "max_price_hkd": 5000000,
+  "basis": "count_share_of_priced_sale_transactions"
+ }
 }

@@ -114,7 +114,7 @@
       const zoomK = Math.pow(1.55, Math.max(0, z - 11)) * 0.35;
       const widthK = Math.min(1, Math.max(0.4, (z - 10) / 4));
       for (const b of data.buildings) {
-        if (b.yield == null || b.yield <= minYield || !passesAge(b) || !passesSchools(b)) continue;
+        if (b.yield == null || b.yield <= minYield || !passesFilters(b)) continue;
         const p = m.latLngToContainerPoint(disp(b.lon, b.lat));
         if (p.x < -40 || p.y < -220 || p.x > size.x + 40 || p.y > size.y + 40) continue;
         const h = Math.min(140, (8 + b.yield * 22) * zoomK);
@@ -137,10 +137,11 @@
   // ---------- state ----------
   const overlays = { bars: false, heat: false, bubbles: true, labels: false, districts: true, footprints: true, estateFallback: true, schools: true };
   let minYield = 3.0;                   // 默认只看 >3% 的回报率
-  let yieldRaf = null, ageRaf = null, schoolRaf = null;
-  let maxAge = 30;                      // 默认只看 ≤30 年
+  let yieldRaf = null, ageRaf = null, schoolRaf = null, budgetRaf = null;
+  let maxAge = 20;                      // 默认只看 ≤20 年
   let showNoYield = false;              // 默认不显示无回报率灰点
   let minSchools = 0;                   // 1 公里内学校数下限（0 = 不限）
+  let minBudgetShare = 30;               // 近5年 ≤HK$5M 成交宗数占比下限（0 = 不限）
   let heatLayer = null, barsLayer = null, bubbleLayer = null, labelLayer = null, districtLayer = null;
   let footLayer = null, footData = null, footPromise = null;
   let schoolLayer = null, schoolData = null, schoolPromise = null;
@@ -164,6 +165,163 @@
     });
   }
 
+  // ---------- address / estate search ----------
+  let mapSearch = null;
+  let searchMarker = null;
+
+  function compactSearchText(value) {
+    return String(value == null ? '' : value)
+      .normalize('NFKC')
+      .toLowerCase()
+      .replace(/[^\p{L}\p{N}]+/gu, '');
+  }
+
+  function subsequenceGap(query, key) {
+    let pos = -1, gaps = 0;
+    for (const ch of query) {
+      const next = key.indexOf(ch, pos + 1);
+      if (next < 0) return null;
+      gaps += Math.max(0, next - pos - 1);
+      pos = next;
+    }
+    return gaps;
+  }
+
+  function setupSearch() {
+    if (mapSearch) return mapSearch;
+    const box = document.createElement('div');
+    box.className = 'map-fx hk-search';
+    box.innerHTML = '<div class="hs-box"><span class="hs-icon" aria-hidden="true">⌕</span>' +
+      '<input id="hkSearchInput" class="hs-input" type="search" autocomplete="off" spellcheck="false" ' +
+      'placeholder="搜索地址 / 楼盘 / 屋苑（简体・繁體）" aria-label="搜索地址、楼盘或屋苑，支持简体与繁体" role="combobox" aria-autocomplete="list" aria-expanded="false">' +
+      '<button type="button" class="hs-clear" id="hkSearchClear" aria-label="清除搜索" title="清除">×</button></div>' +
+      '<div class="hs-results" id="hkSearchResults" role="listbox" aria-label="搜索结果"></div>';
+    L.DomEvent.disableClickPropagation(box);
+    L.DomEvent.disableScrollPropagation(box);
+    map.getContainer().appendChild(box);
+
+    const input = box.querySelector('#hkSearchInput');
+    const clear = box.querySelector('#hkSearchClear');
+    const panel = box.querySelector('#hkSearchResults');
+    const pool = data.buildings.map((b) => ({ b, kind: b.point_type === 'address' ? '地址点' : '楼宇组' }))
+      .concat((data.estates || []).filter((e) => e.fallback).map((e) => ({ b: estateAsBuilding(e), kind: '屋苑级' })));
+    let results = [], active = -1;
+
+    function fallbackSearch(b) {
+      return compactSearchText([b.name, b.bldg, b.hma, b.district, b.region, b.addresses].filter(Boolean).join('|'));
+    }
+
+    function find(query) {
+      const q = compactSearchText(query);
+      if (!q) return [];
+      const out = [];
+      for (const item of pool) {
+        const b = item.b;
+        const key = b.search || fallbackSearch(b);
+        let score = null;
+        const at = key.indexOf(q);
+        if (at === 0) score = 0;
+        else if (at > 0) score = 10 + at / Math.max(1, key.length);
+        else if (q.length >= 3) {
+          const gap = subsequenceGap(q, key);
+          if (gap != null && gap <= Math.max(6, q.length * 2)) score = 30 + gap / Math.max(1, q.length);
+        }
+        if (score == null) continue;
+        out.push({ ...item, score, exactName: compactSearchText(b.name) === q });
+      }
+      out.sort((a, b) => (a.score - b.score) || (Number(b.exactName) - Number(a.exactName)) ||
+        String(a.b.name || '').localeCompare(String(b.b.name || ''), 'zh-Hant-HK'));
+      const exact = out.filter((item) => item.exactName);
+      return (exact.length ? exact : out).slice(0, 8);
+    }
+
+    function hide() {
+      panel.classList.remove('open');
+      input.setAttribute('aria-expanded', 'false');
+      active = -1;
+    }
+
+    function draw() {
+      if (!results.length) {
+        const q = input.value.trim();
+        panel.innerHTML = q ? '<div class="hs-empty">没有找到“' + esc(q) + '”<small>可尝试屋苑名、街道名或门牌号</small></div>' : '';
+        panel.classList.toggle('open', !!q);
+        input.setAttribute('aria-expanded', q ? 'true' : 'false');
+        return;
+      }
+      panel.innerHTML = results.map((item, i) => {
+        const b = item.b;
+        const title = b.name || shortLabel(b) || '未命名';
+        const sub = [b.district, b.addresses, b.bldg].filter(Boolean).join(' · ');
+        const y = b.yield == null ? '—' : b.yield.toFixed(1) + '%';
+        return '<button type="button" role="option" class="hs-item' + (i === active ? ' active' : '') + '" data-search-i="' + i + '">' +
+          '<span class="hs-kind">' + item.kind + '</span><span class="hs-main"><b>' + esc(title) + '</b><small>' + esc(sub) + '</small></span>' +
+          '<span class="hs-yield">' + y + '</span></button>';
+      }).join('');
+      panel.querySelectorAll('[data-search-i]').forEach((el) => {
+        el.addEventListener('click', () => choose(+el.dataset.searchI));
+      });
+      panel.classList.add('open');
+      input.setAttribute('aria-expanded', 'true');
+    }
+
+    function choose(i) {
+      const item = results[i];
+      if (!item) return;
+      const b = item.b;
+      const ll = disp(b.lon, b.lat);
+      if (searchMarker) map.removeLayer(searchMarker);
+      searchMarker = L.marker(ll, {
+        icon: L.divIcon({ className: 'hk-search-hit', html: '<span></span>', iconSize: [38, 38], iconAnchor: [19, 19] }),
+        interactive: false,
+        zIndexOffset: 1200,
+      }).addTo(map);
+      input.value = b.name || shortLabel(b);
+      box.classList.add('has-value');
+      hide();
+      map.flyTo(ll, Math.max(17, map.getZoom()), { duration: 0.6 });
+      window.setTimeout(() => openDrawer(b), 320);
+    }
+
+    function clearSearch() {
+      input.value = '';
+      box.classList.remove('has-value');
+      results = [];
+      active = -1;
+      panel.innerHTML = '';
+      hide();
+      if (searchMarker) { map.removeLayer(searchMarker); searchMarker = null; }
+      input.focus();
+    }
+
+    input.addEventListener('input', () => {
+      box.classList.toggle('has-value', !!input.value);
+      results = find(input.value);
+      active = results.length ? 0 : -1;
+      draw();
+    });
+    input.addEventListener('focus', () => { if (input.value.trim()) draw(); });
+    input.addEventListener('blur', () => window.setTimeout(hide, 140));
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' && results.length) {
+        e.preventDefault(); active = (active + 1) % results.length; draw();
+      } else if (e.key === 'ArrowUp' && results.length) {
+        e.preventDefault(); active = (active - 1 + results.length) % results.length; draw();
+      } else if (e.key === 'Enter' && active >= 0) {
+        e.preventDefault(); choose(active);
+      } else if (e.key === 'Escape') {
+        hide(); input.blur();
+      }
+    });
+    clear.addEventListener('click', clearSearch);
+    mapSearch = {
+      input, find, choose, clear: clearSearch,
+      get results() { return results; },
+      get marker() { return searchMarker; },
+    };
+    return mapSearch;
+  }
+
   // ---------- hover tip (lightweight; details live in the drawer) ----------
   let hoverTip = null;
   function tipEl() {
@@ -180,6 +338,7 @@
     const detail = (b.bldg && b.bldg !== name) ? b.bldg : (b.name && b.name !== name ? b.name : '');
     const stats = (b.yield == null ? '无回报率' : b.yield.toFixed(2) + '%')
       + ' · 售' + (b.sale_n || 0) + '/租' + (b.rent_n || 0) + ' 宗'
+      + ' · 5年≤HK$5M ' + (b.sale_le_5m_pct == null ? '—' : b.sale_le_5m_pct.toFixed(0) + '%')
       + ' · 学校 ' + (b.schools_1km || 0) + ' 所' + (tag ? ' · ' + tag : '');
     t.innerHTML = '<b>' + esc(name) + '</b><span>' + esc(stats) + '</span>'
       + (detail ? '<small>' + esc(detail) + '</small>' : '')
@@ -268,13 +427,16 @@
         ? (b.yield_basis === 'building' ? '按栋配对'
            : b.yield_basis === 'none' ? '无单栋配对'
            : b.yield_basis === 'estate' ? '屋苑级配对'
+           : b.yield_basis === 'address' ? '地址内配对'
            : '楼宇组内配对')
         : '低样本',
       b.age_mixed ? '混合楼龄' : '',
       b.layer === 'estate' ? '屋苑级（源数据无楼宇组 ID）' : '',
+      b.point_type === 'address' ? '地址级聚合' : '',
       b.geo === 'synthetic' ? '合成组（源数据无楼宇组 ID）' : '',
       b.geo === 'estate' ? '坐标为屋苑中心近似' : '',
       b.geo === 'synthetic' ? '合成组坐标按屋苑中心近似' : '',
+      b.geo === 'address' ? '坐标来自中原楼宇地址定位' : '',
     ].filter(Boolean).map((t) => '<span class="dr-chip">' + esc(t) + '</span>').join('');
     const y = b.yield;
     const ageMixed = !!(b.age_mixed && b.op_year_min != null && b.op_year_max != null);
@@ -288,6 +450,8 @@
       : '<div class="v">约 ' + intFmt(b.age_years) + ' 年</div>' + ageSub) + '</div>';
     const basisNote = b.geo === 'synthetic'
       ? '月租 × 12 ÷ 售价 · 近 12 个月 · 合成组内配对（源数据无楼宇组 ID）'
+      : b.yield_basis === 'address'
+      ? '月租 × 12 ÷ 售价 · 近 12 个月 · 同一地址内配对'
       : b.yield_basis === 'building'
       ? '月租 × 12 ÷ 售价 · 近 12 个月 · 按栋中位（' + (b.yield_bldg_n || 0) + ' 栋可配对）'
       : b.yield_basis === 'none'
@@ -302,7 +466,8 @@
       '<div class="dr-stat"><div class="k">售价中位（呎价）</div><div class="v">' + hkdPsf(b.sale_psf) + '</div><div class="n">' + (b.sale_n || 0) + ' 宗成交 · 近 12 个月</div></div>' +
       '<div class="dr-stat"><div class="k">售价区间 P25–P75</div><div class="v small2">' + psfRange(b.sale_psf_p25, b.sale_psf_p75) + '</div></div>' +
       '<div class="dr-stat"><div class="k">售价中位（整单）</div><div class="v">' + hkd(b.sale_price_median) + '</div></div>' +
-      '<div class="dr-stat"><div class="k">面积中位</div><div class="v">' + (b.area_median == null ? '—' : intFmt(b.area_median) + ' 呎') + '</div></div>';
+      '<div class="dr-stat"><div class="k">面积中位</div><div class="v">' + (b.area_median == null ? '—' : intFmt(b.area_median) + ' 呎') + '</div></div>' +
+      '<div class="dr-stat"><div class="k">近 5 年 ≤HK$5M 成交占比</div><div class="v">' + (b.sale_le_5m_pct == null ? '—' : b.sale_le_5m_pct.toFixed(1) + '%') + '</div><div class="n">' + (b.sale_le_5m_n == null ? '无有价成交' : intFmt(b.sale_le_5m_n) + ' / ' + intFmt(b.sale_5y_n) + ' 宗') + '</div></div>';
     const rentStats =
       '<div class="dr-stat"><div class="k">租金中位（呎租）</div><div class="v">' + rentPsf(b.rent_psf) + '</div><div class="n">' + (b.rent_n || 0) + ' 宗租赁 · 近 12 个月</div></div>' +
       '<div class="dr-stat"><div class="k">租金区间 P25–P75</div><div class="v small2">' + rentPsfRange(b.rent_psf_p25, b.rent_psf_p75) + '</div></div>' +
@@ -943,22 +1108,27 @@
     for (const b of data.buildings) {
       if (b.yield == null) continue;
       total++;
-      if (b.yield > minYield && passesAge(b) && passesSchools(b)) shown++;
+      if (b.yield > minYield && passesFilters(b)) shown++;
     }
     if (overlays.estateFallback) {
       for (const e of data.estates || []) {
         if (!e.fallback || e.yield == null) continue;
         et++;
-        if (e.yield > minYield && passesAge(e) && passesSchools(e)) es++;
+        if (e.yield > minYield && passesFilters(e)) es++;
       }
     }
     el.textContent = '匹配 ' + shown + ' / ' + total + ' 栋有回报率' +
       (et ? ' · 屋苑级 ' + es + ' / ' + et : '') +
-      (minSchools > 0 ? ' · 学校 ≥' + minSchools + ' 所' : '');
+      (minSchools > 0 ? ' · 学校 ≥' + minSchools + ' 所' : '') +
+      (minBudgetShare > 0 ? ' · ≤HK$5M成交 ≥' + minBudgetShare + '%' : '');
   }
 
   function passesAge(b) { return maxAge == null || (b.age_years != null && b.age_years <= maxAge); }
   function passesSchools(b) { return minSchools <= 0 || ((b.schools_1km || 0) >= minSchools); }
+  function passesBudgetShare(b) {
+    return minBudgetShare <= 0 || (b.sale_le_5m_pct != null && b.sale_le_5m_pct >= minBudgetShare);
+  }
+  function passesFilters(b) { return passesAge(b) && passesSchools(b) && passesBudgetShare(b); }
 
   function applyAgeFilter(v) {
     const n = Math.round(isFinite(v) ? v : 70);
@@ -977,6 +1147,16 @@
     if (out) out.textContent = minSchools <= 0 ? '不限' : '≥ ' + minSchools + ' 所';
     const input = document.getElementById('lgSchool');
     if (input && Math.round(parseFloat(input.value)) !== minSchools) input.value = String(minSchools);
+    updateFilterCount();
+    rebuildAll();
+  }
+
+  function applyBudgetShareFilter(v) {
+    minBudgetShare = Math.max(0, Math.min(100, Math.round(isFinite(v) ? v : 0)));
+    const out = document.getElementById('lgBudgetVal');
+    if (out) out.textContent = minBudgetShare <= 0 ? '不限' : '≥ ' + minBudgetShare + '%';
+    const input = document.getElementById('lgBudgetShare');
+    if (input && Math.round(parseFloat(input.value)) !== minBudgetShare) input.value = String(minBudgetShare);
     updateFilterCount();
     rebuildAll();
   }
@@ -1071,7 +1251,7 @@
     if (overlays.heat) {
       const pts = [];
       for (const b of data.buildings) {
-        if (b.yield == null || b.yield <= minYield || !passesAge(b) || !passesSchools(b)) continue;
+        if (b.yield == null || b.yield <= minYield || !passesFilters(b)) continue;
         const ll = disp(b.lon, b.lat);
         pts.push([ll[0], ll[1], Math.max(0.2, Math.min(1.6, b.yield / 3))]);
       }
@@ -1090,15 +1270,16 @@
       const footIds = (overlays.footprints && footData && map.getZoom() >= FOOTPRINT_MIN_ZOOM)
         ? new Set((footData.features || []).filter((f) => f.properties.match !== 'near' && f.properties.match !== 'osm').map((f) => f.properties.id)) : null;
       for (const b of data.buildings) {
-        if (b.yield == null) { if (!showNoYield || !passesAge(b) || !passesSchools(b)) continue; }
-        else if (b.yield <= minYield || !passesAge(b) || !passesSchools(b)) continue;
+        if (b.yield == null) { if (!showNoYield || !passesFilters(b)) continue; }
+        else if (b.yield <= minYield || !passesFilters(b)) continue;
         if (footIds && footIds.has(b.id)) continue;   // matched group is drawn as outline
         const ll = disp(b.lon, b.lat);
         const mk = L.circleMarker(ll, {
           radius: bubbleRadius(b), color: '#26364a', weight: 1,
-          fillColor: yieldColor(b.yield), fillOpacity: 0.92, className: 'hk-dot',
+          fillColor: yieldColor(b.yield), fillOpacity: 0.92,
+          className: 'hk-dot' + (b.point_type === 'address' ? ' hk-address-dot' : ''),
         });
-        mk.on('mouseover', (e) => { mk.setStyle({ weight: 2.5, color: '#0f172a' }); mk.bringToFront(); showTip(e, b, b.geo === 'synthetic' ? '合成组' : ''); });
+        mk.on('mouseover', (e) => { mk.setStyle({ weight: 2.5, color: '#0f172a' }); mk.bringToFront(); showTip(e, b, b.geo === 'address' ? '地址聚合' : b.geo === 'synthetic' ? '合成组' : ''); });
         mk.on('mousemove', (e) => moveTip(e));
         mk.on('mouseout', () => { mk.setStyle({ weight: 1, color: '#26364a' }); hideTip(); });
         mk.on('click', () => openDrawer(b));
@@ -1106,8 +1287,8 @@
       }
       for (const e of data.estates || []) {
         if (!overlays.estateFallback || !e.fallback) continue;
-        if (e.yield == null) { if (!showNoYield || !passesAge(e) || !passesSchools(e)) continue; }
-        else if (e.yield <= minYield || !passesAge(e) || !passesSchools(e)) continue;
+        if (e.yield == null) { if (!showNoYield || !passesFilters(e)) continue; }
+        else if (e.yield <= minYield || !passesFilters(e)) continue;
         const ll = disp(e.lon, e.lat);
         const total = (e.sale_n || 0) + (e.rent_n || 0);
         const sz = Math.max(8, Math.min(15, 8 + Math.sqrt(total) * 0.4));
@@ -1150,8 +1331,8 @@
         filter: (f) => {
           const b = byId[f.properties.id];
           if (!b) return false;
-          if (b.yield == null) return showNoYield && passesAge(b) && passesSchools(b);
-          return b.yield > minYield && passesAge(b) && passesSchools(b);
+          if (b.yield == null) return showNoYield && passesFilters(b);
+          return b.yield > minYield && passesFilters(b);
         },
         style: (f) => {
           const b = byId[f.properties.id] || {};
@@ -1183,7 +1364,7 @@
     if (!overlays.labels || map.getZoom() < 15) return;
     const group = L.layerGroup();
     for (const b of data.buildings) {
-      if (b.yield == null || b.yield <= minYield || !passesAge(b) || !passesSchools(b)) continue;
+      if (b.yield == null || b.yield <= minYield || !passesFilters(b)) continue;
       const ll = disp(b.lon, b.lat);
       const icon = L.divIcon({ className: 'map-label-wrap', html: '<span class="map-label">' + esc(shortLabel(b)) + '</span>', iconSize: [0, 0], iconAnchor: [0, 0] });
       group.addLayer(L.marker(ll, { icon, interactive: false, keyboard: false }));
@@ -1220,7 +1401,7 @@
           const d = Math.round(bubbleRadius({ sale_n: n, rent_n: 0 }) * 2);
           return '<span><i style="width:' + d + 'px;height:' + d + 'px"></i>' + n + (n === 150 ? '+' : '') + '</span>';
         }).join('') + '</div></div>' +
-      '<div class="mp-note">数据窗口 ' + esc(data.window || '') + '<br>轮廓开启时：name/pip 组用官方轮廓；near 低置信组保留气泡 + 橙色虚线；未匹配组保留气泡<br>紫色菱形 = 源数据无楼宇组 ID 的屋苑级回退点<br>蓝色小点 = 学校/大学（z≥11；大学校园同时显示轮廓）<br>轮廓来源：© 地政總署 / DATA.GOV.HK · CSDI Building</div>';
+      '<div class="mp-note">数据窗口 ' + esc(data.window || '') + '<br>轮廓开启时：name/pip 组用官方轮廓；near 低置信组保留气泡 + 橙色虚线；未匹配组保留气泡<br>虚线描边圆点 = 父楼宇组无坐标时补建的地址级楼宇点<br>紫色菱形 = 源数据无楼宇组 ID 的屋苑级回退点<br>蓝色小点 = 学校/大学（z≥11；大学校园同时显示轮廓）<br>轮廓来源：© 地政總署 / DATA.GOV.HK · CSDI Building</div>';
     L.DomEvent.disableClickPropagation(ctrl);
     L.DomEvent.disableScrollPropagation(ctrl);
     map.getContainer().appendChild(ctrl);
@@ -1233,8 +1414,10 @@
       '<div class="lg-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6+</span></div>' +
       '<div class="lg-filter"><div class="lg-filter-head"><span>最低回报率筛选（>）</span><output id="lgFilterVal">> 3.0%</output></div>' +
       '<input type="range" id="lgFilter" min="0" max="6" step="0.1" value="3" aria-label="最低年化毛回报率筛选（低于或等于阈值的楼盘在地图上隐藏，最高 6%）">' +
-      '<div class="lg-filter-head lg-gap"><span>最高楼龄</span><output id="lgAgeVal">≤ 30 年</output></div>' +
-      '<input type="range" id="lgAge" class="lg-age" min="0" max="70" step="1" value="30" aria-label="最高楼龄筛选（高于阈值的楼栋在地图上隐藏）" title="无入伙年份记录的楼栋在楼龄筛选时一并隐藏">' +
+      '<div class="lg-filter-head lg-gap"><span>最高楼龄</span><output id="lgAgeVal">≤ 20 年</output></div>' +
+      '<input type="range" id="lgAge" class="lg-age" min="0" max="70" step="1" value="20" aria-label="最高楼龄筛选（高于阈值的楼栋在地图上隐藏）" title="无入伙年份记录的楼栋在楼龄筛选时一并隐藏">' +
+      '<div class="lg-filter-head lg-gap" title="过去5年有成交价记录的成交宗数中，成交价≤HK$5,000,000的宗数占比"><span>近5年 ≤HK$5M成交占比</span><output id="lgBudgetVal">≥ 30%</output></div>' +
+      '<input type="range" id="lgBudgetShare" class="lg-budget" min="0" max="100" step="1" value="30" aria-label="过去5年HK$5M或以下成交宗数占比下限（无近5年有价成交的楼栋在启用筛选时隐藏）" title="0 = 不限；成交金额按港币计价。无近5年有价成交记录的楼栋在启用筛选时隐藏">' +
       '<div class="lg-filter-head lg-gap"><span>1 公里内学校</span><output id="lgSchoolVal">不限</output></div>' +
       '<input type="range" id="lgSchool" class="lg-school" min="0" max="120" step="1" value="0" aria-label="1 公里内学校数下限（含边界触达）">' +
       '<div class="lg-count" id="lgCount"></div>' +
@@ -1252,6 +1435,11 @@
       if (ageRaf) cancelAnimationFrame(ageRaf);
       ageRaf = requestAnimationFrame(() => applyAgeFilter(v));
     });
+    legend.querySelector('#lgBudgetShare').addEventListener('input', (e) => {
+      const v = parseInt(e.target.value, 10) || 0;
+      if (budgetRaf) cancelAnimationFrame(budgetRaf);
+      budgetRaf = requestAnimationFrame(() => applyBudgetShareFilter(v));
+    });
     legend.querySelector('#lgSchool').addEventListener('input', (e) => {
       const v = parseInt(e.target.value, 10) || 0;
       if (schoolRaf) cancelAnimationFrame(schoolRaf);
@@ -1260,6 +1448,8 @@
     legend.querySelector('#lgNoYield').addEventListener('change', (e) => setShowNoYield(e.target.checked));
     updateFilterCount();
   })();
+
+  setupSearch();
 
   document.addEventListener('change', (e) => {
     const lname = e.target.dataset && e.target.dataset.layer;
@@ -1295,11 +1485,14 @@
     get bubbleLayer() { return bubbleLayer; },
     get drawer() { return drawer; },
     get currentBuilding() { return current; },
-    rebuildAll, openDrawer, closeDrawer, drawTrend, applyYieldFilter, applyAgeFilter, setShowNoYield,
+    get search() { return mapSearch; },
+    rebuildAll, openDrawer, closeDrawer, drawTrend, applyYieldFilter, applyAgeFilter,
+    applySchoolFilter, applyBudgetShareFilter, setShowNoYield,
     disp, get footLayer() { return footLayer; },
     get minYield() { return minYield; },
     get maxAge() { return maxAge; },
     get minSchools() { return minSchools; },
+    get minBudgetShare() { return minBudgetShare; },
     get showNoYield() { return showNoYield; },
     get side() { return drawer ? (drawer.querySelector('.dr-tab.active') || {}).dataset : null; },
   };

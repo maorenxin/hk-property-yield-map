@@ -16,6 +16,7 @@ import json
 import os
 import re
 import time
+import unicodedata
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -23,6 +24,9 @@ import numpy as np
 import pandas as pd
 import requests
 from pyproj import Transformer
+from shapely.geometry import Point, shape
+from shapely.ops import transform as shp_transform
+from zhconv import convert
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAPSHOT = os.getenv("HK_SNAPSHOT", date.today().isoformat())
@@ -37,9 +41,12 @@ AUTO_CACHE = DERIVED / "coordinate_harvest_cache.json"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
       "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36")
 H1980 = Transformer.from_crs(2326, 4326, always_xy=True)
+H4326 = Transformer.from_crs(4326, 2326, always_xy=True)
 
 WINDOW_START = pd.Timestamp(SNAPSHOT) - pd.Timedelta(days=365)
 MIN_N = 1          # minimum transactions per side to publish a yield (user requested 1/1)
+SALE_BUDGET_YEARS = 5
+SALE_BUDGET_MAX_HKD = 5_000_000
 
 
 def load_grid_coords() -> dict:
@@ -154,6 +161,386 @@ def merge_school_access(df: pd.DataFrame, level: str, keys: list[str]) -> pd.Dat
     return out
 
 
+def sale_budget_share(df: pd.DataFrame, keys: list[str], as_of: str | date,
+                      years: int = SALE_BUDGET_YEARS,
+                      max_price_hkd: int = SALE_BUDGET_MAX_HKD) -> pd.DataFrame:
+    """Share of past-N-year sale transactions priced at or below a budget.
+
+    The denominator is completed sale transactions with a usable price, not
+    total dollar volume. This matches the map filter's plain-language meaning:
+    "what share of transactions in this building were at or below HK$5m?".
+    """
+    end = pd.Timestamp(as_of)
+    start = end - pd.DateOffset(years=years)
+    sub = df[
+        df.listing_type.eq("sale")
+        & df.analysis_date.notna()
+        & df.price_hkd.notna()
+        & df.price_hkd.gt(0)
+        & df.analysis_date.between(start, end, inclusive="both")
+    ].copy()
+    if "estate_name" in keys:
+        sub = sub[sub.estate_name.notna() & sub.estate_name.astype(str).str.strip().ne("")]
+    if sub.empty:
+        return pd.DataFrame(columns=keys + ["sale_5y_n", "sale_le_5m_n", "sale_le_5m_pct"])
+    sub["_at_or_below_budget"] = sub.price_hkd <= max_price_hkd
+    out = (sub.groupby(keys, dropna=False)
+           .agg(sale_5y_n=("_at_or_below_budget", "size"),
+                sale_le_5m_n=("_at_or_below_budget", "sum"))
+           .reset_index())
+    out["sale_5y_n"] = out["sale_5y_n"].astype(int)
+    out["sale_le_5m_n"] = out["sale_le_5m_n"].astype(int)
+    out["sale_le_5m_pct"] = out["sale_le_5m_n"] / out["sale_5y_n"] * 100
+    return out
+
+
+def compact_search_text(text) -> str:
+    """Case-, spacing- and punctuation-insensitive text used by map search."""
+    value = unicodedata.normalize("NFKC", str(text or "")).casefold()
+    return "".join(ch for ch in value if ch.isalnum())
+
+
+def address_matches(candidate, resolved) -> bool:
+    """Accept exact addresses and provincial number ranges for the same street."""
+    def prep(value):
+        text = unicodedata.normalize("NFKC", convert(str(value or ""), "zh-hans"))
+        text = text.casefold().replace("及", "&").replace("至", "-").replace("到", "-")
+        return re.sub(r"[^0-9a-z\u4e00-\u9fff&-]", "", text)
+
+    left, right = prep(candidate), prep(resolved)
+    if not left or not right:
+        return False
+    if left == right:
+        return True
+    left_nums = [int(x) for x in re.findall(r"\d+", left)]
+    right_nums = [int(x) for x in re.findall(r"\d+", right)]
+    left_street = re.sub(r"[0-9a-z&-]", "", left).replace("號", "").replace("号", "")
+    right_street = re.sub(r"[0-9a-z&-]", "", right).replace("號", "").replace("号", "")
+    if not left_nums or not right_nums or not left_street or not right_street:
+        return False
+    from difflib import SequenceMatcher
+    if SequenceMatcher(None, left_street, right_street).ratio() < 0.9:
+        return False
+    lo, hi = min(right_nums), max(right_nums)
+    return all(lo <= n <= hi for n in left_nums)
+
+
+def search_blob(*parts) -> str:
+    """Build a compact key containing original, Simplified and Traditional forms."""
+    seen: set[str] = set()
+    variants: list[str] = []
+    for part in parts:
+        if part is None:
+            continue
+        try:
+            if pd.isna(part):
+                continue
+        except (TypeError, ValueError):
+            pass
+        text = str(part).strip()
+        if not text:
+            continue
+        for form in (text, convert(text, "zh-hans"), convert(text, "zh-hant")):
+            key = compact_search_text(form)
+            if key and key not in seen:
+                seen.add(key)
+                variants.append(key)
+    return "|".join(variants)
+
+
+def _top_alias_values(df: pd.DataFrame, keys: list[str], column: str,
+                      output: str, limit: int) -> pd.DataFrame:
+    required = keys + [column]
+    sub = df[required].dropna(subset=required).copy()
+    sub[column] = sub[column].astype(str).str.strip()
+    sub = sub[sub[column].ne("")]
+    if sub.empty:
+        return pd.DataFrame(columns=keys + [output])
+    counts = (sub.value_counts()
+              .rename("_alias_count").reset_index()
+              .sort_values(keys + ["_alias_count"],
+                           ascending=[True] * len(keys) + [False]))
+    counts = counts.groupby(keys, dropna=False).head(limit)
+    return (counts.groupby(keys, dropna=False)[column]
+            .agg(" | ".join).rename(output).reset_index())
+
+
+def search_aliases(df: pd.DataFrame, keys: list[str], limit: int = 80) -> pd.DataFrame:
+    """Addresses and distinctive building names used only by the map search index."""
+    addresses = _top_alias_values(df, keys, "address_raw", "address_aliases", limit)
+    names_df = df
+    if "building_name" in df.columns:
+        names_df = df[~df["building_name"].fillna("").astype(str).str.strip()
+                      .str.fullmatch(r"(?:\d+|[A-Za-z])\s*(?:座|樓|楼|室)", case=False)]
+    names = _top_alias_values(names_df, keys, "building_name", "name_aliases", limit)
+    out = addresses.merge(names, on=keys, how="outer")
+    if out.empty:
+        out["address_preview"] = pd.Series(dtype="object")
+        return out
+    out["address_preview"] = out["address_aliases"].fillna("").map(
+        lambda text: " · ".join([x for x in str(text).split(" | ") if x][:3]))
+    return out
+
+
+def orphan_address_candidates(full: pd.DataFrame, window: pd.DataFrame,
+                              bm: pd.DataFrame, em: pd.DataFrame | None = None) -> pd.DataFrame:
+    """Recent building addresses that cannot be represented by a mapped group."""
+    mapped = bm[bm.lon.notna() & bm.lat.notna()][["hma_id", "bldg_grp_id"]].copy()
+    mapped["hma_id"] = mapped.hma_id.astype(str)
+    mapped["bldg_grp_id"] = mapped.bldg_grp_id.astype(str)
+    mapped_rows = full.merge(mapped, on=["hma_id", "bldg_grp_id"], how="inner")
+    mapped_addr_keys = set(
+        mapped_rows.hma_id.fillna("").astype(str) + "|" +
+        mapped_rows.address_raw.fillna("").map(compact_search_text))
+    if em is not None and not em.empty and "estate_name" in full.columns:
+        fallback = em[
+            em.lon.notna() & em.lat.notna()
+            & em.has_building_group.fillna(False).eq(False)
+        ][["estate_name"]]
+        if not fallback.empty:
+            fallback_rows = full.merge(fallback, on="estate_name", how="inner")
+            mapped_addr_keys.update(
+                fallback_rows.hma_id.fillna("").astype(str) + "|" +
+                fallback_rows.address_raw.fillna("").map(compact_search_text))
+
+    orphan = bm[bm.lon.isna() | bm.lat.isna()][["hma_id", "bldg_grp_id"]].copy()
+    orphan["hma_id"] = orphan.hma_id.astype(str)
+    orphan["bldg_grp_id"] = orphan.bldg_grp_id.astype(str)
+    orphan_pairs = set(zip(orphan.hma_id, orphan.bldg_grp_id))
+    work = window.copy()
+    work = work[~work.building_name.fillna("").astype(str).str.contains("車位|车位", regex=True)]
+    work["addr_key"] = (
+        work.hma_id.fillna("").astype(str) + "|" +
+        work.address_raw.fillna("").map(compact_search_text))
+    in_orphan_group = [
+        (str(h), str(g)) in orphan_pairs
+        for h, g in zip(work.hma_id, work.bldg_grp_id)
+    ]
+    candidate = work[pd.Series(in_orphan_group, index=work.index) | work.bldg_grp_id.isna()].copy()
+    candidate = candidate[~candidate.addr_key.isin(mapped_addr_keys)]
+    candidate = candidate[candidate.address_raw.notna() & candidate.address_raw.astype(str).str.strip().ne("")]
+    if candidate.empty:
+        return pd.DataFrame(columns=["hma_id", "address_raw", "addr_key", "type_code",
+                                     "building_names", "district", "region"])
+
+    rows = []
+    for addr_key, group in candidate.groupby("addr_key"):
+        usable = group[group.type_code.fillna("").astype(str).str.match(r"^[12]-")]
+        if usable.empty:
+            continue
+        preferred = usable[usable.type_code.astype(str).str.startswith("2-")]
+        building = usable[usable.type_code.astype(str).str.startswith("1-")]
+        names = [str(x).strip() for x in group.building_name.dropna().astype(str).unique()
+                 if str(x).strip() and str(x).strip() not in {"車位", "车位"}]
+        code_2 = str(preferred.type_code.value_counts().index[0]) if not preferred.empty else ""
+        code_1 = str(building.type_code.value_counts().index[0]) if not building.empty else ""
+        rows.append({
+            "hma_id": str(group.hma_id.dropna().astype(str).mode().iloc[0]) if group.hma_id.notna().any() else "",
+            "address_raw": str(group.address_raw.dropna().astype(str).mode().iloc[0]),
+            "addr_key": addr_key,
+            "type_code": code_2 or code_1,
+            "fallback_type_code": code_1 if code_2 and code_1 else "",
+            "building_names": " | ".join(names),
+            "district": str(group.district.dropna().astype(str).mode().iloc[0]) if group.district.notna().any() else "",
+            "region": str(group.region_terr.dropna().astype(str).mode().iloc[0]) if group.region_terr.notna().any() else "",
+        })
+    return pd.DataFrame(rows).sort_values(["hma_id", "address_raw"]).reset_index(drop=True)
+
+
+def school_access_for_points(points: pd.DataFrame) -> pd.DataFrame:
+    """1-km school counts for extra address points using the same source rules."""
+    cols = ["schools_1km", "schools_kindergarten", "schools_primary",
+            "schools_secondary", "schools_special", "schools_university", "schools_college"]
+    out = points[["lon", "lat"]].copy()
+    for col in cols:
+        out[col] = 0
+    school_path = ROOT / "data/normalized/education/schools_2026-10-19.csv"
+    campus_path = DERIVED / "universities_campuses_2026-10-19.geojson"
+    if points.empty or not school_path.exists() or not campus_path.exists():
+        return out.drop(columns=["lon", "lat"])
+
+    schools = pd.read_csv(school_path)
+    bx, by = H4326.transform(points.lon.to_numpy(), points.lat.to_numpy())
+    for category, col in [
+        ("kindergarten", "schools_kindergarten"),
+        ("primary", "schools_primary"),
+        ("secondary", "schools_secondary"),
+        ("special", "schools_special"),
+        ("tertiary", "schools_college"),
+    ]:
+        part = schools[schools.category.eq(category)]
+        sx, sy = H4326.transform(part.lon.to_numpy(), part.lat.to_numpy())
+        dx = bx[:, None] - sx[None, :]
+        dy = by[:, None] - sy[None, :]
+        out[col] = (dx * dx + dy * dy <= 1000.0 ** 2).sum(axis=1)
+
+    campuses = json.loads(campus_path.read_text()).get("features", [])
+    geoms = []
+    for feature in campuses:
+        try:
+            geom = shape(feature["geometry"])
+            geoms.append(shp_transform(lambda x, y, z=None: H4326.transform(x, y), geom))
+        except Exception:
+            continue
+    for i, (x, y) in enumerate(zip(bx, by)):
+        point = Point(x, y)
+        out.at[out.index[i], "schools_university"] = sum(
+            1 for geom in geoms if geom.distance(point) <= 1000.0)
+    out["schools_1km"] = (
+        out.schools_kindergarten + out.schools_primary + out.schools_secondary
+        + out.schools_university + out.schools_college)
+    return out.drop(columns=["lon", "lat"])
+
+
+def build_orphan_points_and_details(full: pd.DataFrame, window: pd.DataFrame,
+                                    bm: pd.DataFrame, em: pd.DataFrame,
+                                    snapshot: str) -> tuple[pd.DataFrame, dict]:
+    """Create address-level points/details for buildings hidden by unmapped groups."""
+    candidates = orphan_address_candidates(full, window, bm, em)
+    cache_path = DERIVED / "orphan_coordinate_cache.json"
+    cache = json.loads(cache_path.read_text()) if cache_path.exists() else {}
+    candidates["orphan_id"] = candidates.apply(
+        lambda r: "ADDR:" + (str(r.hma_id) or "UNK") + ":" +
+                  hashlib.sha1(str(r.addr_key).encode("utf-8")).hexdigest()[:12], axis=1)
+    candidates["coord_status"] = candidates.addr_key.map(
+        lambda key: (cache.get(key) or {}).get("status"))
+    candidates["coord_match"] = candidates.apply(
+        lambda r: (cache.get(r.addr_key) or {}).get("status") == "ok" and
+                  address_matches(r.address_raw, (cache.get(r.addr_key) or {}).get("address")), axis=1)
+    candidates["lon"] = candidates.addr_key.map(
+        lambda key: (cache.get(key) or {}).get("lon"))
+    candidates["lat"] = candidates.addr_key.map(
+        lambda key: (cache.get(key) or {}).get("lat"))
+    candidates["coord_address"] = candidates.addr_key.map(
+        lambda key: (cache.get(key) or {}).get("address"))
+    usable = candidates[(candidates.coord_status == "ok") & candidates.coord_match.eq(True)].copy()
+    unresolved = candidates.drop(usable.index)
+    unresolved.to_csv(DERIVED / "orphan_points_unresolved.csv", index=False)
+    if usable.empty:
+        empty = pd.DataFrame()
+        (DERIVED / "orphan_building_points_12m.csv").write_text("", encoding="utf-8")
+        (DERIVED / "orphan_details.json").write_text(
+            json.dumps({"months": [], "rule": "", "window": {}, "points": {}}, ensure_ascii=False),
+            encoding="utf-8")
+        print("orphan address points: 0 resolved")
+        return empty, json.loads((DERIVED / "orphan_details.json").read_text())
+
+    key_to_id = dict(zip(usable.addr_key, usable.orphan_id))
+    full_key = full.hma_id.fillna("").astype(str) + "|" + full.address_raw.fillna("").map(compact_search_text)
+    orphan_full = full[full_key.isin(set(key_to_id))].copy()
+    orphan_full = orphan_full[~orphan_full.building_name.fillna("").astype(str).str.contains("車位|车位", regex=True)]
+    orphan_full["orphan_id"] = full_key.loc[orphan_full.index].map(key_to_id)
+    orphan_win = orphan_full[orphan_full.analysis_date >= WINDOW_START].copy()
+
+    om = agg_metrics(orphan_win, ["orphan_id"])
+    points = usable.merge(om, on="orphan_id", how="left")
+
+    def first_nonempty(values) -> str | None:
+        for value in values:
+            if pd.notna(value) and str(value).strip():
+                return str(value)
+        return None
+
+    meta = (orphan_full.groupby("orphan_id")
+            .agg(hma=("hma", first_nonempty),
+                 bldg_grp_name=("bldg_grp_name", first_nonempty),
+                 parent_group_id=("bldg_grp_id", first_nonempty))
+            .reset_index())
+    # Rebuild the parent id with its HMA prefix for stable detail routing.
+    parent = (orphan_full.groupby("orphan_id")
+              .agg(hma_id=("hma_id", first_nonempty), parent_group=("bldg_grp_id", first_nonempty))
+              .reset_index())
+    parent["parent_group_id"] = [
+        f"{h}:{g}" if h and g else None
+        for h, g in zip(parent.hma_id, parent.parent_group)
+    ]
+    points = points.merge(meta.drop(columns=["parent_group_id"]), on="orphan_id", how="left")
+    points = points.merge(parent[["orphan_id", "parent_group_id"]], on="orphan_id", how="left")
+
+    oy = orphan_full.copy()
+    oy["op_year_num"] = pd.to_numeric(
+        oy.op_year.astype(str).str.extract(r"(\d{4})")[0], errors="coerce")
+    oy = oy[oy.op_year_num.between(1900, 2035)]
+    per_bldg = (oy.groupby(["orphan_id", "building_name", "address_raw"], dropna=False)
+                ["op_year_num"].median().round().reset_index())
+    age = (per_bldg.groupby("orphan_id")
+           .agg(op_year=("op_year_num", "median"),
+                op_year_min=("op_year_num", "min"),
+                op_year_max=("op_year_num", "max"),
+                age_buildings=("op_year_num", "size"))
+           .reset_index())
+    points = points.merge(age, on="orphan_id", how="left")
+    for col in ("op_year", "op_year_min", "op_year_max"):
+        points[col] = pd.to_numeric(points[col], errors="coerce").round().astype("Int64")
+    points["age_years"] = (pd.Timestamp(snapshot).year - points.op_year).clip(lower=0).astype("Int64")
+    points["age_mixed"] = (points.op_year_max - points.op_year_min) > 10
+    future_op = points.op_year.gt(pd.Timestamp(snapshot).year).fillna(False)
+    points.loc[future_op, ["op_year", "op_year_min", "op_year_max", "age_years"]] = pd.NA
+    points.loc[future_op, "age_mixed"] = False
+
+    budget = sale_budget_share(orphan_full, ["orphan_id"], snapshot)
+    aliases = search_aliases(orphan_full, ["orphan_id"])
+    points = points.merge(budget, on="orphan_id", how="left")
+    points = points.merge(aliases, on="orphan_id", how="left")
+    schools = school_access_for_points(points)
+    points = pd.concat([points.reset_index(drop=True), schools.reset_index(drop=True)], axis=1)
+
+    points["point_type"] = "address"
+    points["yield_basis"] = "address"
+    points["yield_map_pct"] = points.gross_yield_pct
+    points["yield_group_pct"] = points.gross_yield_pct
+    points["yield_bldg_n"] = points.building_names.fillna("").map(
+        lambda value: len([x for x in str(value).split(" | ") if x]))
+    points["geo"] = "address"
+    points["quality"] = points.quality.fillna("low_sample")
+    points["name"] = points.building_names.fillna("").map(
+        lambda value: " / ".join([x for x in str(value).split(" | ") if x][:2]) or "地址点")
+    points["bldg"] = points.apply(
+        lambda r: f"{r.building_names} · {r.address_raw}" if r.building_names else str(r.address_raw), axis=1)
+
+    points.to_csv(DERIVED / "orphan_building_points_12m.csv", index=False)
+    hist = history_preview(orphan_full, key="orphan_id", span_df=full)
+    deals = deals_preview(orphan_full, key="orphan_id", n=20)
+    image_map = {}
+    im = orphan_full[orphan_full.image_url.notna()].copy()
+    im["pri"] = im.image_type.map({"Image": 0, "VirtualTour": 1}).fillna(2)
+    im = im.sort_values(["orphan_id", "pri", "analysis_date"], ascending=[True, True, False])
+    for oid, part in im.groupby("orphan_id"):
+        seen, images = set(), []
+        for row in part.itertuples():
+            url = str(row.image_url)
+            if url in seen:
+                continue
+            seen.add(url)
+            images.append({"u": url, "t": row.image_type})
+            if len(images) >= 6:
+                break
+        image_map[oid] = images
+    details = {
+        "months": hist.get("months", []),
+        "rule": hist.get("rule", ""),
+        "window": hist.get("window", {}),
+        "points": {},
+    }
+    for oid in points.orphan_id:
+        rec = {}
+        if (hist.get("buildings") or {}).get(oid):
+            rec["h"] = hist["buildings"][oid]
+        raw = deals.get(oid) or {}
+        for side in ("sale", "rent"):
+            if raw.get(side):
+                rec[side] = raw[side]
+        if image_map.get(oid):
+            rec["img"] = image_map[oid]
+        if rec:
+            details["points"][oid] = rec
+    (DERIVED / "orphan_details.json").write_text(
+        json.dumps(details, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"orphan address points: {len(points)} resolved, {len(unresolved)} unresolved, "
+          f"{int(points.gross_yield_pct.notna().sum())} with yield")
+    return points, details
+
+
 def _rolling_window_bounds(months: pd.PeriodIndex):
     """Return inclusive day bounds for each trailing three-calendar-month window."""
     starts = np.asarray(
@@ -178,8 +565,8 @@ def _candidate_month_indices(month_values, pos: dict, lo: int, hi: int) -> list[
     return sorted(out)
 
 
-def deals_preview(df: pd.DataFrame, key: str = "bldg_grp_id") -> dict:
-    """Most recent 60 sale + 60 rent deals per group, with source links."""
+def deals_preview(df: pd.DataFrame, key: str = "bldg_grp_id", n: int = 60) -> dict:
+    """Most recent n sale + n rent deals per key, with source links."""
     out = {}
     sub = df[df[key].notna() & df.saleable_psf.notna()]
     if key == "estate_name":
@@ -188,7 +575,7 @@ def deals_preview(df: pd.DataFrame, key: str = "bldg_grp_id") -> dict:
         entry = {}
         for side in ("sale", "rent"):
             gs = (g[g.listing_type == side]
-                  .sort_values("analysis_date", ascending=False).head(60))
+                  .sort_values("analysis_date", ascending=False).head(n))
             entry[side] = [{
                 "d": str(x.transaction_date.date()) if pd.notna(x.transaction_date) else None,
                 "dd": str(getattr(x, "deal_date", None).date()) if pd.notna(getattr(x, "deal_date", None)) else None,
@@ -204,7 +591,8 @@ def deals_preview(df: pd.DataFrame, key: str = "bldg_grp_id") -> dict:
     return out
 
 
-def history_preview(df: pd.DataFrame, key: str = "bldg_grp_id") -> dict:
+def history_preview(df: pd.DataFrame, key: str = "bldg_grp_id",
+                    span_df: pd.DataFrame | None = None) -> dict:
     """Trailing-3-month rolling medians per group across the full corpus window.
 
     Month t covers deals in [t-2 months, t]; a side is published for a month only when
@@ -216,8 +604,9 @@ def history_preview(df: pd.DataFrame, key: str = "bldg_grp_id") -> dict:
         sub = sub[sub[key].astype(str).str.strip().ne("")]
     sub["analysis_date"] = pd.to_datetime(sub["analysis_date"])
     sub["_month"] = sub["analysis_date"].dt.to_period("M")
-    months = pd.period_range(sub["analysis_date"].min().to_period("M"),
-                             sub["analysis_date"].max().to_period("M"), freq="M")
+    span_dates = pd.to_datetime((span_df if span_df is not None else sub)["analysis_date"])
+    months = pd.period_range(span_dates.min().to_period("M"),
+                             span_dates.max().to_period("M"), freq="M")
     ids = sorted(sub[key].dropna().unique())
     n = len(months)
     data = {bid: {"s": [0] * n, "sn": [0] * n, "r": [0] * n, "rn": [0] * n} for bid in ids}
@@ -571,6 +960,9 @@ def main() -> int:
     as_of_year = pd.Timestamp(SNAPSHOT).year
     bm["age_years"] = (as_of_year - bm["op_year"]).astype("Int64")
     bm["age_mixed"] = (bm["op_year_max"] - bm["op_year_min"]) > 10
+    budget_b = sale_budget_share(full, ["hma_id", "bldg_grp_id"], SNAPSHOT)
+    bm = bm.merge(budget_b, on=["hma_id", "bldg_grp_id"], how="left")
+    search_b = search_aliases(full, ["hma_id", "bldg_grp_id"])
     n_age = int(bm.op_year.notna().sum())
     n_mixed = int(bm.age_mixed.fillna(False).sum())
     n_rvd = int((bm.age_rvd_buildings.fillna(0) > 0).sum())
@@ -618,6 +1010,9 @@ def main() -> int:
         e.groupby("estate_name")["district"].agg(lambda s: s.mode().iloc[0] if s.notna().any() else None))
     em["region"] = em.estate_name.map(
         e.groupby("estate_name")["region_terr"].agg(lambda s: s.mode().iloc[0] if s.notna().any() else None))
+    budget_e = sale_budget_share(full, ["estate_name"], SNAPSHOT)
+    em = em.merge(budget_e, on=["estate_name"], how="left")
+    search_e = search_aliases(full, ["estate_name"])
     # Estate-level age fallback, including null-group new estates: median across
     # distinct buildings (one vote per building), then across buildings in the estate.
     oy_estate = full[full.estate_name.notna()].copy()
@@ -692,12 +1087,14 @@ def main() -> int:
             n_fb += 1
     print(f"estate-centre fallback coords added: {n_fb}")
     bm = merge_school_access(bm, "building", ["hma_id", "bldg_grp_id"])
-    with_coords = bm[bm.lon.notna()]
+    with_coords = bm.merge(search_b, on=["hma_id", "bldg_grp_id"], how="left")
+    with_coords = with_coords[with_coords.lon.notna()]
     with_grid = bm[bm.geo.eq("grid")]
     print(f"building groups with coords: {len(with_coords)} (grid {len(with_grid)}, estate {n_fb}), "
           f"with yield: {bm.yield_map_pct.notna().sum()}, "
           f"yielded+coords: {bm[bm.lon.notna() & bm.yield_map_pct.notna()].shape[0]}")
     bm.to_csv(DERIVED / "building_metrics_12m.csv", index=False)
+    orphan_points, orphan_details = build_orphan_points_and_details(full, win, bm, em, SNAPSHOT)
 
     # ---- images per building group (latest deals; prefer 实景 > VR) ----
     im = full[full.bldg_grp_id.notna() & full.image_url.notna()].copy()
@@ -765,6 +1162,7 @@ def main() -> int:
                          for v in hist["buildings"].values()]
     print(f"history: {hist['window']['months']} months, {len(hist['buildings'])} buildings, "
           f"{sum(1 for k in hist_yield_months if k >= 3)} with >=3 yield months")
+    em_map = em.merge(search_e, on=["estate_name"], how="left")
     feats = []
     for row in with_coords.itertuples():
         feats.append({
@@ -774,6 +1172,10 @@ def main() -> int:
                 "id": f"{row.hma_id}:{row.bldg_grp_id}",
                 "name": (row.estate_name or row.grid_name or row.bldg_grp_name or ""),
                 "bldg": row.bldg_grp_name or row.grid_name,
+                "addresses": getattr(row, "address_preview", None),
+                "search": search_blob(row.estate_name, row.bldg_grp_name, row.grid_name,
+                                      row.hma, row.district, row.region,
+                                      getattr(row, "address_aliases", None), getattr(row, "name_aliases", None)),
                 "district": row.district, "hma": row.hma, "region": row.region,
                 "sale_psf": None if pd.isna(row.sale_psf) else round(float(row.sale_psf)),
                 "rent_psf": None if pd.isna(row.rent_psf) else round(float(row.rent_psf), 2),
@@ -798,6 +1200,9 @@ def main() -> int:
                 "age_rvd_buildings": None if pd.isna(getattr(row, "age_rvd_buildings", None)) else int(row.age_rvd_buildings),
                 "op_year_max": None if pd.isna(getattr(row, "op_year_max", None)) else int(row.op_year_max),
                 "age_mixed": bool(getattr(row, "age_mixed", False)) if pd.notna(getattr(row, "age_mixed", None)) else False,
+                "sale_5y_n": None if pd.isna(getattr(row, "sale_5y_n", None)) else int(row.sale_5y_n),
+                "sale_le_5m_n": None if pd.isna(getattr(row, "sale_le_5m_n", None)) else int(row.sale_le_5m_n),
+                "sale_le_5m_pct": None if pd.isna(getattr(row, "sale_le_5m_pct", None)) else round(float(row.sale_le_5m_pct), 3),
                 "schools_1km": int(getattr(row, "schools_1km", 0) or 0),
                 "schools_kindergarten": int(getattr(row, "schools_kindergarten", 0) or 0),
                 "schools_primary": int(getattr(row, "schools_primary", 0) or 0),
@@ -808,7 +1213,7 @@ def main() -> int:
             },
             "geometry": {"type": "Point", "coordinates": [row.lon, row.lat]},
         })
-    for row in em.itertuples():
+    for row in em_map.itertuples():
         if pd.isna(row.lon):
             continue
         feats.append({
@@ -817,6 +1222,9 @@ def main() -> int:
                 "layer": "estate", "id": row.type_code or row.estate_name,
                 "name": row.estate_name, "district": row.district, "region": row.region,
                 "bldg": str(row.estate_name) + " · 屋苑级",
+                "addresses": getattr(row, "address_preview", None),
+                "search": search_blob(row.estate_name, row.district, row.region,
+                                      getattr(row, "address_aliases", None), getattr(row, "name_aliases", None)),
                 "yield_basis": "estate", "geo": "estate",
                 "sale_psf": None if pd.isna(row.sale_psf) else round(float(row.sale_psf)),
                 "rent_psf": None if pd.isna(row.rent_psf) else round(float(row.rent_psf), 2),
@@ -830,6 +1238,9 @@ def main() -> int:
                 "op_year_min": None if pd.isna(getattr(row, "op_year_min", None)) else int(row.op_year_min),
                 "op_year_max": None if pd.isna(getattr(row, "op_year_max", None)) else int(row.op_year_max),
                 "age_mixed": bool(getattr(row, "age_mixed", False)) if pd.notna(getattr(row, "age_mixed", None)) else False,
+                "sale_5y_n": None if pd.isna(getattr(row, "sale_5y_n", None)) else int(row.sale_5y_n),
+                "sale_le_5m_n": None if pd.isna(getattr(row, "sale_le_5m_n", None)) else int(row.sale_le_5m_n),
+                "sale_le_5m_pct": None if pd.isna(getattr(row, "sale_le_5m_pct", None)) else round(float(row.sale_le_5m_pct), 3),
                 "has_building_group": bool(getattr(row, "has_building_group", False)),
                 "schools_1km": int(getattr(row, "schools_1km", 0) or 0),
                 "schools_kindergarten": int(getattr(row, "schools_kindergarten", 0) or 0),
@@ -838,6 +1249,51 @@ def main() -> int:
                 "schools_university": int(getattr(row, "schools_university", 0) or 0),
                 "schools_college": int(getattr(row, "schools_college", 0) or 0),
                 "quality": row.quality,
+            },
+            "geometry": {"type": "Point", "coordinates": [row.lon, row.lat]},
+        })
+    for row in orphan_points.itertuples():
+        if pd.isna(row.lon) or pd.isna(row.lat):
+            continue
+        feats.append({
+            "type": "Feature",
+            "properties": {
+                "layer": "building", "point_type": "address", "id": row.orphan_id,
+                "name": row.name, "bldg": row.bldg, "addresses": row.address_raw,
+                "search": search_blob(row.name, row.bldg, row.hma, row.district, row.region,
+                                      getattr(row, "address_aliases", None), getattr(row, "name_aliases", None)),
+                "district": row.district, "hma": row.hma, "region": row.region,
+                "parent_group_id": getattr(row, "parent_group_id", None),
+                "sale_psf": None if pd.isna(row.sale_psf) else round(float(row.sale_psf)),
+                "rent_psf": None if pd.isna(row.rent_psf) else round(float(row.rent_psf), 2),
+                "sale_psf_p25": None if pd.isna(row.sale_psf_p25) else round(float(row.sale_psf_p25)),
+                "sale_psf_p75": None if pd.isna(row.sale_psf_p75) else round(float(row.sale_psf_p75)),
+                "rent_psf_p25": None if pd.isna(row.rent_psf_p25) else round(float(row.rent_psf_p25), 2),
+                "rent_psf_p75": None if pd.isna(row.rent_psf_p75) else round(float(row.rent_psf_p75), 2),
+                "yield": None if pd.isna(row.yield_map_pct) else round(float(row.yield_map_pct), 3),
+                "yield_basis": "address",
+                "yield_bldg_n": int(row.yield_bldg_n) if pd.notna(row.yield_bldg_n) else None,
+                "yield_group_pct": None if pd.isna(row.gross_yield_pct) else round(float(row.gross_yield_pct), 3),
+                "sale_n": int(row.sale_n) if pd.notna(row.sale_n) else 0,
+                "rent_n": int(row.rent_n) if pd.notna(row.rent_n) else 0,
+                "sale_price_median": None if pd.isna(row.sale_price_median) else int(row.sale_price_median),
+                "rent_monthly_median": None if pd.isna(row.rent_monthly_median) else int(row.rent_monthly_median),
+                "area_median": None if pd.isna(row.sale_area_median) else int(row.sale_area_median),
+                "quality": row.quality, "geo": "address",
+                "op_year": None if pd.isna(row.op_year) else int(row.op_year),
+                "age_years": None if pd.isna(row.age_years) else int(row.age_years),
+                "op_year_min": None if pd.isna(row.op_year_min) else int(row.op_year_min),
+                "op_year_max": None if pd.isna(row.op_year_max) else int(row.op_year_max),
+                "age_mixed": bool(row.age_mixed) if pd.notna(row.age_mixed) else False,
+                "sale_5y_n": None if pd.isna(row.sale_5y_n) else int(row.sale_5y_n),
+                "sale_le_5m_n": None if pd.isna(row.sale_le_5m_n) else int(row.sale_le_5m_n),
+                "sale_le_5m_pct": None if pd.isna(row.sale_le_5m_pct) else round(float(row.sale_le_5m_pct), 3),
+                "schools_1km": int(getattr(row, "schools_1km", 0) or 0),
+                "schools_kindergarten": int(getattr(row, "schools_kindergarten", 0) or 0),
+                "schools_primary": int(getattr(row, "schools_primary", 0) or 0),
+                "schools_secondary": int(getattr(row, "schools_secondary", 0) or 0),
+                "schools_university": int(getattr(row, "schools_university", 0) or 0),
+                "schools_college": int(getattr(row, "schools_college", 0) or 0),
             },
             "geometry": {"type": "Point", "coordinates": [row.lon, row.lat]},
         })
@@ -857,8 +1313,15 @@ def main() -> int:
         "records_full": len(full), "records_12m": len(win), "sale_cross_source_dropped": n_sale_drop,
         "building_points": int(len(with_coords)),
         "building_with_yield": int(bm.gross_yield_pct.notna().sum()),
+        "orphan_address_points": int(len(orphan_points)),
+        "orphan_address_with_yield": int(orphan_points.gross_yield_pct.notna().sum()) if len(orphan_points) else 0,
         "estate_points": int(em.lon.notna().sum()),
         "estate_with_yield": int(em.gross_yield_pct.notna().sum()),
+        "sale_budget_rule": {
+            "years": SALE_BUDGET_YEARS,
+            "max_price_hkd": SALE_BUDGET_MAX_HKD,
+            "basis": "count_share_of_priced_sale_transactions",
+        },
     }
     (DERIVED / "building_metrics_audit.json").write_text(
         json.dumps(audit, ensure_ascii=False, indent=1))
