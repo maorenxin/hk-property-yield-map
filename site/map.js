@@ -217,11 +217,35 @@
     if (cache[dist]) return Promise.resolve(cache[dist]);
     if (!detailPromises[dist]) {
       detailPromises[dist] = new Promise((resolve, reject) => {
-        const s = document.createElement('script');
-        s.src = 'building_details/' + encodeDistrict(dist) + '.js' + (data.build ? '?v=' + data.build : '');
-        s.onload = () => resolve(cache[dist] || { months: [], buildings: {} });
-        s.onerror = () => reject(new Error('building_details/' + dist + ' 加载失败'));
-        document.head.appendChild(s);
+        const baseSrc = 'building_details/' + encodeDistrict(dist) + '.js';
+        let attempt = 0;
+        const load = () => {
+          const s = document.createElement('script');
+          s.src = baseSrc + (data.build ? '?v=' + data.build : '') +
+            (attempt ? '&retry=' + attempt : '');
+          s.onload = () => {
+            if (cache[dist]) {
+              resolve(cache[dist]);
+              return;
+            }
+            retryOrReject();
+          };
+          s.onerror = () => {
+            s.remove();
+            retryOrReject();
+          };
+          const retryOrReject = () => {
+            s.remove();
+            if (attempt < 2) {
+              attempt += 1;
+              setTimeout(load, 500 * attempt);
+              return;
+            }
+            reject(new Error('building_details/' + dist + ' 加载失败'));
+          };
+          document.head.appendChild(s);
+        };
+        load();
       });
     }
     return detailPromises[dist];
