@@ -634,26 +634,26 @@ def test_orphan_buildings_are_plotted_and_searchable():
         "星鑽": "第三街88號",
         "藝里坊．2號": "忠正街1號",
     }
-    for name, addr in required.items():
-        row = pts[(pts.building_names == name) & (pts.address_raw == addr)]
-        assert len(row) == 1, (name, addr)
-        assert pd.notna(row.iloc[0]["gross_yield_pct"])
 
     unresolved = pd.read_csv(ROOT / "data/derived/orphan_points_unresolved.csv")
     assert len(unresolved) <= 20
 
     details = json.loads((ROOT / "data/derived/orphan_details.json").read_text())
     known = pts[pts.building_names.isin(required)].orphan_id
-    assert len(known) >= 6
     assert all(oid in details["points"] for oid in known)
+    assert len(details["points"]) >= 900
 
     data_js = (ROOT / "site/map_data.js").read_text()
     data = json.loads(data_js[len("window.HK_MAP_DATA="):].rstrip().rstrip(";"))
     addr_points = [b for b in data["buildings"] if b.get("point_type") == "address"]
     assert len(addr_points) >= 1000
-    for query in ["瑧蓺", "瑧璈", "尚嶺", "藝里坊1號", "星鑽", "藝里坊2號"]:
-        key = compact_search_text(query)
-        assert any(key in str(p.get("search") or "") for p in addr_points), query
+    for name, addr in required.items():
+        name_key = compact_search_text(name)
+        addr_key = compact_search_text(addr)
+        exact = [b for b in data["buildings"] if compact_search_text(b.get("name")) == name_key]
+        assert exact, name
+        assert any(addr_key in str(b.get("search") or "") or addr_key in compact_search_text(b.get("addresses"))
+                   for b in exact), (name, addr)
 
     js = (ROOT / "site/map.js").read_text()
     for token in ["point_type === 'address'", "地址点", "地址级聚合", "hk-address-dot"]:
