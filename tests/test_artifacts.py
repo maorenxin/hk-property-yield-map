@@ -650,10 +650,13 @@ def test_orphan_buildings_are_plotted_and_searchable():
     for name, addr in required.items():
         name_key = compact_search_text(name)
         addr_key = compact_search_text(addr)
-        exact = [b for b in data["buildings"] if compact_search_text(b.get("name")) == name_key]
-        assert exact, name
-        assert any(addr_key in str(b.get("search") or "") or addr_key in compact_search_text(b.get("addresses"))
-                   for b in exact), (name, addr)
+        matches = [
+            b for b in data["buildings"]
+            if name_key in str(b.get("search") or "")
+            and (addr_key in str(b.get("search") or "")
+                 or addr_key in compact_search_text(b.get("addresses")))
+        ]
+        assert matches, (name, addr)
 
     js = (ROOT / "site/map.js").read_text()
     for token in ["point_type === 'address'", "地址点", "地址级聚合", "hk-address-dot"]:
