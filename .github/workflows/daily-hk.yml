@@ -163,6 +163,7 @@ jobs:
             --snapshot "$HK_SNAPSHOT" \
             --workers 2 \
             --pace 0.3 \
+            --max-unresolved 20 \
             --limit 100
 
       - name: Rebuild building metrics and site

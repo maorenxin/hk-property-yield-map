@@ -62,6 +62,24 @@ def stale_error(item: dict, days: int = 7) -> bool:
         return True
 
 
+def is_resolved(item: dict | None) -> bool:
+    return bool(
+        item
+        and item.get("status") == "ok"
+        and item.get("address_match") is True
+    )
+
+
+def unresolved_coordinates(cache: dict, candidate_keys: set[str]) -> list[str]:
+    return sorted(key for key in candidate_keys if not is_resolved(cache.get(key)))
+
+
+def coordinate_exit_code(unresolved: int, max_unresolved: int) -> int:
+    if unresolved < 0 or max_unresolved < 0:
+        raise ValueError("coordinate counts must be non-negative")
+    return 0 if unresolved <= max_unresolved else 2
+
+
 def request_coordinate(session: requests.Session, type_code: str, expected_address: str,
                        retries: int = 5) -> dict:
     last_error = None
@@ -84,13 +102,23 @@ def request_coordinate(session: requests.Session, type_code: str, expected_addre
                         "lat": float(lat),
                         "lon": float(lon),
                     }
-                last_error = f"no gMap in response: {str(payload)[:240]}"
+                return {
+                    "status": "not_found",
+                    "type_code": type_code,
+                    "error": f"no gMap in response: {str(payload)[:240]}",
+                }
             elif response.status_code == 429:
                 wait = (30, 60, 120, 240, 300)[min(attempt, 4)]
                 print(f"429 for {type_code}; backing off {wait}s", flush=True)
                 time.sleep(wait)
                 last_error = "HTTP 429"
                 continue
+            elif response.status_code == 204:
+                return {
+                    "status": "not_found",
+                    "type_code": type_code,
+                    "error": "HTTP 204: no coordinate match",
+                }
             else:
                 last_error = f"HTTP {response.status_code}: {response.text[:240]}"
         except Exception as exc:  # noqa: BLE001 - retry network/JSON failures
@@ -133,11 +161,21 @@ def request_autocomplete_coordinate(session: requests.Session, address: str,
                         "lon": float(lon),
                         "fallback": "autocomplete",
                     }
-                last_error = "no exact address match in autocomplete"
+                return {
+                    "status": "not_found",
+                    "type_code": None,
+                    "error": "no exact address match in autocomplete",
+                }
             elif response.status_code == 429:
                 time.sleep((30, 60, 120)[min(attempt, 2)])
                 last_error = "HTTP 429"
                 continue
+            elif response.status_code == 204:
+                return {
+                    "status": "not_found",
+                    "type_code": None,
+                    "error": "HTTP 204: no autocomplete match",
+                }
             else:
                 last_error = f"HTTP {response.status_code}: {response.text[:240]}"
         except Exception as exc:  # noqa: BLE001
@@ -156,9 +194,17 @@ def main() -> int:
     parser.add_argument("--pace", type=float, default=0.35)
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument(
+        "--max-unresolved",
+        type=int,
+        default=0,
+        help="allow this many total unresolved addresses without failing the step (default: 0)",
+    )
     parser.add_argument("--refresh-errors", action="store_true")
     parser.add_argument("--refresh-mismatch", action="store_true")
     args = parser.parse_args()
+    if args.max_unresolved < 0:
+        parser.error("--max-unresolved must be non-negative")
 
     snapshot = date.fromisoformat(args.snapshot)
     df = pd.read_parquet(args.base_parquet, columns=[
@@ -179,29 +225,39 @@ def main() -> int:
             continue
         if item and item.get("status") == "ok" and not args.refresh_mismatch:
             continue
-        if item and item.get("status") == "error" and not args.refresh_errors and not stale_error(item):
+        if item and item.get("status") in {"error", "not_found"} and not args.refresh_errors and not stale_error(item):
             continue
         todo.append(row)
     if args.limit:
         todo = todo[:args.limit]
-    cached_ok = sum((cache.get(key) or {}).get("status") == "ok" for key in candidate_keys)
+    cached_ok = sum(is_resolved(cache.get(key)) for key in candidate_keys)
     print(f"candidate addresses={len(candidates)}, cached_ok={cached_ok}, "
           f"todo={len(todo)}", flush=True)
 
-    ok = failed = 0
+    ok = errors = unmatched = 0
+    error_details = []
+
     def work(row):
         result = request_coordinate(thread_session(), row.type_code, row.address_raw)
+        attempts = [result]
         fallback = getattr(row, "fallback_type_code", "")
         if (result.get("status") != "ok" or not result.get("address_match")) and fallback:
             fallback_result = request_coordinate(thread_session(), fallback, row.address_raw)
+            attempts.append(fallback_result)
             if fallback_result.get("status") == "ok" and fallback_result.get("address_match"):
                 fallback_result["fallback_from"] = result.get("type_code")
                 result = fallback_result
-        if result.get("status") != "ok" or not result.get("address_match"):
+        if not is_resolved(result):
             autocomplete_result = request_autocomplete_coordinate(thread_session(), row.address_raw)
-            if autocomplete_result.get("status") == "ok":
+            attempts.append(autocomplete_result)
+            if is_resolved(autocomplete_result):
                 autocomplete_result["fallback_from"] = result.get("type_code")
                 result = autocomplete_result
+            else:
+                result = next(
+                    (attempt for attempt in attempts if attempt.get("status") == "error"),
+                    result,
+                )
         time.sleep(args.pace + random.uniform(0, 0.08))
         return row, result
 
@@ -216,20 +272,74 @@ def main() -> int:
                 "checked_at": datetime.now(ZoneInfo("Asia/Hong_Kong")).isoformat(timespec="seconds"),
             })
             cache[row.addr_key] = result
-            if result["status"] == "ok":
+            if is_resolved(result):
                 ok += 1
+            elif result.get("status") == "error":
+                errors += 1
+                error_details.append(
+                    f"{row.address_raw}: {result.get('error') or 'unknown coordinate error'}"
+                )
             else:
-                failed += 1
+                unmatched += 1
             if i % 25 == 0 or i == len(todo):
                 args.cache.parent.mkdir(parents=True, exist_ok=True)
                 args.cache.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
-                print(f"{i}/{len(todo)} ok={ok} failed={failed}", flush=True)
+                print(
+                    f"{i}/{len(todo)} ok={ok} unmatched={unmatched} errors={errors}",
+                    flush=True,
+                )
 
     args.cache.parent.mkdir(parents=True, exist_ok=True)
     args.cache.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
-    total_ok = sum((cache.get(key) or {}).get("status") == "ok" for key in candidate_keys)
-    print(f"coordinate cache: {total_ok}/{len(candidates)} resolved; this run ok={ok}, failed={failed}")
-    return 0 if failed == 0 else 2
+    unresolved = unresolved_coordinates(cache, candidate_keys)
+    total_ok = len(candidate_keys) - len(unresolved)
+    print(
+        f"coordinate cache: {total_ok}/{len(candidates)} resolved; "
+        f"unresolved={len(unresolved)}; this run ok={ok}, unmatched={unmatched}, errors={errors}"
+    )
+    unresolved_over_budget = len(unresolved) > args.max_unresolved
+    if errors:
+        level = "error" if unresolved_over_budget else "warning"
+        print(
+            f"::{level}::coordinate resolution errors for {errors} address(es); "
+            f"total unresolved={len(unresolved)}/{args.max_unresolved}",
+            flush=True,
+        )
+        for detail in error_details[:20]:
+            print(f"coordinate error: {detail}", flush=True)
+        if len(error_details) > 20:
+            print(f"coordinate error: ... {len(error_details) - 20} more", flush=True)
+    if unresolved:
+        address_by_key = {row.addr_key: row.address_raw for row in candidates.itertuples()}
+        if unresolved_over_budget:
+            print(
+                f"::error::coordinate unresolved budget exceeded: "
+                f"{len(unresolved)} > {args.max_unresolved}",
+                flush=True,
+            )
+        else:
+            print(
+                f"::warning::coordinate unresolved: {len(unresolved)} address(es); "
+                f"allowed={args.max_unresolved}",
+                flush=True,
+            )
+        for key in unresolved[:20]:
+            item = cache.get(key) or {}
+            expected = address_by_key.get(key, key)
+            actual = item.get("address") or "-"
+            if not item:
+                reason = "missing cache; not processed or unavailable"
+            elif item.get("status") == "ok":
+                reason = "address mismatch"
+            else:
+                reason = item.get("error") or item.get("status") or "unresolved"
+            print(
+                f"coordinate unresolved: {expected} -> {actual}; {reason}",
+                flush=True,
+            )
+        if len(unresolved) > 20:
+            print(f"coordinate unresolved: ... {len(unresolved) - 20} more", flush=True)
+    return coordinate_exit_code(len(unresolved), args.max_unresolved)
 
 
 if __name__ == "__main__":
