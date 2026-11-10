@@ -69,22 +69,55 @@ def test_http_204_autocomplete_miss_is_not_retried():
 
 
 def test_resolved_requires_matching_address():
-    assert is_resolved({"status": "ok", "address_match": True})
-    assert not is_resolved({"status": "ok", "address_match": False})
-    assert not is_resolved({"status": "error", "address_match": True})
+    coords = {"lat": 22.3, "lon": 114.2}
+    assert is_resolved({"status": "ok", "address_match": True, **coords})
+    assert not is_resolved({"status": "ok", "address_match": False, **coords})
+    assert not is_resolved({"status": "error", "address_match": True, **coords})
     assert not is_resolved(None)
+
+
+def test_stale_address_match_flag_is_recomputed():
+    item = {
+        "status": "ok",
+        "address": "小瀝源路62-78號",
+        "address_match": False,
+        "lat": 22.3,
+        "lon": 114.2,
+    }
+
+    assert is_resolved(item, "小瀝源路62號")
 
 
 def test_all_cached_unresolved_entries_count_toward_budget():
     cache = {
-        "ok": {"status": "ok", "address_match": True},
-        "mismatch": {"status": "ok", "address_match": False},
+        "ok": {"status": "ok", "address_match": True, "lat": 22.3, "lon": 114.2},
+        "stale-ok": {
+            "status": "ok",
+            "address": "小瀝源路62-78號",
+            "address_match": False,
+            "lat": 22.3,
+            "lon": 114.2,
+        },
+        "mismatch": {
+            "status": "ok",
+            "address": "測試路9號",
+            "address_match": False,
+            "lat": 22.3,
+            "lon": 114.2,
+        },
         "error": {"status": "error"},
         "not_found": {"status": "not_found"},
     }
-    keys = set(cache) | {"missing"}
+    expected = {
+        "ok": "測試路1號",
+        "stale-ok": "小瀝源路62號",
+        "mismatch": "測試路1號",
+        "error": "測試路1號",
+        "not_found": "測試路1號",
+        "missing": "測試路1號",
+    }
 
-    assert unresolved_coordinates(cache, keys) == ["error", "mismatch", "missing", "not_found"]
+    assert unresolved_coordinates(cache, expected) == ["error", "mismatch", "missing", "not_found"]
 
 
 def test_coordinate_budget_and_errors_are_enforced():
@@ -96,6 +129,6 @@ def test_coordinate_budget_and_errors_are_enforced():
 def test_cached_error_uses_same_total_unresolved_budget():
     cache = {"address": {"status": "error", "error": "HTTP 503"}}
 
-    unresolved = unresolved_coordinates(cache, {"address"})
+    unresolved = unresolved_coordinates(cache, {"address": "測試路1號"})
 
     assert coordinate_exit_code(len(unresolved), 20) == 0

@@ -62,16 +62,27 @@ def stale_error(item: dict, days: int = 7) -> bool:
         return True
 
 
-def is_resolved(item: dict | None) -> bool:
+def is_resolved(item: dict | None, expected_address: str | None = None) -> bool:
+    if not item or item.get("status") != "ok":
+        return False
+    if item.get("lat") is None or item.get("lon") is None:
+        return False
+    if item.get("address_match") is True:
+        return True
+    actual_address = item.get("address")
     return bool(
-        item
-        and item.get("status") == "ok"
-        and item.get("address_match") is True
+        expected_address
+        and actual_address
+        and address_matches(expected_address, str(actual_address))
     )
 
 
-def unresolved_coordinates(cache: dict, candidate_keys: set[str]) -> list[str]:
-    return sorted(key for key in candidate_keys if not is_resolved(cache.get(key)))
+def unresolved_coordinates(cache: dict, expected_by_key: dict[str, str]) -> list[str]:
+    return sorted(
+        key
+        for key, expected_address in expected_by_key.items()
+        if not is_resolved(cache.get(key), expected_address)
+    )
 
 
 def coordinate_exit_code(unresolved: int, max_unresolved: int) -> int:
@@ -217,11 +228,12 @@ def main() -> int:
     cutoff = pd.Timestamp(snapshot) - pd.Timedelta(days=365)
     candidates = orphan_address_candidates(df, df[df.analysis_date >= cutoff], metrics, estates)
     cache = json.loads(args.cache.read_text()) if args.cache.exists() else {}
-    candidate_keys = set(candidates.addr_key)
+    address_by_key = {row.addr_key: row.address_raw for row in candidates.itertuples()}
+    candidate_keys = set(address_by_key)
     todo = []
     for row in candidates.itertuples():
         item = cache.get(row.addr_key)
-        if item and item.get("status") == "ok" and address_matches(row.address_raw, item.get("address")):
+        if is_resolved(item, row.address_raw):
             continue
         if item and item.get("status") == "ok" and not args.refresh_mismatch:
             continue
@@ -230,7 +242,7 @@ def main() -> int:
         todo.append(row)
     if args.limit:
         todo = todo[:args.limit]
-    cached_ok = sum(is_resolved(cache.get(key)) for key in candidate_keys)
+    cached_ok = sum(is_resolved(cache.get(key), address_by_key[key]) for key in candidate_keys)
     print(f"candidate addresses={len(candidates)}, cached_ok={cached_ok}, "
           f"todo={len(todo)}", flush=True)
 
@@ -241,16 +253,16 @@ def main() -> int:
         result = request_coordinate(thread_session(), row.type_code, row.address_raw)
         attempts = [result]
         fallback = getattr(row, "fallback_type_code", "")
-        if (result.get("status") != "ok" or not result.get("address_match")) and fallback:
+        if not is_resolved(result, row.address_raw) and fallback:
             fallback_result = request_coordinate(thread_session(), fallback, row.address_raw)
             attempts.append(fallback_result)
-            if fallback_result.get("status") == "ok" and fallback_result.get("address_match"):
+            if is_resolved(fallback_result, row.address_raw):
                 fallback_result["fallback_from"] = result.get("type_code")
                 result = fallback_result
-        if not is_resolved(result):
+        if not is_resolved(result, row.address_raw):
             autocomplete_result = request_autocomplete_coordinate(thread_session(), row.address_raw)
             attempts.append(autocomplete_result)
-            if is_resolved(autocomplete_result):
+            if is_resolved(autocomplete_result, row.address_raw):
                 autocomplete_result["fallback_from"] = result.get("type_code")
                 result = autocomplete_result
             else:
@@ -272,7 +284,7 @@ def main() -> int:
                 "checked_at": datetime.now(ZoneInfo("Asia/Hong_Kong")).isoformat(timespec="seconds"),
             })
             cache[row.addr_key] = result
-            if is_resolved(result):
+            if is_resolved(result, row.address_raw):
                 ok += 1
             elif result.get("status") == "error":
                 errors += 1
@@ -291,7 +303,7 @@ def main() -> int:
 
     args.cache.parent.mkdir(parents=True, exist_ok=True)
     args.cache.write_text(json.dumps(cache, ensure_ascii=False, indent=1), encoding="utf-8")
-    unresolved = unresolved_coordinates(cache, candidate_keys)
+    unresolved = unresolved_coordinates(cache, address_by_key)
     total_ok = len(candidate_keys) - len(unresolved)
     print(
         f"coordinate cache: {total_ok}/{len(candidates)} resolved; "
@@ -310,7 +322,6 @@ def main() -> int:
         if len(error_details) > 20:
             print(f"coordinate error: ... {len(error_details) - 20} more", flush=True)
     if unresolved:
-        address_by_key = {row.addr_key: row.address_raw for row in candidates.itertuples()}
         if unresolved_over_budget:
             print(
                 f"::error::coordinate unresolved budget exceeded: "
