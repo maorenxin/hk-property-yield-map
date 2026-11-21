@@ -210,9 +210,45 @@ jobs:
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
+        id: pages_upload
         with:
+          name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: site
+
+      - name: Wait for Pages artifact visibility
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: ${{ steps.pages_upload.outputs.artifact_id }}
+          ARTIFACT_NAME: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+        shell: bash
+        run: |
+          set -u
+          if [ -z "${ARTIFACT_ID:-}" ]; then
+            echo "::error::Pages artifact_id is empty" >&2
+            exit 1
+          fi
+          deadline=$((SECONDS + 60))
+          while [ "$SECONDS" -lt "$deadline" ]; do
+            remaining=$((deadline - SECONDS))
+            timeout_seconds=$((remaining > 10 ? 10 : remaining))
+            visible=$(timeout "${timeout_seconds}s" gh api \
+              "repos/${GITHUB_REPOSITORY}/actions/artifacts/${ARTIFACT_ID}" \
+              --jq "select(.expired == false and .name == \"${ARTIFACT_NAME}\") | .id" \
+              2>/dev/null || true)
+            if [ "$visible" = "$ARTIFACT_ID" ]; then
+              echo "Pages artifact ${ARTIFACT_ID} is visible"
+              exit 0
+            fi
+            remaining=$((deadline - SECONDS))
+            [ "$remaining" -gt 0 ] || break
+            sleep_seconds=$((remaining > 2 ? 2 : remaining))
+            sleep "$sleep_seconds"
+          done
+          echo "::error::Pages artifact ${ARTIFACT_ID} was not visible after 60 seconds" >&2
+          exit 1
 
       - name: Deploy refreshed map to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
