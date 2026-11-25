@@ -108,7 +108,7 @@ jobs:
     timeout-minutes: 90
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment_fallback.outputs.page_url || steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -250,5 +250,129 @@ jobs:
       - name: Deploy refreshed map to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
         with:
           artifact_name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Fallback Pages deployment via API
+        id: deployment_fallback
+        if: steps.deployment.outcome == 'failure' && steps.deployment.outputs.page_url == ''
+        uses: actions/github-script@v7
+        env:
+          ARTIFACT_ID: ${{ steps.pages_upload.outputs.artifact_id }}
+        with:
+          script: |
+            const artifactId = Number(process.env.ARTIFACT_ID);
+            if (!artifactId) throw new Error('Pages artifact_id is empty');
+
+            const idToken = await core.getIDToken();
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const buildVersion = `${context.sha}-${context.runId}-${context.runAttempt}`;
+            const created = await github.request('POST /repos/{owner}/{repo}/pages/deployments', {
+              owner,
+              repo,
+              artifact_id: artifactId,
+              pages_build_version: buildVersion,
+              oidc_token: idToken,
+            });
+            const deployment = created.data;
+            const deploymentId = deployment.id || deployment.status_url?.split('/')?.pop();
+            if (!deploymentId) throw new Error('Pages deployment did not return an id');
+            const terminalFailures = new Set([
+              'deployment_failed',
+              'deployment_cancelled',
+              'deployment_perms_error',
+              'deployment_content_failed',
+              'deployment_lost',
+            ]);
+
+            async function cancelDeployment() {
+              try {
+                await github.request('POST /repos/{owner}/{repo}/pages/deployments/{deploymentId}/cancel', {
+                  owner,
+                  repo,
+                  deploymentId,
+                });
+              } catch (error) {
+                core.warning(`Unable to cancel Pages deployment ${deploymentId}: ${error.message}`);
+              }
+            }
+
+            let requestErrors = 0;
+            for (let attempt = 1; attempt <= 120; attempt++) {
+              let statusData;
+              try {
+                statusData = await github.request('GET /repos/{owner}/{repo}/pages/deployments/{deploymentId}', {
+                  owner,
+                  repo,
+                  deploymentId,
+                });
+                requestErrors = 0;
+              } catch (error) {
+                requestErrors += 1;
+                if (requestErrors >= 10) {
+                  await cancelDeployment();
+                  throw error;
+                }
+                core.warning(`Pages status query failed (${requestErrors}/10): ${error.message}`);
+                await new Promise(resolve => setTimeout(resolve, 5000));
+                continue;
+              }
+              const state = statusData.data.status;
+              if (state === 'succeed') {
+                core.setOutput('page_url', statusData.data.page_url || deployment.page_url || '');
+                return;
+              }
+              if (terminalFailures.has(state)) {
+                await cancelDeployment();
+                throw new Error(`Pages deployment failed with status: ${state}`);
+              }
+              await new Promise(resolve => setTimeout(resolve, 5000));
+            }
+            await cancelDeployment();
+            throw new Error('Pages deployment timed out after 10 minutes');
+
+      - name: Require successful Pages deployment
+        if: steps.deployment.outcome != 'success' && steps.deployment_fallback.outcome != 'success'
+        shell: bash
+        run: |
+          echo "::error::Pages deployment did not succeed"
+          exit 1
+
+      - name: Verify live Pages build
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected=$(python3 - <<'PY'
+          import json
+          from pathlib import Path
+          text = Path('site/map_data.js').read_text()
+          payload = json.loads(text[len('window.HK_MAP_DATA='):].rstrip().rstrip(';'))
+          print(payload['build'])
+          PY
+          )
+          deadline=$((SECONDS + 600))
+          attempt=0
+          while [ "$SECONDS" -lt "$deadline" ]; do
+            attempt=$((attempt + 1))
+            remaining=$((deadline - SECONDS))
+            [ "$remaining" -gt 0 ] || break
+            curl_timeout=$((remaining > 30 ? 30 : remaining))
+            live=$(curl -fsSL --max-time "$curl_timeout" \
+              -H 'Cache-Control: no-cache' \
+              "https://maorenxin.github.io/hk-property-yield-map/map_data.js?verify=${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-${attempt}" \
+              | python3 -c 'import json,sys; s=sys.stdin.read(); print(json.loads(s[len("window.HK_MAP_DATA="):].rstrip().rstrip(";"))["build"])' \
+              2>/dev/null || true)
+            if [ "$live" = "$expected" ]; then
+              echo "Live Pages build verified: $live"
+              exit 0
+            fi
+            remaining=$((deadline - SECONDS))
+            [ "$remaining" -gt 0 ] || break
+            sleep_seconds=$((remaining > 10 ? 10 : remaining))
+            echo "Waiting for live Pages build: expected=$expected actual=${live:-unavailable} (attempt ${attempt})"
+            sleep "$sleep_seconds"
+          done
+          echo "::error::Live Pages build did not switch to $expected within 10 minutes"
+          exit 1
